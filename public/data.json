@@ -1,0 +1,76 @@
+{
+  "todoLists": [
+    {
+      "id": 1,
+      "title": "Список покупок",
+      "todos": [
+        {
+          "id": 1,
+          "task": "Купить молоко",
+          "completed": false,
+          "dueDate": "2023-10-05"
+        },
+        {
+          "id": 2,
+          "task": "Купить хлеб",
+          "completed": false,
+          "dueDate": "2023-10-05"
+        },
+        {
+          "id": 3,
+          "task": "Купить яйца",
+          "completed": true,
+          "dueDate": "2023-10-04"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Рабочие задачи",
+      "todos": [
+        {
+          "id": 1,
+          "task": "Подготовить отчет",
+          "completed": false,
+          "dueDate": "2023-10-10"
+        },
+        {
+          "id": 2,
+          "task": "Встреча с клиентом",
+          "completed": true,
+          "dueDate": "2023-10-01"
+        },
+        {
+          "id": 3,
+          "task": "Обновить сайт",
+          "completed": false,
+          "dueDate": "2023-10-15"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Личные дела",
+      "todos": [
+        {
+          "id": 1,
+          "task": "Сделать зарядку",
+          "completed": false,
+          "dueDate": "2023-10-05"
+        },
+        {
+          "id": 2,
+          "task": "Прочитать книгу",
+          "completed": false,
+          "dueDate": "2023-10-12"
+        },
+        {
+          "id": 3,
+          "task": "Позвонить другу",
+          "completed": true,
+          "dueDate": "2023-10-03"
+        }
+      ]
+    }
+  ]
+}
