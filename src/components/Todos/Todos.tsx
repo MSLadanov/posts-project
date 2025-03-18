@@ -1,7 +1,5 @@
 import { ReactElement } from "react";
 
-const Todos = (): ReactElement => {
+export const Todos = (): ReactElement => {
   return <div>Todos</div>;
 };
-
-export default Todos;
