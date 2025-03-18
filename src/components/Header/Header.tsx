@@ -1,7 +1,5 @@
 import { ReactElement } from "react";
 
-const Header = (): ReactElement => {
+export const Header = (): ReactElement => {
   return <div>Header</div>;
 };
-
-export default Header;
