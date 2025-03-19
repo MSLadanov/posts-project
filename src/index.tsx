@@ -3,8 +3,9 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { App } from "@/App";
 import { BrowserRouter, Route, Routes } from "react-router";
-import { TodoList } from "@components/TodoList/TodoList";
-import { Todos } from "@components/Todos";
+import { TodoListsRoute } from "@routes/TodoListsRoute";
+import { TodosRoute } from "@routes/TodosRoute";
+
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,8 +15,8 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="todolists" element={<TodoList />} />
-          <Route path="todos" element={<Todos />} />
+          <Route path="todolists" element={<TodoListsRoute />} />
+          <Route path="todos" element={<TodosRoute />} />
         </Route>
       </Routes>
     </BrowserRouter>
