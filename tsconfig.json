@@ -5,7 +5,10 @@
     "baseUrl": "./src",
     "paths": {
       "@/*": ["./*"],
-      "@components/*": ["./components/*"]
+      "@components/*": ["./components/*"],
+      "@ui/*": ["./components/ui/*"],
+      "@routes/*": ["./routes/*"],
+      "@hooks/*": ["./hooks/*"],
     },
     "allowJs": true,
     "skipLibCheck": true,
