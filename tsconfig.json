@@ -9,6 +9,7 @@
       "@ui/*": ["./components/ui/*"],
       "@routes/*": ["./routes/*"],
       "@hooks/*": ["./hooks/*"],
+      "@types/*": ["./types/*"],
     },
     "allowJs": true,
     "skipLibCheck": true,

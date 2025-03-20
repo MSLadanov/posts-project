@@ -7,6 +7,7 @@ module.exports = {
       "@ui": path.resolve(__dirname, "src/components/ui"),
       "@routes": path.resolve(__dirname, "src/routes"),
       "@hooks": path.resolve(__dirname, "src/hooks"),
+      "@types": path.resolve(__dirname, "src/types"),
     },
   },
 };
