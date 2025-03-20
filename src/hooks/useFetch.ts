@@ -8,13 +8,14 @@ const useFetch = (url: string) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch(url);
-        console.log(response.ok)
-        const { todoLists } = await response.json()
-        console.log(todoLists)
+        const { todoLists } = await response.json();
+        setData(todoLists);
       } catch (error) {
-        console.log(error);
+        setIsError(true);
       } finally {
+        setIsLoading(false);
       }
     };
     fetchData();
