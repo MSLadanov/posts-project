@@ -4,7 +4,9 @@ const todoReducer = createSlice({
     name: 'todo',
     initialState: [],
     reducers: {
-        
+        getTodo: (state, action) => {
+            state.push(action.payload)
+        }
     }
 })
 
