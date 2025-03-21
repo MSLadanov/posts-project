@@ -20,7 +20,6 @@ export const TodoListsRoute = (): ReactElement => {
           key={item.id}
           id={item.id}
           title={item.title}
-          todos={item.todos}
         />
       ))}
     </div>

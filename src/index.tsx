@@ -17,7 +17,7 @@ root.render(
         <Route path="*" element={<ErrorRoute />} />
         <Route path="/" element={<App />}>
           <Route path="todolists" element={<TodoListsRoute />} />
-          <Route path="todos" element={<TodosRoute />} />
+          <Route path="todolists/:id" element={<TodosRoute />} />
           <Route path="/" element={<Navigate to="/todolists" replace />} />
         </Route>
       </Routes>
