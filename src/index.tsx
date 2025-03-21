@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { Provider } from "react-redux";
-import store from "./store/store";
+import { store } from "store";
 import { App } from "@/App";
 import { TodoListsRoute } from "@routes/TodoListsRoute";
 import { TodosRoute } from "@routes/TodosRoute";
