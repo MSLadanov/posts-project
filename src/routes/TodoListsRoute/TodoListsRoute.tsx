@@ -1,3 +1,4 @@
+import { TodoList } from "@/components/TodoList";
 import useFetch from "@/hooks/useFetch";
 import { ReactElement } from "react";
 
@@ -12,5 +13,16 @@ export const TodoListsRoute = (): ReactElement => {
   if (!isLoading && !isError && data.length === 0) {
     return <div>No TodoLists!</div>;
   }
-  return <div>TodoListsRoute</div>;
+  return (
+    <div>
+      {data.map((item) => (
+        <TodoList
+          key={item.id}
+          id={item.id}
+          title={item.title}
+          todos={item.todos}
+        />
+      ))}
+    </div>
+  );
 };
