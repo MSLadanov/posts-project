@@ -1,10 +1,15 @@
+import { fetchTodos } from "@/store/slices/TodoSlice";
 import { TodoListsState } from "@/types/todoTypes";
-import { ReactElement } from "react";
-import { useSelector } from "react-redux";
+import { ReactElement, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { AppDispatch } from "@/store";
 
 export const TodoListsRoute = (): ReactElement => {
-  const todoLists = useSelector((state : TodoListsState) => state.todoLists)
-  console.log(todoLists)
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, []);
   return (
     <div>
       {/* {todoLists.map((item) => (

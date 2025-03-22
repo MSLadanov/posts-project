@@ -1,7 +1,7 @@
 import { TodoListsState } from "@/types/todoTypes";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const fetchTodos = createAsyncThunk("todos/fetchTodos", async () => {
+export const fetchTodos = createAsyncThunk("todos/fetchTodos", async () => {
   const response = await fetch("data.json");
   const { todoLists } = await response.json();
   return todoLists;
