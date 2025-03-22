@@ -1,11 +1,21 @@
-import { TTodoListsState } from "@/types/todoTypes";
+import { TTodoList, TTodoListsState } from "@/types/todoTypes";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchTodos = createAsyncThunk("todos/fetchTodos", async () => {
+export const fetchTodos = createAsyncThunk("todos/fetchTodoLists", async () => {
   const response = await fetch("data.json");
   const { todoLists } = await response.json();
   return todoLists;
 });
+
+export const fetchTodoListById = createAsyncThunk(
+  "todos/fetchTodoListById",
+  async (id: number) => {
+    const response = await fetch("data.json");
+    const { todoLists } = await response.json();
+    const todoList = todoLists.find((tl: TTodoList) => tl.id === id);
+    return todoList;
+  }
+);
 
 const initialState: TTodoListsState = {
   todoLists: [],
