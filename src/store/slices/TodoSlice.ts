@@ -19,6 +19,7 @@ export const fetchTodoListById = createAsyncThunk(
 
 const initialState: TTodoListsState = {
   todoLists: [],
+  currentTodoList: {},
   loading: "idle",
 };
 
@@ -36,6 +37,16 @@ const todoReducer = createSlice({
         state.todoLists = action.payload;
       })
       .addCase(fetchTodos.rejected, (state) => {
+        state.loading = "failed";
+      })
+      .addCase(fetchTodoListById.pending, (state) => {
+        state.loading = "pending";
+      })
+      .addCase(fetchTodoListById.fulfilled, (state, action) => {
+        state.loading = "succeeded";
+        state.currentTodoList = action.payload;
+      })
+      .addCase(fetchTodoListById.rejected, (state) => {
         state.loading = "failed";
       });
   },

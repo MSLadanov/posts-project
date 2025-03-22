@@ -17,6 +17,7 @@ export type TTodoListsRequest = {
 
 export interface TTodoListsState {
   todoLists: TTodoList[];
+  currentTodoList: TTodoList | {},
   loading: "idle" | "pending" | "succeeded" | "failed";
 }
 
