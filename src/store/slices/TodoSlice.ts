@@ -8,14 +8,20 @@ export const fetchTodos = createAsyncThunk("todos/fetchTodoLists", async () => {
 });
 
 export const fetchTodoListById = createAsyncThunk(
-  "todos/fetchTodoListById",
-  async (id: number) => {
-    const response = await fetch("data.json");
-    const { todoLists } = await response.json();
-    const todoList = todoLists.find((tl: TTodoList) => tl.id === id);
-    return todoList;
-  }
-);
+    "todos/fetchTodoListById",
+    async (id: number) => {
+      const response = await fetch("data.json");
+      if (!response.ok) {
+        throw new Error("Ошибка запроса");
+      }
+      const { todoLists } = await response.json();
+      const todoList = todoLists.find((tl: TTodoList) => tl.id === id);
+      if (!todoList) {
+        throw new Error(`Список дел с id ${id} не найден!`);
+      }
+      return todoList;
+    }
+  );
 
 const initialState: TTodoListsState = {
   todoLists: [],
