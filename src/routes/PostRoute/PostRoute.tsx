@@ -1,5 +1,5 @@
 import { AppDispatch } from "@/store";
-import { fetchTodoListById } from "@/store/slices/TodoSlice";
+import { fetchTodoListById } from "@/store/slices/PostsSlice";
 import { ReactElement, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router";
