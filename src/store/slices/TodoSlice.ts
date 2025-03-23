@@ -3,30 +3,38 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchTodos = createAsyncThunk("todos/fetchTodoLists", async () => {
   const response = await fetch("data.json");
+  if (!response.ok) {
+    throw new Error("Ошибка запроса");
+  }
   const { todoLists } = await response.json();
   return todoLists;
 });
 
 export const fetchTodoListById = createAsyncThunk(
-    "todos/fetchTodoListById",
-    async (id: number) => {
-      const response = await fetch("data.json");
-      if (!response.ok) {
-        throw new Error("Ошибка запроса");
-      }
-      const { todoLists } = await response.json();
-      const todoList = todoLists.find((tl: TTodoList) => tl.id === id);
-      if (!todoList) {
-        throw new Error(`Список дел с id ${id} не найден!`);
-      }
-      return todoList;
+  "todos/fetchTodoListById",
+  async (id: number) => {
+    const response = await fetch("data.json");
+    if (!response.ok) {
+      throw new Error("Ошибка запроса");
     }
-  );
+    const { todoLists } = await response.json();
+    const todoList = todoLists.find((tl: TTodoList) => tl.id === id);
+    if (!todoList) {
+      throw new Error(`Список дел с id ${id} не найден!`);
+    }
+    return todoList;
+  }
+);
 
 const initialState: TTodoListsState = {
-  todoLists: [],
-  currentTodoList: {},
-  loading: "idle",
+  todoLists: {
+    data: [],
+    loading: "idle",
+  },
+  currentTodoList: {
+    data: [],
+    loading: "idle",
+  },
 };
 
 const todoReducer = createSlice({
@@ -36,24 +44,24 @@ const todoReducer = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchTodos.pending, (state) => {
-        state.loading = "pending";
+        state.todoLists.loading = "pending";
       })
       .addCase(fetchTodos.fulfilled, (state, action) => {
-        state.loading = "succeeded";
-        state.todoLists = action.payload;
+        state.todoLists.loading = "succeeded";
+        state.todoLists.data = action.payload;
       })
       .addCase(fetchTodos.rejected, (state) => {
-        state.loading = "failed";
+        state.todoLists.loading = "failed";
       })
       .addCase(fetchTodoListById.pending, (state) => {
-        state.loading = "pending";
+        state.currentTodoList.loading = "pending";
       })
       .addCase(fetchTodoListById.fulfilled, (state, action) => {
-        state.loading = "succeeded";
-        state.currentTodoList = action.payload;
+        state.currentTodoList.loading = "succeeded";
+        state.currentTodoList.data = action.payload;
       })
       .addCase(fetchTodoListById.rejected, (state) => {
-        state.loading = "failed";
+        state.currentTodoList.loading = "failed";
       });
   },
 });

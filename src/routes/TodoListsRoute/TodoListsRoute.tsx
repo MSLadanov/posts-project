@@ -7,13 +7,15 @@ import { TodoList } from "@/components/TodoList";
 
 export const TodoListsRoute = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
-  const { todoLists } = useSelector((store: TTodoListsStore) => store.todo);
+  const { data } = useSelector(
+    (store: TTodoListsStore) => store.todo.todoLists
+  );
   useEffect(() => {
     dispatch(fetchTodos());
   }, [dispatch]);
   return (
     <div>
-      {todoLists.map((item) => (
+      {data.map((item) => (
         <TodoList key={item.id} id={item.id} title={item.title} />
       ))}
     </div>

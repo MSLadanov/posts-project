@@ -16,14 +16,16 @@ export type TTodoListsRequest = {
 };
 
 export interface TTodoListsState {
-  todoLists: TTodoList[];
-  currentTodoList: TTodoList | {},
-  loading: "idle" | "pending" | "succeeded" | "failed";
+  todoLists: {
+    data: TTodoList[];
+    loading: "idle" | "pending" | "succeeded" | "failed";
+  };
+  currentTodoList: {
+    data: TTodoList | {};
+    loading: "idle" | "pending" | "succeeded" | "failed";
+  };
 }
 
 export interface TTodoListsStore {
-  todo: {
-    todoLists: TTodoList[];
-    loading: "idle" | "pending" | "succeeded" | "failed";
-  };
+  todo: TTodoListsState
 }
