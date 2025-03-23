@@ -6,7 +6,7 @@ interface ITodoListProps {
   title: string;
 }
 
-export const TodoList: React.FC<ITodoListProps> = ({
+export const PostsList: React.FC<ITodoListProps> = ({
   id,
   title,
 }): ReactElement => {

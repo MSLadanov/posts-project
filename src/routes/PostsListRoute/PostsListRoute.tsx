@@ -3,9 +3,9 @@ import { TTodoListsStore } from "@/types/todoTypes";
 import { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store";
-import { TodoList } from "@/components/TodoList";
+import { PostsList } from "@/components/PostsList";
 
-export const TodoListsRoute = (): ReactElement => {
+export const PostsListRoute = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
   const { data } = useSelector(
     (store: TTodoListsStore) => store.todo.todoLists
@@ -16,7 +16,7 @@ export const TodoListsRoute = (): ReactElement => {
   return (
     <div>
       {data.map((item) => (
-        <TodoList key={item.id} id={item.id} title={item.title} />
+        <PostsList key={item.id} id={item.id} title={item.title} />
       ))}
     </div>
   );

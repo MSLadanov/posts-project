@@ -5,8 +5,8 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { Provider } from "react-redux";
 import { store } from "store";
 import { App } from "@/App";
-import { TodoListsRoute } from "@routes/TodoListsRoute";
-import { TodosRoute } from "@routes/TodosRoute";
+import { PostsListRoute } from "@/routes/PostsListRoute";
+import { PostRoute } from "@/routes/PostRoute";
 import { ErrorRoute } from "@routes/ErrorRoute";
 
 const root = ReactDOM.createRoot(
@@ -19,9 +19,9 @@ root.render(
         <Routes>
           <Route path="*" element={<ErrorRoute />} />
           <Route path="/" element={<App />}>
-            <Route path="todolists" element={<TodoListsRoute />} />
-            <Route path="todolists/:id" element={<TodosRoute />} />
-            <Route path="/" element={<Navigate to="/todolists" replace />} />
+            <Route path="posts" element={<PostsListRoute />} />
+            <Route path="posts/:id" element={<PostRoute />} />
+            <Route path="/" element={<Navigate to="/posts" replace />} />
           </Route>
         </Routes>
       </BrowserRouter>

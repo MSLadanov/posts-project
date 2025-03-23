@@ -2,7 +2,7 @@ import { TTodoList, TTodoListsState } from "@/types/todoTypes";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchTodos = createAsyncThunk("todos/fetchTodoLists", async () => {
-  const response = await fetch("data.json");
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
   if (!response.ok) {
     throw new Error("Ошибка запроса");
   }
@@ -13,10 +13,11 @@ export const fetchTodos = createAsyncThunk("todos/fetchTodoLists", async () => {
 export const fetchTodoListById = createAsyncThunk(
   "todos/fetchTodoListById",
   async (id: number) => {
-    const response = await fetch("data.json");
+    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
     if (!response.ok) {
       throw new Error("Ошибка запроса");
     }
+    console.log(response.json())
     const { todoLists } = await response.json();
     const todoList = todoLists.find((tl: TTodoList) => tl.id === id);
     if (!todoList) {
