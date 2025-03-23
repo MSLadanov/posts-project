@@ -1,4 +1,4 @@
-import { fetchTodos } from "@/store/slices/PostsSlice";
+import { fetchPosts } from "@/store/slices/PostsSlice";
 import { TPostsListStore } from "@/types/types";
 import { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,10 +8,10 @@ import { PostsList } from "@/components/PostsList";
 export const PostsListRoute = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
   const { data } = useSelector(
-    (store: TPostsListStore) => store.todo.todoLists
+    (store: TPostsListStore) => store.posts.postsList
   );
   useEffect(() => {
-    dispatch(fetchTodos());
+    dispatch(fetchPosts());
   }, [dispatch]);
   return (
     <div>

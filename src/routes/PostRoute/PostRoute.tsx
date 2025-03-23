@@ -1,5 +1,5 @@
 import { AppDispatch } from "@/store";
-import { fetchTodoListById } from "@/store/slices/PostsSlice";
+import { fetchPostById } from "@/store/slices/PostsSlice";
 import { ReactElement, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router";
@@ -9,7 +9,7 @@ export const PostRoute = (): ReactElement => {
   const id = Number(pathname.split("/").at(-1));
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    dispatch(fetchTodoListById(id));
+    dispatch(fetchPostById(id));
   }, [id, dispatch]);
-  return <div>TodosRoute</div>;
+  return <div>Post Route</div>;
 };

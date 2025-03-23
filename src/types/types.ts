@@ -47,5 +47,5 @@ export interface TPostsListState {
 }
 
 export interface TPostsListStore {
-  todo: TPostsListState
+  posts: TPostsListState
 }

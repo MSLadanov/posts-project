@@ -1,8 +1,8 @@
-import { TTodoList } from "@/types/types";
+import { TPostsList } from "@/types/types";
 import { useEffect, useState } from "react";
 
 const useFetch = (url: string) => {
-  const [data, setData] = useState<TTodoList[] | []>([]);
+  const [data, setData] = useState<TPostsList | []>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   useEffect(() => {
@@ -10,8 +10,8 @@ const useFetch = (url: string) => {
       try {
         setIsLoading(true);
         const response = await fetch(url);
-        const { todoLists } = await response.json();
-        setData(todoLists);
+        const fetchedData = await response.json();
+        setData(fetchedData);
       } catch (error) {
         setIsError(true);
       } finally {

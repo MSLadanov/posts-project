@@ -1,17 +1,17 @@
 import { TPostsListState } from "@/types/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchPosts = createAsyncThunk("todos/fetchPosts", async () => {
+export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts");
   if (!response.ok) {
     throw new Error("Ошибка запроса");
   }
-  const { todoLists } = await response.json();
-  return todoLists;
+  const { postsList } = await response.json();
+  return postsList;
 });
 
 export const fetchPostComments = createAsyncThunk(
-  "todos/fetchComments",
+  "posts/fetchComments",
   async (id: number) => {
     const response = await fetch(`'https://dummyjson.com/comments/post/${id}'`);
     if (!response.ok) {
@@ -34,7 +34,7 @@ const initialState: TPostsListState = {
 };
 
 const postsReducer = createSlice({
-  name: "todoLists",
+  name: "posts",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
