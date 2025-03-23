@@ -1,5 +1,5 @@
 import { fetchTodos } from "@/store/slices/TodoSlice";
-import { TTodoListsStore } from "@/types/todoTypes";
+import { TTodoListsStore } from "@/types/types";
 import { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store";

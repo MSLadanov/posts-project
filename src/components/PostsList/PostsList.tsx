@@ -1,12 +1,12 @@
 import { ReactElement } from "react";
 import { NavLink, useLocation } from "react-router";
 
-interface ITodoListProps {
+interface IPostsListProps {
   id: number;
   title: string;
 }
 
-export const PostsList: React.FC<ITodoListProps> = ({
+export const PostsList: React.FC<IPostsListProps> = ({
   id,
   title,
 }): ReactElement => {

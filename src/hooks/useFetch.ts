@@ -1,4 +1,4 @@
-import { TTodoList } from "@/types/todoTypes";
+import { TTodoList } from "@/types/types";
 import { useEffect, useState } from "react";
 
 const useFetch = (url: string) => {

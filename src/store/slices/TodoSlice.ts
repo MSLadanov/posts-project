@@ -1,4 +1,4 @@
-import { TTodoList, TTodoListsState } from "@/types/todoTypes";
+import { TTodoList, TTodoListsState } from "@/types/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchTodos = createAsyncThunk("todos/fetchTodoLists", async () => {
