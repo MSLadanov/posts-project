@@ -37,11 +37,11 @@ export type TPostsListsRequest = {
 
 export interface TPostsListState {
   postsList: {
-    data: TPostsList[];
+    data: TPostsList[] | [];
     loading: "idle" | "pending" | "succeeded" | "failed";
   };
   comments: {
-    data: TCommentsList;
+    data: TCommentsList | [];
     loading: "idle" | "pending" | "succeeded" | "failed";
   };
 }

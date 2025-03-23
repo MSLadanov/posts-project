@@ -1,7 +1,7 @@
-import { TPostsList, TPostsListState } from "@/types/types";
+import { TPostsListState } from "@/types/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchTodos = createAsyncThunk("todos/fetchTodoLists", async () => {
+export const fetchPosts = createAsyncThunk("todos/fetchPosts", async () => {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts");
   if (!response.ok) {
     throw new Error("Ошибка запроса");
@@ -10,10 +10,15 @@ export const fetchTodos = createAsyncThunk("todos/fetchTodoLists", async () => {
   return todoLists;
 });
 
-export const fetchTodoListById = createAsyncThunk(
-  "todos/fetchTodoListById",
+export const fetchPostComments = createAsyncThunk(
+  "todos/fetchComments",
   async (id: number) => {
-  
+    const response = await fetch(`'https://dummyjson.com/comments/post/${id}'`);
+    if (!response.ok) {
+      throw new Error("Ошибка запроса");
+    }
+    const { comments } = await response.json();
+    return comments;
   }
 );
 
@@ -34,24 +39,24 @@ const postsReducer = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchTodos.pending, (state) => {
+      .addCase(fetchPosts.pending, (state) => {
         state.postsList.loading = "pending";
       })
-      .addCase(fetchTodos.fulfilled, (state, action) => {
+      .addCase(fetchPosts.fulfilled, (state, action) => {
         state.postsList.loading = "succeeded";
         state.postsList.data = action.payload;
       })
-      .addCase(fetchTodos.rejected, (state) => {
+      .addCase(fetchPosts.rejected, (state) => {
         state.postsList.loading = "failed";
       })
-      .addCase(fetchTodoListById.pending, (state) => {
+      .addCase(fetchPostComments.pending, (state) => {
         state.comments.loading = "pending";
       })
-      .addCase(fetchTodoListById.fulfilled, (state, action) => {
+      .addCase(fetchPostComments.fulfilled, (state, action) => {
         state.comments.loading = "succeeded";
         state.comments.data = action.payload;
       })
-      .addCase(fetchTodoListById.rejected, (state) => {
+      .addCase(fetchPostComments.rejected, (state) => {
         state.comments.loading = "failed";
       });
   },
