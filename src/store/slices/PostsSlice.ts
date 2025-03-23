@@ -10,6 +10,12 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   return postsList;
 });
 
+export const fetchPostById = createAsyncThunk("posts/fetchPost", async (id) => {
+  const response = await fetch(`https://dummyjson.com/posts/${id}`);
+  const post = await response.json();
+  return post;
+});
+
 export const fetchPostComments = createAsyncThunk(
   "posts/fetchComments",
   async (id: number) => {
@@ -25,6 +31,10 @@ export const fetchPostComments = createAsyncThunk(
 const initialState: TPostsListState = {
   postsList: {
     data: [],
+    loading: "idle",
+  },
+  post: {
+    data: {},
     loading: "idle",
   },
   comments: {
@@ -48,6 +58,16 @@ const postsReducer = createSlice({
       })
       .addCase(fetchPosts.rejected, (state) => {
         state.postsList.loading = "failed";
+      })
+      .addCase(fetchPostById.pending, (state, action) => {
+        state.post.loading = "pending";
+      })
+      .addCase(fetchPostById.fulfilled, (state, action) => {
+        state.post.loading = "succeeded";
+        state.post.data = action.payload;
+      })
+      .addCase(fetchPostById.rejected, (state, action) => {
+        state.post.loading = "failed";
       })
       .addCase(fetchPostComments.pending, (state) => {
         state.comments.loading = "pending";

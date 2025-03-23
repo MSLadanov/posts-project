@@ -40,6 +40,10 @@ export interface TPostsListState {
     data: TPostsList[] | [];
     loading: "idle" | "pending" | "succeeded" | "failed";
   };
+  post: {
+    data: TPost | {},
+    loading: "idle" | "pending" | "succeeded" | "failed";
+  }
   comments: {
     data: TCommentsList | [];
     loading: "idle" | "pending" | "succeeded" | "failed";
