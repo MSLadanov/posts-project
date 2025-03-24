@@ -3,13 +3,13 @@ import { NavLink, useLocation } from "react-router";
 
 interface IPostsListProps {
   id: number;
-  title: string;
+  body: string;
 }
 
 export const PostsList: React.FC<IPostsListProps> = ({
   id,
-  title,
+  body,
 }): ReactElement => {
   const location = useLocation();
-  return <NavLink to={`${location.pathname}/${id}`}>{title}</NavLink>;
+  return <NavLink to={`${location.pathname}/${id}`}>{body}</NavLink>;
 };

@@ -6,11 +6,11 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   if (!response.ok) {
     throw new Error("Ошибка запроса");
   }
-  const { postsList } = await response.json();
-  return postsList;
+  const { posts } = await response.json();
+  return posts;
 });
 
-export const fetchPostById = createAsyncThunk("posts/fetchPost", async (id) => {
+export const fetchPostById = createAsyncThunk("posts/fetchPostById", async (id) => {
   const response = await fetch(`https://dummyjson.com/posts/${id}`);
   const post = await response.json();
   return post;

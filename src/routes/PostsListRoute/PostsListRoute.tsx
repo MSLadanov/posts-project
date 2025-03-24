@@ -16,7 +16,7 @@ export const PostsListRoute = (): ReactElement => {
   return (
     <div>
       {data.map((item) => (
-        <PostsList key={item.id} id={item.id} title={item.title} />
+        <PostsList key={item.id} id={item.id} body={item.body} />
       ))}
     </div>
   );
