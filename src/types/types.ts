@@ -24,7 +24,7 @@ export type TComment = {
 }
 
 export type TPostsList = {
-  posts:TPost[]
+  posts:TPost[] | []
 };
 
 export type TCommentsList = {
@@ -37,7 +37,7 @@ export type TPostsListsRequest = {
 
 export interface TPostsListState {
   postsList: {
-    data: TPostsList[] | [];
+    data: TPostsList | [];
     loading: "idle" | "pending" | "succeeded" | "failed";
   };
   post: {
