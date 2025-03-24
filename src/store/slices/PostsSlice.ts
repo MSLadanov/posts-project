@@ -2,7 +2,7 @@ import { TPostsListState } from "@/types/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const response = await fetch("https://dummyjson.com/posts");
   if (!response.ok) {
     throw new Error("Ошибка запроса");
   }
