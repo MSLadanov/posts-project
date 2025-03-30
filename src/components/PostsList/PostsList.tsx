@@ -12,5 +12,5 @@ export const PostsList: React.FC<IPostsListProps> = ({
 }): ReactElement => {
   console.log(id)
   const location = useLocation();
-  return <NavLink to={`${location.pathname}${id}`}>{body}</NavLink>;
+  return <NavLink to={`${location.pathname}/${id}`}>{body}</NavLink>;
 };
