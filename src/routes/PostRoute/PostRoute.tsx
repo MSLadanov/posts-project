@@ -9,7 +9,9 @@ export const PostRoute = (): ReactElement => {
   const id = Number(pathname.split("/").at(-1));
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    dispatch(fetchPostById(id));
+    if (typeof id !== "number") {
+      dispatch(fetchPostById(id));
+    }
   }, [id, dispatch]);
   return <div>Post Route</div>;
 };
