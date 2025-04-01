@@ -19,7 +19,7 @@ export const PostsList = (): ReactElement => {
   return (
     <div>
       {data.map((item : TPost) => (
-        <Post key={item.id} id={item.id} body={item.title} />
+        <Post key={item.id} id={item.id} body={item.title} userId={item.userId} />
       ))}
     </div>
   );
