@@ -1,5 +1,15 @@
-import { ReactElement } from "react"
+import { ReactElement } from "react";
+import { NavLink, useLocation } from "react-router";
 
-export const Post = () : ReactElement => {
-    return <div>Post</div>
+interface IPostsListProps {
+  id: number;
+  body: string;
 }
+
+export const Post: React.FC<IPostsListProps> = ({
+  id,
+  body,
+}): ReactElement => {
+  const location = useLocation();
+  return <NavLink to={`${location.pathname}/${id}`}>{body}</NavLink>;
+};
