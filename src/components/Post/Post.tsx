@@ -7,7 +7,7 @@ interface IPostsListProps {
   post: TPost;
 }
 
-export const Post: React.FC<IPostsListProps> = ({ post }): ReactElement => {
+export const Post: React.FC<IPostsListProps> = ({ post }): ReactElement  => {
   const location = useLocation();
   const { data, isLoading, isError } = useFetch(
     `https://dummyjson.com/users/${post.userId}`
