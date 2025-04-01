@@ -3,16 +3,9 @@ import { fetchPosts } from "@/store/slices/PostsSlice";
 import { TPostsListStore, TPost } from "@/types/types";
 import { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Post } from "@components/Post";
 
-interface IPostsListProps {
-  id: number;
-  body: string;
-}
-
-export const PostsList: React.FC<IPostsListProps> = ({
-  id,
-  body,
-}): ReactElement => {
+export const PostsList = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
   const { data } = useSelector(
     (store: TPostsListStore) => store.posts.postsList
@@ -26,7 +19,7 @@ export const PostsList: React.FC<IPostsListProps> = ({
   return (
     <div>
       {data.map((item : TPost) => (
-        <PostsList key={item.id} id={item.id} body={item.title} />
+        <Post key={item.id} id={item.id} body={item.title} />
       ))}
     </div>
   );
