@@ -14,12 +14,12 @@ export const PostsList = (): ReactElement => {
     dispatch(fetchPosts());
   }, [dispatch]);
   if (!Array.isArray(data) || data.length === 0) {
-    return <div>Нет доступных постов!.</div>;
+    return <div>Нет доступных постов!</div>;
   }
   return (
     <div>
       {data.map((item : TPost) => (
-        <Post key={item.id} id={item.id} body={item.title} userId={item.userId} />
+        <Post key={item.id} post={item} />
       ))}
     </div>
   );
