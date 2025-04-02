@@ -1,39 +1,119 @@
 export type TPost = {
-  id: number,
-  title: string,
-  body: string,
-  tags: string[],
+  id: number;
+  title: string;
+  body: string;
+  tags: string[];
   reactions: {
-    likes: number,
-    dislikes: number
-  },
-  views: number,
-  userId: number
+    likes: number;
+    dislikes: number;
+  };
+  views: number;
+  userId: number;
 };
 
-export type TComment = {
-  id: number,
-  body: string,
-  postId: number,
-  likes: number,
-  user: {
-    id: number,
-    username: string,
-    fullName: string
-  }
+type Hair = {
+  color: string;
+  type: string;
+};
+
+type Coordinates = {
+  lat: number;
+  lng: number;
+};
+
+type Address = {
+  address: string;
+  city: string;
+  state: string;
+  stateCode: string;
+  postalCode: string;
+  coordinates: Coordinates;
+  country: string;
+};
+
+type Bank = {
+  cardExpire: string;
+  cardNumber: string;
+  cardType: string;
+  currency: string;
+  iban: string;
+};
+
+type CompanyAddress = {
+  address: string;
+  city: string;
+  state: string;
+  stateCode: string;
+  postalCode: string;
+  coordinates: Coordinates;
+  country: string;
+};
+
+type Company = {
+  department: string;
+  name: string;
+  title: string;
+  address: CompanyAddress;
+};
+
+type Crypto = {
+  coin: string;
+  wallet: string;
+  network: string;
+};
+
+export interface TUser {
+  id: number;
+  firstName: string;
+  lastName: string;
+  maidenName: string;
+  age: number;
+  gender: string;
+  email: string;
+  phone: string;
+  username: string;
+  password: string;
+  birthDate: string;
+  image: string;
+  bloodGroup: string;
+  height: number;
+  weight: number;
+  eyeColor: string;
+  hair: Hair;
+  ip: string;
+  address: Address;
+  macAddress: string;
+  university: string;
+  bank: Bank;
+  company: Company;
+  ein: string;
+  ssn: string;
+  userAgent: string;
+  crypto: Crypto;
+  role: string;
 }
 
+export type TComment = {
+  id: number;
+  body: string;
+  postId: number;
+  likes: number;
+  user: {
+    id: number;
+    username: string;
+    fullName: string;
+  };
+};
+
 export type TPostsList = {
-  posts:TPost[] | []
+  posts: TPost[] | [];
 };
 
 export type TCommentsList = {
-  comments: TComment[]
-}
-
-export type TPostsListsRequest = {
-
+  comments: TComment[];
 };
+
+export type TPostsListsRequest = {};
 
 export interface TPostsListState {
   postsList: {
@@ -41,9 +121,9 @@ export interface TPostsListState {
     loading: "idle" | "pending" | "succeeded" | "failed";
   };
   post: {
-    data: TPost | {},
+    data: TPost | {};
     loading: "idle" | "pending" | "succeeded" | "failed";
-  }
+  };
   comments: {
     data: TCommentsList | [];
     loading: "idle" | "pending" | "succeeded" | "failed";
@@ -51,5 +131,5 @@ export interface TPostsListState {
 }
 
 export interface TPostsListStore {
-  posts: TPostsListState
+  posts: TPostsListState;
 }

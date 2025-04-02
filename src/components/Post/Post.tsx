@@ -1,7 +1,8 @@
 import useFetch from "@/hooks/useFetch";
-import { TPost } from "@/types/types";
+import { TPost, TUser } from "@/types/types";
 import { ReactElement } from "react";
 import { NavLink, useLocation } from "react-router";
+import { PostCard } from "../PostCard";
 
 interface IPostsListProps {
   post: TPost;
@@ -9,7 +10,7 @@ interface IPostsListProps {
 
 export const Post: React.FC<IPostsListProps> = ({ post }): ReactElement  => {
   const location = useLocation();
-  const { data, isLoading, isError } = useFetch(
+  const { data : {}, isLoading, isError } = useFetch(
     `https://dummyjson.com/users/${post.userId}`
   );
   if (isLoading && !isError) {
@@ -18,6 +19,6 @@ export const Post: React.FC<IPostsListProps> = ({ post }): ReactElement  => {
   if (isError && !isLoading) {
     return <div>Ошибка!</div>;
   } else {
-    return <div>Post</div>;
+    return <PostCard/>;
   }
 };
