@@ -10,7 +10,7 @@ interface IPostsListProps {
 
 export const Post: React.FC<IPostsListProps> = ({ post }): ReactElement  => {
   const location = useLocation();
-  const { data : {}, isLoading, isError } = useFetch(
+  const { data, isLoading, isError } = useFetch<TUser>(
     `https://dummyjson.com/users/${post.userId}`
   );
   if (isLoading && !isError) {

@@ -1,8 +1,7 @@
-import { TPostsList, TUser } from "@/types/types";
 import { useEffect, useState } from "react";
 
-const useFetch = (url: string) => {
-  const [data, setData] = useState<TUser | TPostsList | []>([]);
+const useFetch = <T> (url: string) => {
+  const [data, setData] = useState<T>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   useEffect(() => {
