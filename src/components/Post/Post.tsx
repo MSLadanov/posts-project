@@ -31,6 +31,7 @@ export const Post: React.FC<IPostsListProps> = ({ post }): ReactElement => {
       lastName={data.lastName}
       image={data.image}
       link={`${location.pathname}/${post.id}`}
+      post={post}
     />
   );
 };
