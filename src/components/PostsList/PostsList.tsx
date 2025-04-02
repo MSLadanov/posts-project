@@ -7,12 +7,15 @@ import { Post } from "@components/Post";
 
 export const PostsList = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
-  const { data } = useSelector(
+  const { data, loading } = useSelector(
     (store: TPostsListStore) => store.posts.postsList
   );
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
+  if (loading === 'pending') {
+    return <div>Загрузка...</div>;
+  }
   if (!Array.isArray(data) || data.length === 0) {
     return <div>Нет доступных постов!</div>;
   }
