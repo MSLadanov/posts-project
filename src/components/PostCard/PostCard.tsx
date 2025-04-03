@@ -1,5 +1,8 @@
 import { TPost } from "@/types/types";
 import { ReactElement } from "react";
+import { TagBadge } from "@ui/TagBadge";
+import './style.scss'
+
 
 type TPostCardProps = {
   firstname: string,
@@ -14,6 +17,7 @@ export const PostCard : React.FC<TPostCardProps> = ({firstname, lastName, image,
     <div className="post-card__header">
       <img src={image} alt={firstname + ' ' + lastName + ' avatar'} />
       <h5>{firstname + ' ' + lastName}</h5>
+      {post.tags.map((tag) => <TagBadge>{tag}</TagBadge>)}
     </div>
     <div className="post-card__body">{post.body}</div>
     <div className="post-card__footer"></div>
