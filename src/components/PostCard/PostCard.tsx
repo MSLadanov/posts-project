@@ -1,8 +1,8 @@
 import { TPost } from "@/types/types";
 import { ReactElement } from "react";
-import { TagBadge } from "@ui/TagBadge";
 import "./style.scss";
 import { BadgeContainer } from "../BadgeContainer";
+import { NavLink } from "react-router";
 
 type TPostCardProps = {
   firstname: string;
@@ -26,7 +26,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
         <h5>{firstname + " " + lastName}</h5>
         <BadgeContainer tags={post.tags}/>
       </div>
-      <div className="post-card__body">{post.body}</div>
+      <div className="post-card__body"><NavLink to={link}>{post.body}</NavLink></div>
       <div className="post-card__footer"></div>
     </div>
   );
