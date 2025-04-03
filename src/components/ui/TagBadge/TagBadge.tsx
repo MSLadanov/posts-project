@@ -1,8 +1,9 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, ReactElement } from "react";
+import './style.scss'
 
-export const TagBadge = ({ children }: PropsWithChildren) => {
+export const TagBadge = ({ children } : PropsWithChildren) : ReactElement => {
   return (
-    <div>
+    <div className="tag-badge">
       <p>{children}</p>
     </div>
   );

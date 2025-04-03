@@ -1,0 +1,13 @@
+.tag-badge {
+  display: flex;
+  height: fit-content;
+  background-color: red;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  padding: 0.1em;
+  margin: 0.1em;
+  p {
+    color: white;
+  }
+}
