@@ -4,6 +4,8 @@ import { BadgeContainer } from "../BadgeContainer";
 import { NavLink } from "react-router";
 import { Container } from "../ui/Container";
 import "./style.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 type TPostCardProps = {
   firstname: string;
@@ -33,7 +35,13 @@ export const PostCard: React.FC<TPostCardProps> = ({
         <NavLink to={link}>{post.body}</NavLink>
       </div>
       <div className="post-card__footer">
-        
+        <Container>
+          <FontAwesomeIcon icon={faEye}/>
+          <p>{post.views}</p>
+        </Container>
+        <Container>
+
+        </Container>
       </div>
     </div>
   );
