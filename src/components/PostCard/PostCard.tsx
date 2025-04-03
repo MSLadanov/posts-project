@@ -2,10 +2,13 @@ import { TPost } from "@/types/types";
 import { ReactElement } from "react";
 import { BadgeContainer } from "../BadgeContainer";
 import { NavLink } from "react-router";
-import { Container } from "../ui/Container";
-import "./style.scss";
+import { Container } from "@ui/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "@ui/Button";
+import "./style.scss";
 
 type TPostCardProps = {
   firstname: string;
@@ -40,7 +43,8 @@ export const PostCard: React.FC<TPostCardProps> = ({
           <p>{post.views}</p>
         </Container>
         <Container>
-
+          <Button icon={faThumbsUp}/>
+          <Button icon={faThumbsDown}/>
         </Container>
       </div>
     </div>
