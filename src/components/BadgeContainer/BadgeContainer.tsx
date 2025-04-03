@@ -7,10 +7,10 @@ type TBadgeContainerProps = {
 };
 
 export const BadgeContainer: React.FC<TBadgeContainerProps> = ({
-  tags,
+  tags
 }): ReactElement => {
   return (
-    <div>
+    <div className="badge-container">
       {tags.map((tag) => (
         <TagBadge>{tag}</TagBadge>
       ))}
