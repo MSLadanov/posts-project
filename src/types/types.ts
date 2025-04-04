@@ -105,13 +105,9 @@ export type TComment = {
   };
 };
 
-export type TPostsList = {
-  posts: TPost[] | [];
-};
+export type TPostsList = TPost[] | [];
 
-export type TCommentsList = {
-  comments: TComment[];
-};
+export type TCommentsList = TComment[];
 
 export type TPostsListsRequest = {};
 
