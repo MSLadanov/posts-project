@@ -1,5 +1,5 @@
-import { TPostsListState } from "@/types/types";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { TPost, TPostsListState } from "@/types/types";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   const response = await fetch("https://dummyjson.com/posts");
@@ -67,10 +67,21 @@ const postsReducer = createSlice({
   name: "posts",
   initialState,
   reducers: {
-    searchPosts: () =>{
+    sort(state, action: PayloadAction<string>) {
+      switch (action.type) {
+        case "Likes":
+          return;
+        case "Dislikes":
+          return;
 
-    }
-   },
+        case "Views":
+          return;
+
+        default:
+          return state;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPosts.pending, (state) => {
