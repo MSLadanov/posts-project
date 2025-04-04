@@ -10,11 +10,31 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   return posts;
 });
 
-export const fetchPostById = createAsyncThunk("posts/fetchPostById", async (id) => {
-  const response = await fetch(`https://dummyjson.com/posts/${id}`);
-  const post = await response.json();
-  return post;
-});
+export const fetchPostById = createAsyncThunk(
+  "posts/fetchPostById",
+  async (id: number) => {
+    const response = await fetch(`https://dummyjson.com/posts/${id}`);
+    if (!response.ok) {
+      throw new Error("Ошибка запроса");
+    }
+    const post = await response.json();
+    return post;
+  }
+);
+
+export const fetchSearchedPosts = createAsyncThunk(
+  "posts/fetchSearchedPosts",
+  async (query: string) => {
+    const response = await fetch(
+      `https://dummyjson.com/posts/search?q=${query}`
+    );
+    if (!response.ok) {
+      throw new Error("Ошибка запроса");
+    }
+    const searchedPosts = await response.json();
+    return searchedPosts;
+  }
+);
 
 export const fetchPostComments = createAsyncThunk(
   "posts/fetchComments",

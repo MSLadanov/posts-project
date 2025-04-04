@@ -4,7 +4,6 @@ import { TPostsListStore, TPost } from "@/types/types";
 import { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Post } from "@components/Post";
-import { PostsFilter } from "@components/PostsFilter";
 
 export const PostsList = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
