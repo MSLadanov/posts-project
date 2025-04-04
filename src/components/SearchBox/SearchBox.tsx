@@ -2,13 +2,16 @@
 import useDebounce from "@hooks/useDebounce";
 import { ReactElement, useEffect, useState } from "react";
 import { fetchSearchedPosts } from "@store/slices/PostsSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store";
 
 export const SearchBox = (): ReactElement => {
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedString = useDebounce(searchQuery, 500)
+  const dispatch = useDispatch<AppDispatch>()
   useEffect(() => {
     if(searchQuery){
-      fetchSearchedPosts(searchQuery)
+      dispatch(fetchSearchedPosts(searchQuery))
     }
   }, [debouncedString])
   return (

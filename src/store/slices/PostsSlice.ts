@@ -31,8 +31,8 @@ export const fetchSearchedPosts = createAsyncThunk(
     if (!response.ok) {
       throw new Error("Ошибка запроса");
     }
-    const searchedPosts = await response.json();
-    return searchedPosts;
+    const { posts } = await response.json();
+    return posts;
   }
 );
 
@@ -66,7 +66,11 @@ const initialState: TPostsListState = {
 const postsReducer = createSlice({
   name: "posts",
   initialState,
-  reducers: {},
+  reducers: {
+    searchPosts: () =>{
+
+    }
+   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPosts.pending, (state) => {
@@ -88,6 +92,16 @@ const postsReducer = createSlice({
       })
       .addCase(fetchPostById.rejected, (state, action) => {
         state.post.loading = "failed";
+      })
+      .addCase(fetchSearchedPosts.pending, (state) => {
+        state.postsList.loading = "pending";
+      })
+      .addCase(fetchSearchedPosts.fulfilled, (state, action) => {
+        state.postsList.loading = "succeeded";
+        state.postsList.data = action.payload;
+      })
+      .addCase(fetchSearchedPosts.rejected, (state) => {
+        state.postsList.loading = "failed";
       })
       .addCase(fetchPostComments.pending, (state) => {
         state.comments.loading = "pending";
