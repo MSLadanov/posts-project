@@ -39,8 +39,8 @@ export const PostCard: React.FC<TPostCardProps> = ({
       <div className="post-card__footer">
         <ViewsContainer views={post.views}/>
         <Container>
-          <Button icon={faThumbsUp} />
-          <Button icon={faThumbsDown} />
+          <Button icon={faThumbsUp}>{post.reactions.likes}</Button>
+          <Button icon={faThumbsDown}>{post.reactions.dislikes}</Button>
         </Container>
       </div>
     </div>
