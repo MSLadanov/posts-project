@@ -4,23 +4,20 @@ import { ReactElement, useEffect, useState } from "react";
 import { fetchSearchedPosts } from "@store/slices/PostsSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
+import { Input } from "@ui/Input";
 
 export const SearchBox = (): ReactElement => {
   const [searchQuery, setSearchQuery] = useState("");
-  const debouncedString = useDebounce(searchQuery, 500)
-  const dispatch = useDispatch<AppDispatch>()
+  const debouncedString = useDebounce(searchQuery, 500);
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    if(searchQuery){
-      dispatch(fetchSearchedPosts(searchQuery))
+    if (searchQuery) {
+      dispatch(fetchSearchedPosts(searchQuery));
     }
-  }, [debouncedString])
+  }, [debouncedString]);
   return (
     <div>
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      ></input>
+      <Input type="text" value={searchQuery} setValue={setSearchQuery} />
     </div>
   );
 };
