@@ -14,7 +14,7 @@ export const Select: React.FC<TSelectProps> = ({
 }): ReactElement => {
   return (
     <select onChange={(e) => setValue(e.target.value)}>
-      <option>-----------</option>
+      <option disabled selected>-----------</option>
       {options.map((option) => (
         <option>{option}</option>
       ))}
