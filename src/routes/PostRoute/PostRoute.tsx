@@ -1,3 +1,4 @@
+import { PostPage } from "@/components/PostPage";
 import { AppDispatch } from "@/store";
 import { fetchPostById } from "@/store/slices/PostsSlice";
 import { ReactElement, useEffect } from "react";
@@ -13,5 +14,9 @@ export const PostRoute = (): ReactElement => {
       dispatch(fetchPostById(id));
     }
   }, [id, dispatch]);
-  return <div>Post Route</div>;
+  return (
+    <div>
+      <PostPage />
+    </div>
+  );
 };
