@@ -16,7 +16,7 @@ export const Select: React.FC<TSelectProps> = ({
 }): ReactElement => {
   return (
     <select defaultValue={defaultValue} onChange={(e) => setValue(e.target.value)}>
-      <option disabled>-----------</option>
+      <option disabled>{defaultValue}</option>
       {options.map((option, index) => (
         <option key={index}>{option}</option>
       ))}
