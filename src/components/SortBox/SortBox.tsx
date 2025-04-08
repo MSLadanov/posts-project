@@ -16,7 +16,6 @@ export const SortBox = (): ReactElement => {
       <Select
         options={["Likes", "Dislikes", "Views"]}
         defaultValue="------"
-        value={sortBy}
         setValue={setSortBy}
       />
     </div>

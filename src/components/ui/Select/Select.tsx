@@ -3,13 +3,11 @@ import "./style.scss";
 
 type TSelectProps = {
   options: string[];
-  value: string;
   defaultValue: string,
   setValue: (value: string) => void;
 };
 
 export const Select: React.FC<TSelectProps> = ({
-  value,
   defaultValue,
   options,
   setValue,
