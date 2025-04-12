@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store";
 import { TPostsListStore } from "@/types/types";
 import { Post } from "@components/Post";
+import { Comments } from "@components/Comments";
 import "./style.scss";
 
 export const PostPage = (): ReactElement | null => {
@@ -24,12 +25,13 @@ export const PostPage = (): ReactElement | null => {
     return <div>Ошибка!</div>;
   }
   if (loading === "pending") {
-    return <div>Загрузка</div>;
+    return <div>Загрузка...</div>;
   }
   if (loading === "succeeded") {
     return (
       <div className="post-page">
         <Post post={data!} />
+        <Comments postId={postId}/>
       </div>
     );
   } else {

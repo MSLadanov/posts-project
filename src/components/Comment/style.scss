@@ -1,0 +1,31 @@
+.comment-card {
+  .comment-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & > div {
+      display: flex;
+      align-items: center;
+    }
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    h5 {
+      margin-left: 1em;
+    }
+  }
+
+  .comment-card__body {
+    a {
+      color: black;
+      text-decoration: none;
+    }
+  }
+
+  .comment-card__footer {
+    display: flex;
+    justify-content: space-between;
+  }
+}
