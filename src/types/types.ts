@@ -117,7 +117,7 @@ export interface TPostsListState {
     loading: "idle" | "pending" | "succeeded" | "failed";
   };
   post: {
-    data: TPost | {};
+    data: TPost | null;
     loading: "idle" | "pending" | "succeeded" | "failed";
   };
   comments: {

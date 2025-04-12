@@ -54,7 +54,7 @@ const initialState: TPostsListState = {
     loading: "idle",
   },
   post: {
-    data: {},
+    data: null,
     loading: "idle",
   },
   comments: {
