@@ -8,7 +8,6 @@ import { AppDispatch } from "@/store";
 import { TPostsListStore } from "@/types/types";
 import { Post } from "@components/Post";
 import { Comments } from "@components/Comments";
-import { CommentInput } from "@/components/CommentInput";
 import "./style.scss";
 
 export const PostPage = (): ReactElement | null => {
@@ -32,7 +31,6 @@ export const PostPage = (): ReactElement | null => {
     return (
       <div className="post-page">
         <Post post={data!} />
-        <CommentInput/>
         <Comments postId={postId}/>
       </div>
     );

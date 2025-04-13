@@ -2,6 +2,7 @@ import { ReactElement, useEffect } from "react";
 import useFetch from "@hooks/useFetch";
 import { TComment } from "@/types/types";
 import { Comment } from "@components/Comment";
+import { CommentInput } from "@components/CommentInput";
 
 export const Comments: React.FC<{ postId: number }> = ({
   postId,
@@ -20,6 +21,7 @@ export const Comments: React.FC<{ postId: number }> = ({
   }
   return (
     <div>
+      <CommentInput/>
       {data?.comments.map((comment) => (
         <Comment comment={comment} />
       ))}
