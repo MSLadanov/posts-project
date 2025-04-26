@@ -5,10 +5,9 @@ import { Outlet } from "react-router";
 
 export function App() {
   return (
-    <div className="App">
-      <Header/>
-      <Outlet/>
-    </div>
+    <>
+      <Header />
+      <Outlet />
+    </>
   );
 }
-

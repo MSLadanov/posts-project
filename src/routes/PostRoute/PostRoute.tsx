@@ -15,8 +15,8 @@ export const PostRoute = (): ReactElement => {
     }
   }, [id, dispatch]);
   return (
-    <div>
+    <main>
       <PostPage />
-    </div>
+    </main>
   );
 };
