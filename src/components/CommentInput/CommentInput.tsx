@@ -1,6 +1,6 @@
 import { ReactElement, useState } from "react";
 import { Input } from "@ui/Input";
-import { Button } from "../ui/Button";
+import { Button } from "@ui/Button";
 import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
 
 export const CommentInput = (): ReactElement => {
