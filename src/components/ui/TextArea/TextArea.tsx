@@ -1,6 +1,11 @@
 import { ReactElement } from "react";
 import "./style.scss";
 
-export const TextArea = (): ReactElement => {
+type TTextAreaProps = {
+  value: string | number;
+  setValue: (value: string) => void;
+};
+
+export const TextArea : React.FC<TTextAreaProps> = (): ReactElement => {
   return <textarea></textarea>;
 };
