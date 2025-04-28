@@ -3,6 +3,7 @@ import useFetch from "@hooks/useFetch";
 import { TComment } from "@/types/types";
 import { Comment } from "@components/Comment";
 import { CommentInput } from "@components/CommentInput";
+import { Loader } from "@components/Loader";
 
 export const Comments: React.FC<{ postId: number }> = ({
   postId,
@@ -14,7 +15,7 @@ export const Comments: React.FC<{ postId: number }> = ({
     console.log(data);
   }, [data]);
   if (isLoading) {
-    return <div>Загрузка...</div>;
+    return <Loader/> ;
   }
   if (isError) {
     return <div>Ошибка</div>;

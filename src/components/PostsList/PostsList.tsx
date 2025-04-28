@@ -4,6 +4,7 @@ import { TPostsListStore, TPost } from "@/types/types";
 import { ReactElement, Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Post } from "@components/Post";
+import { Loader } from "@components/Loader";
 
 export const PostsList = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
@@ -17,7 +18,7 @@ export const PostsList = (): ReactElement => {
     return <div>Нет доступных постов!</div>;
   }
   return (
-    <Suspense fallback={<div>Загрузка...</div>}>
+    <Suspense fallback={<Loader />}>
       {data.map((item: TPost) => (
         <Post key={item.id} post={item} />
       ))}

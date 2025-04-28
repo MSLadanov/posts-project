@@ -9,6 +9,7 @@ import { TPostsListStore } from "@/types/types";
 import { Post } from "@components/Post";
 import { Comments } from "@components/Comments";
 import "./style.scss";
+import { Loader } from "@components/Loader";
 
 export const PostPage = (): ReactElement | null => {
   const { pathname } = useLocation();
@@ -25,7 +26,7 @@ export const PostPage = (): ReactElement | null => {
     return <div>Ошибка!</div>;
   }
   if (loading === "pending") {
-    return <div>Загрузка...</div>;
+    return <Loader />;
   }
   if (loading === "succeeded") {
     return (
