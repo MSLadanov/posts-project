@@ -11,6 +11,7 @@ type TInputProps = {
 
 export const Input: React.FC<TInputProps> = ({
   type,
+  name = '',
   label,
   value,
   setValue,
@@ -20,6 +21,7 @@ export const Input: React.FC<TInputProps> = ({
       {label && <label></label>}
       <input
         type={type}
+        name={name}
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
