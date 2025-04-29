@@ -14,9 +14,9 @@ export const PostsList = (): ReactElement => {
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
-  if (!Array.isArray(data) || data.length === 0) {
-    return <div>Нет доступных постов!</div>;
-  }
+  // if (!Array.isArray(data) || data.length === 0) {
+  //   return <div>Нет доступных постов!</div>;
+  // }
   return (
     <Suspense fallback={<Loader />}>
       {data.map((item: TPost) => (

@@ -1,9 +1,8 @@
 import useFetch from "@/hooks/useFetch";
 import { TPost, TUser } from "@/types/types";
-import { ReactElement, Suspense } from "react";
+import { ReactElement } from "react";
 import { useLocation } from "react-router";
 import { PostCard } from "@components/PostCard";
-import { Loader } from "@components/Loader";
 
 interface IPostsListProps {
   post: TPost;
@@ -23,7 +22,6 @@ export const Post: React.FC<IPostsListProps> = ({ post }): ReactElement => {
   }
 
   return (
-    <Suspense fallback={<Loader />}>
       <PostCard
         firstname={data.firstName}
         lastName={data.lastName}
@@ -31,6 +29,5 @@ export const Post: React.FC<IPostsListProps> = ({ post }): ReactElement => {
         link={`${location.pathname}/${post.id}`}
         post={post}
       />
-    </Suspense>
   );
 };
