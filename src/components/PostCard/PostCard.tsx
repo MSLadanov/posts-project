@@ -25,7 +25,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
   post,
 }): ReactElement => {
   return (
-    <div className="post-card">
+    <article className="post-card">
       <div className="post-card__header">
         <Container>
           <img src={image} alt={firstname + " " + lastName + " avatar"} />
@@ -38,12 +38,12 @@ export const PostCard: React.FC<TPostCardProps> = ({
         <NavLink to={link}>{post.body}</NavLink>
       </div>
       <div className="post-card__footer">
-        <ViewsContainer views={post.views}/>
+        <ViewsContainer views={post.views} />
         <Container>
           <Button icon={faThumbsUp}>{post.reactions.likes}</Button>
           <Button icon={faThumbsDown}>{post.reactions.dislikes}</Button>
         </Container>
       </div>
-    </div>
+    </article>
   );
 };
