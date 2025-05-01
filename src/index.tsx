@@ -9,11 +9,12 @@ import { PostsListRoute } from "@/routes/PostsListRoute";
 import { PostRoute } from "@/routes/PostRoute";
 import { ErrorRoute } from "@routes/ErrorRoute";
 import { ErrorBoundary } from "react-error-boundary";
+import { TFallbackRenderProps } from "./types/types";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
-function fallbackRender({ error, resetErrorBoundary }) {
+function fallbackRender({ error, resetErrorBoundary} : TFallbackRenderProps) {
   return (
     <div role="alert">
       <p>Something went wrong:</p>

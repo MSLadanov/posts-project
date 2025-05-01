@@ -129,3 +129,10 @@ export interface TPostsListState {
 export interface TPostsListStore {
   posts: TPostsListState;
 }
+
+export interface TFallbackRenderProps {
+  error: {
+    message: string;
+  };
+  resetErrorBoundary: () => void;
+}
