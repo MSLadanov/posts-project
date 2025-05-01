@@ -13,9 +13,17 @@ import { ErrorBoundary } from "react-error-boundary";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+function fallbackRender({ error, resetErrorBoundary }) {
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre style={{ color: "red" }}>{error.message}</pre>
+    </div>
+  );
+}
 root.render(
   <React.StrictMode>
-    <ErrorBoundary fallback={<div>Something went wrong</div>}>
+    <ErrorBoundary fallbackRender={fallbackRender}>
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
