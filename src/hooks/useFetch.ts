@@ -20,7 +20,7 @@ const useFetch = <T> (url: string) => {
         setIsLoading(false);
       }
     })();
-  }, [url]);
+  }, [showBoundary, url]);
   return { data, isLoading, isError };
 };
 
