@@ -17,7 +17,7 @@ export const Post: React.FC<IPostsListProps> = ({ post }): ReactElement => {
   if (isError) {
     return <div>Ошибка при загрузке пользователя!</div>;
   }
-  if (!data) {
+  if (typeof data === 'undefined') {
     return <div>Пользователь не найден.</div>;
   }
 
