@@ -16,6 +16,8 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
     throw new Error("Ошибка запроса");
   }
   const { posts } = await response.json();
+  const users = await Promise.all( posts.map((post : TPost) => fetchUser(post.userId)))
+  console.log(users)
   return posts;
 });
 
