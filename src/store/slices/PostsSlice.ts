@@ -6,8 +6,8 @@ const fetchUser = async (id: number) => {
   if (!response.ok) {
     throw new Error("Ошибка запроса");
   }
-  const user = await response.json();
-  return user;
+  const {firstName, lastName, image} = await response.json();
+  return {firstName, lastName, image}
 };
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
@@ -16,14 +16,14 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
     throw new Error("Ошибка запроса");
   }
   const { posts } = await response.json();
-  const users = await Promise.all(
+  const postsWithUserData = await Promise.all(
     posts.map(async (post: TPost) => ({
       ...post,
-      user: await fetchUser(post.userId),
+      firstName: await fetchUser(post.userId),
     }))
   );
-  console.log(users);
-  return posts;
+  console.log(postsWithUserData)
+  return postsWithUserData;
 });
 
 export const fetchPostById = createAsyncThunk(
