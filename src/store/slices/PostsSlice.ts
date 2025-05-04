@@ -1,7 +1,7 @@
 import { TPost, TPostsListState } from "@/types/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const fetchUser = async (id : number) => {
+const fetchUser = async (id: number) => {
   const response = await fetch(`https://dummyjson.com/users/${id}`);
   if (!response.ok) {
     throw new Error("Ошибка запроса");
@@ -16,8 +16,13 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
     throw new Error("Ошибка запроса");
   }
   const { posts } = await response.json();
-  const users = await Promise.all( posts.map((post : TPost) => fetchUser(post.userId)))
-  console.log(users)
+  const users = await Promise.all(
+    posts.map(async (post: TPost) => ({
+      ...post,
+      user: await fetchUser(post.userId),
+    }))
+  );
+  console.log(users);
   return posts;
 });
 
