@@ -9,6 +9,11 @@ export type TPost = {
   };
   views: number;
   userId: number;
+  user:{
+    firstName: string;
+    lastName: string;
+    image: string;
+  }
 };
 
 type Hair = {

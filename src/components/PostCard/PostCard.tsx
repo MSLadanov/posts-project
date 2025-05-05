@@ -22,8 +22,8 @@ export const PostCard: React.FC<TPostCardProps> = ({
     <article className="post-card">
       <div className="post-card__header">
         <Container>
-          <img src={image} alt={firstname + " " + lastName + " avatar"} />
-          <h5>{firstname + " " + lastName}</h5>
+          <img src={post.user.image} alt={post.user.firstName + " " + post.user.lastName + " avatar"} />
+          <h5>{post.user.firstName + " " + post.user.lastName}</h5>
         </Container>
         <BadgeContainer tags={post.tags} />
       </div>
