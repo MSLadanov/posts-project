@@ -10,17 +10,11 @@ import { ViewsContainer } from "../ViewsContainer";
 import "./style.scss";
 
 type TPostCardProps = {
-  firstname: string;
-  lastName: string;
-  image: string;
   link: string;
   post: TPost;
 };
 
 export const PostCard: React.FC<TPostCardProps> = ({
-  firstname,
-  lastName,
-  image,
   link,
   post,
 }): ReactElement => {

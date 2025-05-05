@@ -10,22 +10,8 @@ interface IPostsListProps {
 
 export const Post: React.FC<IPostsListProps> = ({ post }): ReactElement => {
   const location = useLocation();
-  const { data, isError } = useFetch<TUser>(
-    `https://dummyjson.com/users/${post.userId}`
-  );
-
-  if (isError) {
-    return <div>Ошибка при загрузке пользователя!</div>;
-  }
-  if (typeof data === 'undefined') {
-    return <div>Пользователь не найден.</div>;
-  }
-
   return (
       <PostCard
-        firstname={data.firstName}
-        lastName={data.lastName}
-        image={data.image}
         link={`${location.pathname}/${post.id}`}
         post={post}
       />
