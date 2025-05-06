@@ -20,7 +20,6 @@ export const PostPage = (): ReactElement | null => {
   );
   useEffect(() => {
     dispatch(fetchPostById(postId));
-    console.log(data);
   }, [dispatch, postId]);
   if (loading === "failed") {
     return <div>Ошибка!</div>;

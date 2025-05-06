@@ -12,7 +12,6 @@ export const Comments: React.FC<{ postId: number }> = ({
     `https://dummyjson.com/comments/post/${postId}`
   );
   useEffect(() => {
-    console.log(data);
   }, [data]);
   if (isLoading) {
     return <Loader/> ;
@@ -24,7 +23,7 @@ export const Comments: React.FC<{ postId: number }> = ({
     <div>
       <CommentInput/>
       {data?.comments.map((comment) => (
-        <Comment comment={comment} />
+        <Comment key={comment.id} comment={comment} />
       ))}
     </div>
   );
