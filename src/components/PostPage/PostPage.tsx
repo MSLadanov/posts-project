@@ -9,7 +9,6 @@ import { TPostsListStore } from "@/types/types";
 import { Post } from "@components/Post";
 import { Comments } from "@components/Comments";
 import "./style.scss";
-import { Loader } from "@components/Loader";
 
 export const PostPage = (): ReactElement | null => {
   const { pathname } = useLocation();
@@ -21,12 +20,6 @@ export const PostPage = (): ReactElement | null => {
   useEffect(() => {
     dispatch(fetchPostById(postId));
   }, [dispatch, postId]);
-  if (loading === "failed") {
-    return <div>Ошибка!</div>;
-  }
-  if (loading === "pending") {
-    return <Loader />;
-  }
   if (loading === "succeeded") {
     return (
       <div className="post-page">
