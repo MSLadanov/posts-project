@@ -33,11 +33,11 @@ export const fetchPostById = createAsyncThunk(
       throw new Error("Ошибка запроса");
     }
     const post = await response.json();
-    const user = await fetchUser(post.userId)
+    const user = await fetchUser(post.userId);
     const postsWithUserData = {
       ...post,
-      user
-    }
+      user,
+    };
     return postsWithUserData;
   }
 );
@@ -52,7 +52,13 @@ export const fetchSearchedPosts = createAsyncThunk(
       throw new Error("Ошибка запроса");
     }
     const { posts } = await response.json();
-    return posts;
+    const postsWithUsersData = await Promise.all(
+      posts.map(async (post: TPost) => ({
+        ...post,
+        user: await fetchUser(post.userId),
+      }))
+    );
+    return postsWithUsersData;
   }
 );
 
