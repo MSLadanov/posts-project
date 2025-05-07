@@ -9,11 +9,11 @@ export type TPost = {
   };
   views: number;
   userId: number;
-  user:{
+  user: {
     firstName: string;
     lastName: string;
     image: string;
-  }
+  };
 };
 
 type Hair = {
@@ -141,3 +141,9 @@ export interface TFallbackRenderProps {
   };
   resetErrorBoundary: () => void;
 }
+
+export type Tag = {
+  slug: string;
+  name: string;
+  url: string;
+};
