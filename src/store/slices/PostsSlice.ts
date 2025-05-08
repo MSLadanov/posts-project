@@ -28,12 +28,12 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
 export const fetchPostsByTag = createAsyncThunk(
   "posts/fetchPostById",
   async (tag: string) => {
-    const response = await fetch('https://dummyjson.com/posts/tag/life')
+    const response = await fetch("https://dummyjson.com/posts/tag/life");
     if (!response.ok) {
       throw new Error("Ошибка запроса");
     }
-    const posts = await response.json()
-    return posts
+    const posts = await response.json();
+    return posts;
   }
 );
 
@@ -170,6 +170,16 @@ const postsReducer = createSlice({
       })
       .addCase(fetchPostComments.rejected, (state) => {
         state.comments.loading = "failed";
+      })
+      .addCase(fetchPostsByTag.pending, (state, action) => {
+        state.post.loading = "pending";
+      })
+      .addCase(fetchPostsByTag.fulfilled, (state, action) => {
+        state.post.loading = "succeeded";
+        state.post.data = action.payload;
+      })
+      .addCase(fetchPostsByTag.rejected, (state, action) => {
+        state.post.loading = "failed";
       });
   },
 });
