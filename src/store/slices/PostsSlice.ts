@@ -25,6 +25,18 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   return postsWithUsersData;
 });
 
+export const fetchPostsByTag = createAsyncThunk(
+  "posts/fetchPostById",
+  async (tag: string) => {
+    const response = await fetch('https://dummyjson.com/posts/tag/life')
+    if (!response.ok) {
+      throw new Error("Ошибка запроса");
+    }
+    const posts = await response.json()
+    return posts
+  }
+);
+
 export const fetchPostById = createAsyncThunk(
   "posts/fetchPostById",
   async (id: number) => {
