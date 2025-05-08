@@ -10,7 +10,7 @@ export const TagsBox = (): ReactElement => {
   return (
     <Suspense fallback={<Loader />}>
       {data && data.map((tag) => (
-        <TagBadge key={tag.slug}>{tag.name}</TagBadge>
+        <TagBadge key={tag.slug} slug={tag.slug}>{tag.name}</TagBadge>
       ))}
     </Suspense>
   );

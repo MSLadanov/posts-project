@@ -1,14 +1,14 @@
-import { PropsWithChildren, ReactElement } from "react";
+import { ReactElement } from "react";
 import './style.scss'
 
 type TTagBadgeProps = {
-  children: PropsWithChildren,
-  value: string
+  children: string,
+  slug: string
 }
 
-export const TagBadge = ({ children, value } : TTagBadgeProps) : ReactElement => {
+export const TagBadge = ({ children, slug } : TTagBadgeProps) : ReactElement => {
   return (
-    <div className="tag-badge" onClick={() => console.log(value)}>
+    <div className="tag-badge" onClick={() => console.log(slug)}>
       <p>{children}</p>
     </div>
   );
