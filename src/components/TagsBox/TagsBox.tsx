@@ -7,5 +7,11 @@ import { Loader } from "../Loader";
 
 export const TagsBox = (): ReactElement => {
   const { data } = useFetch<Tag[]>("https://dummyjson.com/posts/tags");
-  return <Suspense fallback={<Loader/>}>{data!.map((tag) => <TagBadge>{tag.name}</TagBadge>)}</Suspense>;
+  return (
+    <Suspense fallback={<Loader />}>
+      {data && data.map((tag) => (
+        <TagBadge key={tag.slug}>{tag.name}</TagBadge>
+      ))}
+    </Suspense>
+  );
 };
