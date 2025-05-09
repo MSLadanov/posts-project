@@ -32,8 +32,14 @@ export const fetchPostsByTag = createAsyncThunk(
     if (!response.ok) {
       throw new Error("Ошибка запроса");
     }
-    const posts = await response.json();
-    return posts;
+    const { posts } = await response.json();
+    const postsWithUsersData = await Promise.all(
+      posts.map(async (post: TPost) => ({
+        ...post,
+        user: await fetchUser(post.userId),
+      }))
+    );
+    return postsWithUsersData;
   }
 );
 
@@ -176,7 +182,7 @@ const postsReducer = createSlice({
       })
       .addCase(fetchPostsByTag.fulfilled, (state, action) => {
         state.post.loading = "succeeded";
-        state.post.data = action.payload;
+        state.postsList.data = action.payload;
       })
       .addCase(fetchPostsByTag.rejected, (state, action) => {
         state.post.loading = "failed";
