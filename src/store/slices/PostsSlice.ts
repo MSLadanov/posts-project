@@ -10,18 +10,23 @@ const fetchUser = async (id: number) => {
   return { firstName, lastName, image };
 };
 
-export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
-  const response = await fetch("https://dummyjson.com/posts");
-  if (!response.ok) {
-    throw new Error("Ошибка запроса");
-  }
-  const { posts } = await response.json();
+const fetchPostsWithUsersData = async (posts: TPost[]) => {
   const postsWithUsersData = await Promise.all(
     posts.map(async (post: TPost) => ({
       ...post,
       user: await fetchUser(post.userId),
     }))
   );
+  return postsWithUsersData;
+};
+
+export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
+  const response = await fetch("https://dummyjson.com/posts");
+  if (!response.ok) {
+    throw new Error("Ошибка запроса");
+  }
+  const { posts } = await response.json();
+  const postsWithUsersData = fetchPostsWithUsersData(posts);
   return postsWithUsersData;
 });
 
@@ -33,12 +38,7 @@ export const fetchPostsByTag = createAsyncThunk(
       throw new Error("Ошибка запроса");
     }
     const { posts } = await response.json();
-    const postsWithUsersData = await Promise.all(
-      posts.map(async (post: TPost) => ({
-        ...post,
-        user: await fetchUser(post.userId),
-      }))
-    );
+    const postsWithUsersData = fetchPostsWithUsersData(posts);
     return postsWithUsersData;
   }
 );
@@ -70,12 +70,7 @@ export const fetchSearchedPosts = createAsyncThunk(
       throw new Error("Ошибка запроса");
     }
     const { posts } = await response.json();
-    const postsWithUsersData = await Promise.all(
-      posts.map(async (post: TPost) => ({
-        ...post,
-        user: await fetchUser(post.userId),
-      }))
-    );
+    const postsWithUsersData = fetchPostsWithUsersData(posts);
     return postsWithUsersData;
   }
 );
