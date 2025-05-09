@@ -26,9 +26,9 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
 });
 
 export const fetchPostsByTag = createAsyncThunk(
-  "posts/fetchPostById",
+  "posts/fetchPostsByTag",
   async (tag: string) => {
-    const response = await fetch("https://dummyjson.com/posts/tag/life");
+    const response = await fetch(`https://dummyjson.com/posts/tag/${tag}`);
     if (!response.ok) {
       throw new Error("Ошибка запроса");
     }
