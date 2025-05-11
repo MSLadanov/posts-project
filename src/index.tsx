@@ -10,6 +10,7 @@ import { PostRoute } from "@/routes/PostRoute";
 import { ErrorRoute } from "@routes/ErrorRoute";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorFallback } from "@components/ErrorFallback";
+import './global.scss'
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

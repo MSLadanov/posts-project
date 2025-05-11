@@ -1,8 +1,13 @@
-.tag-box{
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    .tag-badge{
+@use "/src/global.scss" as *;
 
-    }
+.tag-box {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  @include desktop {
+  }
+  @include laptop {
+  }
+  .tag-badge {
+  }
 }
