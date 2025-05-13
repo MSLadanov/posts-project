@@ -4,7 +4,6 @@ import { createPortal } from "react-dom";
 export const useModal = (ModalContent: ElementType) => {
   const [isOpened, setIsOpened] = useState(false);
   function Modal(): ReactElement {
-    console.log('Modal JSX')
     return (
       <div>
         <button onClick={() => setIsOpened(false)}>(X)</button>
@@ -13,14 +12,9 @@ export const useModal = (ModalContent: ElementType) => {
     );
   }
   function openModal() {
-    console.log('Modal open!')
     setIsOpened(true);
   }
-  const modalFragment = document.querySelector("#modal");
-  if (modalFragment) {
-    createPortal(isOpened ? <Modal /> : null, modalFragment);
-  } else {
-    throw new Error('Div with id "modal" is undefined!');
-  }
-  return { openModal };
+  const modalContainer = document.querySelector("#modal");
+  const modalPortal = isOpened && modalContainer ? createPortal(<Modal />, modalContainer) : null;
+  return { openModal, modalPortal };
 };
