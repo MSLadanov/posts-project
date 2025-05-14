@@ -5,9 +5,11 @@ export const useModal = (ModalContent: ElementType) => {
   const [isOpened, setIsOpened] = useState(false);
   function Modal(): ReactElement {
     return (
-      <div>
-        <button onClick={() => setIsOpened(false)}>(X)</button>
-        <ModalContent></ModalContent>
+      <div className="modal-layout">
+        <div className="modal">
+          <button onClick={() => setIsOpened(false)}>(X)</button>
+          <ModalContent></ModalContent>
+        </div>
       </div>
     );
   }
@@ -15,6 +17,7 @@ export const useModal = (ModalContent: ElementType) => {
     setIsOpened(true);
   }
   const modalContainer = document.querySelector("#modal");
-  const modalPortal = isOpened && modalContainer ? createPortal(<Modal />, modalContainer) : null;
+  const modalPortal =
+    isOpened && modalContainer ? createPortal(<Modal />, modalContainer) : null;
   return { openModal, modalPortal };
 };

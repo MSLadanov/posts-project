@@ -26,3 +26,12 @@ $breakpoint-desktop: 1200px;
     @content;
   }
 }
+
+.modal-layout{
+  .modal{
+    position: sticky;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
