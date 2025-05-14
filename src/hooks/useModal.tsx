@@ -5,7 +5,7 @@ export const useModal = (ModalContent: ElementType) => {
   const [isOpened, setIsOpened] = useState(false);
   function Modal(): ReactElement {
     return (
-      <div className={isOpened ? 'modal-layout active' : 'modal-layout'}>
+      <div className="modal-layout">
         <div className="modal">
           <button onClick={() => setIsOpened(false)}>(X)</button>
           <ModalContent></ModalContent>

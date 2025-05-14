@@ -34,11 +34,7 @@ $breakpoint-desktop: 1200px;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: transparent;
-    transition: background-color 3s ease-in;
-    &.active{
-      background-color: rgba(0,0,0,0.5);
-    }
+    background-color: rgba(0,0,0,0.5);
     .modal {
       position: sticky;
       top: 50%;
