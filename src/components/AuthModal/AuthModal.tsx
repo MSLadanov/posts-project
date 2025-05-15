@@ -17,7 +17,7 @@ export const AuthModal = (): ReactElement => {
         <SignIn />
         <p>
           Don't have an account yet?
-          <button>Sign Up</button>
+          <button onClick={() => setModalType("signup")}>Sign Up</button>
         </p>
       </div>
     );
@@ -26,7 +26,8 @@ export const AuthModal = (): ReactElement => {
       <div>
         <SignUp />
         <p>
-          Already have an account?<button>Sign In</button>
+          Already have an account?
+          <button onClick={() => setModalType("signin")}>Sign In</button>
         </p>
       </div>
     );
