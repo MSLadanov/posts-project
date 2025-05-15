@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
 import { useModal } from "@hooks/useModal";
-import { SignInModal } from "../SignInModal";
+import { AuthModal } from "../AuthModal";
 
 export const Header = (): ReactElement => {
-  const { openModal, modalPortal } = useModal(SignInModal);
+  const { openModal, modalPortal } = useModal(AuthModal);
   return (
     <header>
       <h1>Header</h1>
