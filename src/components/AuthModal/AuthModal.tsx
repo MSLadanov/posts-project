@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import "./style.scss";
 
 const SignIn = (): ReactElement => {
@@ -10,6 +10,25 @@ const SignUp = (): ReactElement => {
 };
 
 export const AuthModal = (): ReactElement => {
-
-  return <h1>Auth Modal</h1>;
+  const [modalType, setModalType] = useState<"signin" | "signup">("signin");
+  if (modalType === "signin") {
+    return (
+      <div>
+        <SignIn />
+        <p>
+          Don't have an account yet?
+          <button>Sign Up</button>
+        </p>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <SignUp />
+        <p>
+          Already have an account?<button>Sign In</button>
+        </p>
+      </div>
+    );
+  }
 };
