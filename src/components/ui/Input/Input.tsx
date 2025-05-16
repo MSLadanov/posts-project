@@ -18,7 +18,7 @@ export const Input: React.FC<TInputProps> = ({
 }): ReactElement => {
   return (
     <>
-      {label && <label></label>}
+      {label && <label>{label}</label>}
       <input
         type={type}
         name={name}

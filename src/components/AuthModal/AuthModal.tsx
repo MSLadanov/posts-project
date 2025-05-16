@@ -1,8 +1,21 @@
-import { ReactElement, useState } from "react";
+import { FormEvent, ReactElement, useState } from "react";
 import "./style.scss";
+import { Input } from "@ui/Input";
 
 const SignIn = (): ReactElement => {
-  return <div>Sign In</div>;
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSignInForm = (e: FormEvent) => {
+    e.preventDefault();
+    console.log("form");
+  };
+  return (
+    <form onSubmit={(e) => handleSignInForm(e)}>
+      <Input type="text" value={userName} setValue={setUserName} />
+      <Input type="password" value={password} setValue={setPassword} />
+      <button type="submit">Sign In</button>
+    </form>
+  );
 };
 
 const SignUp = (): ReactElement => {
