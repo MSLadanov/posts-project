@@ -14,7 +14,7 @@ export const TagsBox = (): ReactElement => {
       setData(tags);
     };
     getAllTags();
-  }, [get]);
+  }, []);
   return (
     <Suspense fallback={<Loader />}>
       {data && (

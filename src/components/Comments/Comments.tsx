@@ -15,7 +15,7 @@ export const Comments: React.FC<{ postId: number }> = ({
       setData(comments);
     };
     getComments();
-  }, [get, postId]);
+  }, [postId]);
   return (
     <div>
       <CommentInput />

@@ -1,13 +1,16 @@
 import { FormEvent, ReactElement, useState } from "react";
 import "./style.scss";
 import { Input } from "@ui/Input";
+import useFetch from "@/hooks/useFetch";
 
 const SignIn = (): ReactElement => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const handleSignInForm = (e: FormEvent) => {
+  const { post } = useFetch("https://dummyjson.com");
+  const handleSignInForm = async (e: FormEvent) => {
     e.preventDefault();
-    console.log("form");
+    const user = await post("auth/login", { username: userName, password });
+    console.log(user);
   };
   return (
     <form onSubmit={(e) => handleSignInForm(e)}>
