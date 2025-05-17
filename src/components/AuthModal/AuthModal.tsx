@@ -22,7 +22,7 @@ const SignIn = (): ReactElement => {
 };
 
 const SignUp = (): ReactElement => {
-  return <div>Sign Up</div>;
+  return <form>Sign Up</form>;
 };
 
 export const AuthModal = (): ReactElement => {

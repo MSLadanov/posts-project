@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ReactElement, Suspense, useEffect, useState } from "react";
 import useFetch from "@hooks/useFetch";
 import { Tag } from "@/types/types";

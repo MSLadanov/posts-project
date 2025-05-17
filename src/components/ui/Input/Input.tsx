@@ -6,6 +6,7 @@ type TInputProps = {
   name?: string;
   label?: string;
   value: string | number;
+  required?: boolean;
   setValue: (value: string) => void;
 };
 
@@ -14,6 +15,7 @@ export const Input: React.FC<TInputProps> = ({
   name = '',
   label,
   value,
+  required = false,
   setValue,
 }): ReactElement => {
   return (
@@ -23,6 +25,7 @@ export const Input: React.FC<TInputProps> = ({
         type={type}
         name={name}
         value={value}
+        required={required}
         onChange={(e) => setValue(e.target.value)}
       />
     </>

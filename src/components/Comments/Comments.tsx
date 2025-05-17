@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ReactElement, useEffect, useState } from "react";
 import useFetch from "@hooks/useFetch";
 import { TComment } from "@/types/types";
