@@ -3,19 +3,19 @@ import { ReactElement, useState, FormEvent } from "react";
 import { Input } from "@ui/Input";
 
 const SignInForm = (): ReactElement => {
-  const [userName, setUserName] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const { post } = useFetch("https://dummyjson.com");
   const handleSignInForm = async (e: FormEvent) => {
     e.preventDefault();
-    const user = await post("auth/login", { username: userName, password });
+    const user = await post("auth/login", { username: username, password });
     console.log(user);
   };
   return (
     <form onSubmit={(e) => handleSignInForm(e)}>
       <Input
         type="text"
-        value={userName}
+        value={username}
         required={true}
         label="Username:"
         setValue={setUserName}

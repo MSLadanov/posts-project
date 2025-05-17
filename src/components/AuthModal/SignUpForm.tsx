@@ -1,22 +1,25 @@
 import { ReactElement, useState, FormEvent } from "react";
 import { Input } from "@ui/Input";
+import useFetch from "@hooks/useFetch";
 
 const SignUpForm = (): ReactElement => {
-  const [userName, setUserName] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [gender, setGender] = useState("");
+  const { post } = useFetch("https://dummyjson.com");
   const handleSignUpForm = async (e: FormEvent) => {
     e.preventDefault();
-    console.log({ userName, password, email, firstName, lastName, gender });
+    const user = await post('users/add', {username, password, email, firstName, lastName, gender});
+    console.log(user)
   };
   return (
     <form onSubmit={(e) => handleSignUpForm(e)}>
       <Input
         type="text"
-        value={userName}
+        value={username}
         required={true}
         label="Username:"
         setValue={setUserName}
