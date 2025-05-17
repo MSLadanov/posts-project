@@ -135,6 +135,12 @@ export interface TPostsListStore {
   posts: TPostsListState;
 }
 
+export interface TUserStore {
+  user: {
+    data: TUser;
+  };
+}
+
 export interface TFallbackRenderProps {
   error: {
     message: string;
