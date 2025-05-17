@@ -20,7 +20,7 @@ export const Header = (): ReactElement => {
   return (
     <header>
       <h1>Header</h1>
-      {data ? (
+      {data.id ? (
         <h1>{data.firstName + " " + data.lastName}</h1>
       ) : (
         <button onClick={() => openModal()}>Sign In</button>
