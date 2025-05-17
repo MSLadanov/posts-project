@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ReactElement, Suspense, useEffect, useState } from "react";
 import useFetch from "@hooks/useFetch";
-import { Tag } from "@/types/types";
+import { TTag } from "@/types/types";
 import { TagBadge } from "@ui/TagBadge";
 import { Loader } from "../Loader";
 import "./style.scss";
 
 export const TagsBox = (): ReactElement => {
-  const [data, setData] = useState<Tag[]>();
-  const { get } = useFetch<Tag[]>("https://dummyjson.com");
+  const [data, setData] = useState<TTag[]>();
+  const { get } = useFetch<TTag[]>("https://dummyjson.com");
   useEffect(() => {
     const getAllTags = async () => {
       const tags = await get("posts/tags");

@@ -142,8 +142,22 @@ export interface TFallbackRenderProps {
   resetErrorBoundary: () => void;
 }
 
-export type Tag = {
+export type TTag = {
   slug: string;
   name: string;
   url: string;
 };
+
+export type TLoggedUserCredentials = {
+  accessToken: string;
+  email: string;
+  firstName: string;
+  gender: string;
+  id: number;
+  image: string;
+  lastName: string;
+  refreshToken: string;
+  username: string;
+};
+
+export type TRegisteredUserCredentials = {}
