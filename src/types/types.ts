@@ -160,4 +160,4 @@ export type TLoggedUserCredentials = {
   username: string;
 };
 
-export type TRegisteredUserCredentials = {}
+export type TRegisteredUserCredentials = Partial<TUser>;
