@@ -2,7 +2,7 @@ import { TUserStore } from "@/types/types";
 import { ReactElement } from "react";
 import { useSelector } from "react-redux";
 
-export const UserPage = (): ReactElement => {
+const UserPage = (): ReactElement => {
   const { data } = useSelector((state: TUserStore) => state.user);
   return (
     <div>
@@ -13,3 +13,5 @@ export const UserPage = (): ReactElement => {
     </div>
   );
 };
+
+export default UserPage;

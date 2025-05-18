@@ -1,12 +1,14 @@
-import { UserPosts } from "@components/UserPosts";
-import { UserPage } from "@components/UserPage";
-import { ReactElement } from "react";
+import { ReactElement, Suspense } from "react";
+import React from "react";
+import { Loader } from "@/components/Loader";
 
 export const UserPageRoute = (): ReactElement => {
+  const UserPage = React.lazy(() => import("@components/UserPage/UserPage"));
+  const UserPosts = React.lazy(() => import("@components/UserPosts/UserPosts"));
   return (
-    <div>
+    <Suspense fallback={<Loader />}>
       <UserPage />
       <UserPosts />
-    </div>
+    </Suspense>
   );
 };

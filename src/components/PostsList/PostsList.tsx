@@ -5,7 +5,7 @@ import { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Post } from "@components/Post";
 
-export const PostsList = (): ReactElement => {
+const PostsList = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
   const { data } = useSelector(
     (store: TPostsListStore) => store.posts.postsList
@@ -13,9 +13,6 @@ export const PostsList = (): ReactElement => {
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
-  // if (!Array.isArray(data) || data.length === 0) {
-  //   return <div>Нет доступных постов!</div>;
-  // }
   return (
     <>
       {data.map((item: TPost) => (
@@ -24,3 +21,5 @@ export const PostsList = (): ReactElement => {
     </>
   );
 };
+
+export default PostsList;
