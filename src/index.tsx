@@ -11,7 +11,8 @@ import { ErrorRoute } from "@routes/ErrorRoute";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorFallback } from "@components/ErrorFallback";
 import { UserPageRoute } from "@routes/UserPageRoute";
-import './global.scss'
+import "./global.scss";
+import { ProtectedRoute } from "./routes/ProtectedRoute";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -24,7 +25,14 @@ root.render(
           <Routes>
             <Route path="*" element={<ErrorRoute />} />
             <Route path="/" element={<App />}>
-              <Route path="me" element={<UserPageRoute/>}/>
+              <Route
+                path="me"
+                element={
+                  <ProtectedRoute>
+                    <UserPageRoute />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="posts" element={<PostsListRoute />} />
               <Route path="posts/:id" element={<PostRoute />} />
               <Route path="/" element={<Navigate to="/posts" replace />} />
