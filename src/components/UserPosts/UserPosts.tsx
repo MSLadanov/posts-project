@@ -23,7 +23,7 @@ export const UserPosts = (): ReactElement => {
       {data &&
         userPosts &&
         userPosts?.posts.map((post) => (
-          <PostCard key={post.id} post={post} link="" />
+          <PostCard key={post.id} post={post} link={`/posts/${post.id}`} />
         ))}
     </div>
   );
