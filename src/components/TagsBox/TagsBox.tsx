@@ -5,7 +5,7 @@ import { TTag } from "@/types/types";
 import { TagBadge } from "@ui/TagBadge";
 import "./style.scss";
 
-export const TagsBox = (): ReactElement => {
+const TagsBox = (): ReactElement => {
   const [data, setData] = useState<TTag[]>();
   const { get } = useFetch<TTag[]>("https://dummyjson.com");
   useEffect(() => {
@@ -30,3 +30,5 @@ export const TagsBox = (): ReactElement => {
     </>
   );
 };
+
+export default TagsBox
