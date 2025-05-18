@@ -21,10 +21,15 @@ export const PostCard: React.FC<TPostCardProps> = ({
   return (
     <article className="post-card">
       <div className="post-card__header">
-        <Container>
-          <img src={post.user.image} alt={post.user.firstName + " " + post.user.lastName + " avatar"} />
-          <h5>{post.user.firstName + " " + post.user.lastName}</h5>
-        </Container>
+        {post.user && (
+          <Container>
+            <img
+              src={post.user.image}
+              alt={post.user.firstName + " " + post.user.lastName + " avatar"}
+            />
+            <h5>{post.user.firstName + " " + post.user.lastName}</h5>
+          </Container>
+        )}
         <BadgeContainer tags={post.tags} />
       </div>
       <div className="post-card__body">

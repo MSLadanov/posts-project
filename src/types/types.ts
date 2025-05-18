@@ -3,6 +3,7 @@ export type TPost = {
   title: string;
   body: string;
   tags: string[];
+  image?: string
   reactions: {
     likes: number;
     dislikes: number;
