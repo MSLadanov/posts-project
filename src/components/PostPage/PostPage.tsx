@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ReactElement, useEffect } from "react";
 import { useLocation } from "react-router";
 import { fetchPostById } from "@/store/slices/PostsSlice";

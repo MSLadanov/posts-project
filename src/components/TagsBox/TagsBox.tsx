@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ReactElement, Suspense, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import useFetch from "@hooks/useFetch";
 import { TTag } from "@/types/types";
 import { TagBadge } from "@ui/TagBadge";
-import { Loader } from "../Loader";
 import "./style.scss";
 
 export const TagsBox = (): ReactElement => {
@@ -17,7 +16,7 @@ export const TagsBox = (): ReactElement => {
     getAllTags();
   }, []);
   return (
-    <Suspense fallback={<Loader />}>
+    <>
       {data && (
         <div className="tag-box">
           {" "}
@@ -28,6 +27,6 @@ export const TagsBox = (): ReactElement => {
           ))}
         </div>
       )}
-    </Suspense>
+    </>
   );
 };
