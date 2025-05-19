@@ -8,6 +8,7 @@ import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@ui/Button";
 import { ViewsContainer } from "../ViewsContainer";
 import "./style.scss";
+import useFetch from "@/hooks/useFetch";
 
 type TPostCardProps = {
   link: string;
@@ -18,6 +19,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
   link,
   post,
 }): ReactElement => {
+  const { patch } = useFetch(`https://dummyjson.com/posts/${post.id}`);
   return (
     <article className="post-card">
       <div className="post-card__header">
