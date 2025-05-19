@@ -6,22 +6,21 @@ import "./style.scss";
 type TButtonProps<T> = {
   children?: ReactNode;
   icon: IconDefinition;
-  feature: {
-    action: (arg: T) => T;
-    arg: T
-  }
+  action: (arg: T) => T;
+  payload: T;
 };
-export const Button: React.FC<TButtonProps<object | string >> = ({
+export const Button: React.FC<TButtonProps<object | string>> = ({
   children,
   icon,
-  feature,
+  action,
+  payload
 }): ReactElement => {
   return (
     <button
       className={
         children === undefined ? "button_without-text" : "button_with-text"
       }
-      onClick={() => feature.action(feature.arg)} 
+      onClick={() => action(payload)}
     >
       <FontAwesomeIcon icon={icon} />
       {children}

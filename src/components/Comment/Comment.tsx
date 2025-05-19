@@ -8,6 +8,9 @@ import "./style.scss";
 export const Comment: React.FC<{ comment: TComment }> = ({
   comment,
 }): ReactElement => {
+  const rateComment = async (arg: string | object) => {
+    console.log(arg)
+  }
   return (
     <div className="comment-card">
       <div className="comment-card__header">
@@ -21,7 +24,7 @@ export const Comment: React.FC<{ comment: TComment }> = ({
       </div>
       <div className="comment-card__footer">
         <Container>
-          <Button icon={faThumbsUp}>{comment.likes}</Button>
+          <Button icon={faThumbsUp} action={rateComment} payload={''}>{comment.likes}</Button>
         </Container>
       </div>
     </div>

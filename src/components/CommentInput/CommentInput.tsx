@@ -5,8 +5,11 @@ import { TextArea } from "@ui/TextArea";
 
 export const CommentInput = (): ReactElement => {
   const [commentText, setCommentText] = useState('')
+  const sendComment = async (arg : string | object) => {
+    console.log(arg)
+  }
   return <div>
     <TextArea value={commentText} setValue={setCommentText} />
-    <Button icon={faCommentDots}/>
+    <Button action={sendComment} payload={''} icon={faCommentDots}/>
   </div>;
 };
