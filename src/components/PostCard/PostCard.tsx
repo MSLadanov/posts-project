@@ -7,8 +7,8 @@ import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@ui/Button";
 import { ViewsContainer } from "../ViewsContainer";
-import "./style.scss";
 import useFetch from "@/hooks/useFetch";
+import "./style.scss";
 
 type TPostCardProps = {
   link: string;
@@ -28,9 +28,9 @@ export const PostCard: React.FC<TPostCardProps> = ({
     } else {
       postRate.dislikes++;
     }
-    console.log(postRate);
-    const ratedPost = await patch(`posts/${post.id}`, {});
-    setPostState(ratedPost);
+    const ratedPost = await patch(`posts/${post.id}`, { reactions: postRate });
+    const editedPost = { user: post.user, ...ratedPost, views: post.views };
+    setPostState(editedPost);
   };
   return (
     <article className="post-card">
