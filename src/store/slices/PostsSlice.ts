@@ -1,8 +1,18 @@
 import { TPost, TPostsListState } from "@/types/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+const API_BASE_URL = "https://dummyjson.com";
+const API_ENDPOINTS = {
+  USERS: `${API_BASE_URL}/users`,
+  POSTS: `${API_BASE_URL}/posts`,
+  POSTS_BY_TAG: (tag: string) => `${API_BASE_URL}/posts/tag/${tag}`,
+  POST_BY_ID: (id: number) => `${API_BASE_URL}/posts/${id}`,
+  SEARCH_POSTS: (query: string) => `${API_BASE_URL}/posts/search?q=${query}`,
+  POST_COMMENTS: (id: number) => `${API_BASE_URL}/comments/post/${id}`,
+};
+
 const fetchUser = async (id: number) => {
-  const response = await fetch(`https://dummyjson.com/users/${id}`);
+  const response = await fetch(`${API_ENDPOINTS.USERS}/${id}`);
   if (!response.ok) {
     throw new Error("Ошибка запроса");
   }
@@ -23,24 +33,24 @@ const fetchPostsWithUsersData = async (posts: TPost[]) => {
 };
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
-  const response = await fetch("https://dummyjson.com/posts");
+  const response = await fetch(API_ENDPOINTS.POSTS);
   if (!response.ok) {
     throw new Error("Ошибка запроса");
   }
   const { posts } = await response.json();
-  const postsWithUsersData = fetchPostsWithUsersData(posts);
+  const postsWithUsersData = await fetchPostsWithUsersData(posts);
   return postsWithUsersData;
 });
 
 export const fetchPostsByTag = createAsyncThunk(
   "posts/fetchPostsByTag",
   async (tag: string) => {
-    const response = await fetch(`https://dummyjson.com/posts/tag/${tag}`);
+    const response = await fetch(API_ENDPOINTS.POSTS_BY_TAG(tag));
     if (!response.ok) {
       throw new Error("Ошибка запроса");
     }
     const { posts } = await response.json();
-    const postsWithUsersData = fetchPostsWithUsersData(posts);
+    const postsWithUsersData = await fetchPostsWithUsersData(posts);
     return postsWithUsersData;
   }
 );
@@ -48,7 +58,7 @@ export const fetchPostsByTag = createAsyncThunk(
 export const fetchPostById = createAsyncThunk(
   "posts/fetchPostById",
   async (id: number) => {
-    const response = await fetch(`https://dummyjson.com/posts/${id}`);
+    const response = await fetch(API_ENDPOINTS.POST_BY_ID(id));
     if (!response.ok) {
       throw new Error("Ошибка запроса");
     }
@@ -65,14 +75,12 @@ export const fetchPostById = createAsyncThunk(
 export const fetchSearchedPosts = createAsyncThunk(
   "posts/fetchSearchedPosts",
   async (query: string) => {
-    const response = await fetch(
-      `https://dummyjson.com/posts/search?q=${query}`
-    );
+    const response = await fetch(API_ENDPOINTS.SEARCH_POSTS(query));
     if (!response.ok) {
       throw new Error("Ошибка запроса");
     }
     const { posts } = await response.json();
-    const postsWithUsersData = fetchPostsWithUsersData(posts);
+    const postsWithUsersData = await fetchPostsWithUsersData(posts);
     return postsWithUsersData;
   }
 );
@@ -80,7 +88,7 @@ export const fetchSearchedPosts = createAsyncThunk(
 export const fetchPostComments = createAsyncThunk(
   "posts/fetchComments",
   async (id: number) => {
-    const response = await fetch(`'https://dummyjson.com/comments/post/${id}'`);
+    const response = await fetch(API_ENDPOINTS.POST_COMMENTS(id));
     if (!response.ok) {
       throw new Error("Ошибка запроса");
     }
@@ -178,14 +186,14 @@ const postsReducer = createSlice({
       .addCase(fetchPosts.rejected, (state) => {
         state.postsList.loading = "failed";
       })
-      .addCase(fetchPostById.pending, (state, action) => {
+      .addCase(fetchPostById.pending, (state) => {
         state.post.loading = "pending";
       })
       .addCase(fetchPostById.fulfilled, (state, action) => {
         state.post.loading = "succeeded";
         state.post.data = action.payload;
       })
-      .addCase(fetchPostById.rejected, (state, action) => {
+      .addCase(fetchPostById.rejected, (state) => {
         state.post.loading = "failed";
       })
       .addCase(fetchSearchedPosts.pending, (state) => {
@@ -208,15 +216,15 @@ const postsReducer = createSlice({
       .addCase(fetchPostComments.rejected, (state) => {
         state.comments.loading = "failed";
       })
-      .addCase(fetchPostsByTag.pending, (state, action) => {
-        state.post.loading = "pending";
+      .addCase(fetchPostsByTag.pending, (state) => {
+        state.postsList.loading = "pending";
       })
       .addCase(fetchPostsByTag.fulfilled, (state, action) => {
-        state.post.loading = "succeeded";
+        state.postsList.loading = "succeeded";
         state.postsList.data = action.payload;
       })
-      .addCase(fetchPostsByTag.rejected, (state, action) => {
-        state.post.loading = "failed";
+      .addCase(fetchPostsByTag.rejected, (state) => {
+        state.postsList.loading = "failed";
       });
   },
 });
