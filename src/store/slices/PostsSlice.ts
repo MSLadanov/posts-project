@@ -15,6 +15,7 @@ const fetchPostsWithUsersData = async (posts: TPost[]) => {
     posts.map(async (post: TPost) => ({
       ...post,
       rated: false,
+      rate: null,
       user: await fetchUser(post.userId),
     }))
   );
@@ -108,13 +109,11 @@ const postsReducer = createSlice({
   initialState,
   reducers: {
     ratePost(state, action) {
-      console.log(action);
       if (!action.payload.reaction) {
         const { id } = action.payload.post;
         const postId = state.postsList.data.findIndex((post) => post.id === id);
         state.postsList.data[postId] = action.payload.post;
       }
-      console.log(2);
       let { reactions, id } = action.payload.post;
       const postId = state.postsList.data.findIndex((post) => post.id === id);
       switch (action.payload.reaction) {
@@ -124,6 +123,7 @@ const postsReducer = createSlice({
             likes: reactions.likes + 1,
           };
           state.postsList.data[postId].reactions = reactions;
+          state.postsList.data[postId].rate = 'liked';
           state.postsList.data[postId].rated =
             !state.postsList.data[postId].rated;
           break;
@@ -133,6 +133,7 @@ const postsReducer = createSlice({
             dislikes: reactions.dislikes + 1,
           };
           state.postsList.data[postId].reactions = reactions;
+          state.postsList.data[postId].rate = 'disliked';
           state.postsList.data[postId].rated =
             !state.postsList.data[postId].rated;
           break;
