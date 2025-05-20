@@ -109,20 +109,23 @@ const postsReducer = createSlice({
   reducers: {
     ratePost(state, action) {
       console.log(action);
-      let { reactions } = action.payload.post;
+      let { reactions, id } = action.payload.post;
+      const postId = state.postsList.data.findIndex((post) => post.id === id)
       switch (action.payload.reaction) {
         case "like":
           reactions = {
             ...reactions,
             likes: reactions.likes + 1,
           };
-          return state;
+          state.postsList.data[postId].reactions = reactions;
+          break;
         case "dislike":
           reactions = {
             ...reactions,
             dislikes: reactions.dislikes + 1,
           };
-          return state;
+          state.postsList.data[postId].reactions = reactions;
+          break;
         default:
           return state;
       }
