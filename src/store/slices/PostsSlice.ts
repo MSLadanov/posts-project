@@ -107,16 +107,10 @@ const postsReducer = createSlice({
   name: "posts",
   initialState,
   reducers: {
-    likePost(state, action) {
+    ratePost(state, action) {
       console.log(action);
     },
-    dislikePost(state, action) {
-      console.log(action);
-    },
-    likeComment(state, action) {
-      console.log(action);
-    },
-    dislikeComment(state, action) {
+    rateComment(state, action) {
       console.log(action);
     },
     sort(state, action) {
@@ -198,7 +192,7 @@ const postsReducer = createSlice({
   },
 });
 
-export const { sort, likePost, dislikePost, likeComment, dislikeComment } =
+export const { sort, ratePost, rateComment } =
   postsReducer.actions;
 
 export default postsReducer.reducer;

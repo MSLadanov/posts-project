@@ -3,7 +3,8 @@ export type TPost = {
   title: string;
   body: string;
   tags: string[];
-  image?: string
+  image?: string;
+  rated?: boolean;
   reactions: {
     likes: number;
     dislikes: number;
@@ -104,6 +105,7 @@ export type TComment = {
   body: string;
   postId: number;
   likes: number;
+  rated?: boolean;
   user: {
     id: number;
     username: string;

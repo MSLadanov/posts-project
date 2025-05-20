@@ -6,7 +6,7 @@ import { Container } from "@ui/Container";
 import useFetch from "@hooks/useFetch";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
-import { likeComment, dislikeComment } from "@/store/slices/PostsSlice";
+import { rateComment } from "@/store/slices/PostsSlice";
 import "./style.scss";
 
 export const CommentCard: React.FC<{ comment: TComment }> = ({
@@ -16,6 +16,7 @@ export const CommentCard: React.FC<{ comment: TComment }> = ({
   const dispatch = useDispatch<AppDispatch>()
   const rateComment = async (rate: string | object) => {
     // const ratedComment = await patch(`comments/${comment.id}`, {});
+    // dispatch()
   };
   return (
     <div className="comment-card">

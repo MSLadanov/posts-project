@@ -10,7 +10,7 @@ import { ViewsContainer } from "../ViewsContainer";
 import useFetch from "@/hooks/useFetch";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
-import { likePost, dislikePost } from "@/store/slices/PostsSlice";
+import { ratePost } from "@/store/slices/PostsSlice";
 import "./style.scss";
 
 type TPostCardProps = {
@@ -24,9 +24,23 @@ export const PostCard: React.FC<TPostCardProps> = ({
 }): ReactElement => {
   const { patch } = useFetch(`https://dummyjson.com`);
   const dispatch = useDispatch<AppDispatch>();
-  const rate: any = async (rate: string | object) => {
-    // const ratedPost = await patch(`posts/${post.id}`, {});
-    dispatch());
+  const ratePost = async (rate: string | object) => {
+    let { reactions } = post;
+    if (typeof rate === "string") {
+      if (rate === "like") {
+        reactions = {
+          ...reactions,
+          likes: reactions.likes + 1,
+        };
+      } else if (rate === "dislike") {
+        reactions = {
+          ...reactions,
+          dislikes: reactions.dislikes + 1,
+        };
+      }
+    }
+    const ratedPost = await patch(`posts/${post.id}`, { reactions });
+    dispatch((ratedPost));
   };
   return (
     <article className="post-card">
@@ -49,10 +63,10 @@ export const PostCard: React.FC<TPostCardProps> = ({
       <div className="post-card__footer">
         <ViewsContainer views={post.views} />
         <Container>
-          <Button icon={faThumbsUp} action={rate} payload={"like"}>
+          <Button icon={faThumbsUp} action={ratePost} payload={"like"}>
             {post.reactions.likes}
           </Button>
-          <Button icon={faThumbsDown} action={rate} payload={"dislike"}>
+          <Button icon={faThumbsDown} action={ratePost} payload={"dislike"}>
             {post.reactions.dislikes}
           </Button>
         </Container>
