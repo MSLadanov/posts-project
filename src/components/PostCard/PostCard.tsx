@@ -20,17 +20,17 @@ export const PostCard: React.FC<TPostCardProps> = ({
   post,
 }): ReactElement => {
   const { patch } = useFetch(`https://dummyjson.com`);
-  const [postState, setPostState] = useState(post);
+  const [postState, setPostState] = useState({...post, rated: false});
   const ratePost = async (rate: string | object) => {
     const postRate = { ...post.reactions };
     if (rate === "like") {
-      postRate.likes++;
+      !postState.rated &&  postRate.likes++;
     } else {
-      postRate.dislikes++;
+      !postState.rated && postRate.dislikes++;
     }
     const ratedPost = await patch(`posts/${post.id}`, { reactions: postRate });
     const editedPost = { user: post.user, ...ratedPost, views: post.views };
-    setPostState(editedPost);
+    setPostState({...editedPost, rated: !postState.rated});
   };
   return (
     <article className="post-card">
@@ -59,10 +59,10 @@ export const PostCard: React.FC<TPostCardProps> = ({
         <ViewsContainer views={postState.views} />
         <Container>
           <Button icon={faThumbsUp} action={ratePost} payload={"like"}>
-            {postState.reactions.likes}
+            {postState.reactions.likes + ' ' + postState.rated}
           </Button>
           <Button icon={faThumbsDown} action={ratePost} payload={"dislike"}>
-            {postState.reactions.dislikes}
+            {postState.reactions.dislikes+ ' ' + postState.rated}
           </Button>
         </Container>
       </div>
