@@ -1,4 +1,4 @@
-import { TPost } from "@/types/types";
+import { TPost, TPostsListStore } from "@/types/types";
 import { ReactElement } from "react";
 import { BadgeContainer } from "@/components/BadgeContainer";
 import { NavLink } from "react-router";
@@ -8,9 +8,9 @@ import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@ui/Button";
 import { ViewsContainer } from "../ViewsContainer";
 import useFetch from "@/hooks/useFetch";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store";
-import { ratePost } from "@/store/slices/PostsSlice";
+import { fetchPostById, ratePost } from "@/store/slices/PostsSlice";
 import "./style.scss";
 
 type TPostCardProps = {
@@ -22,25 +22,13 @@ export const PostCard: React.FC<TPostCardProps> = ({
   link,
   post,
 }): ReactElement => {
-  const { patch } = useFetch(`https://dummyjson.com`);
+  const { get, patch } = useFetch(`https://dummyjson.com`);
   const dispatch = useDispatch<AppDispatch>();
   const rate = async (rate: string | object) => {
-    // let { reactions } = post;
-    // if (typeof rate === "string") {
-    //   if (rate === "like") {
-    //     reactions = {
-    //       ...reactions,
-    //       likes: reactions.likes + 1,
-    //     };
-    //   } else if (rate === "dislike") {
-    //     reactions = {
-    //       ...reactions,
-    //       dislikes: reactions.dislikes + 1,
-    //     };
-    //   }
-    // }
-    // const ratedPost = await patch(`posts/${post.id}`, { reactions });
-    dispatch(ratePost({post, reaction: rate}));
+    const updatingPost = await get(`posts/${post.id}`)
+    dispatch(ratePost({ updatingPost, reaction: rate }));
+    const ratedPost = await patch(`posts/${post.id}`, post);
+    dispatch(ratePost({ ratedPost }));
   };
   return (
     <article className="post-card">
