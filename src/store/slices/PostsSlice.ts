@@ -109,37 +109,35 @@ const postsReducer = createSlice({
   initialState,
   reducers: {
     ratePost(state, action) {
-      if (!action.payload.reaction) {
-        const { id } = action.payload.post;
-        const postId = state.postsList.data.findIndex((post) => post.id === id);
-        state.postsList.data[postId] = action.payload.post;
+      const { post, reaction } = action.payload;
+      const { id, reactions } = post;
+      const postIndex = state.postsList.data.findIndex((p) => p.id === id);
+      if (postIndex === -1) return;
+      if (!reaction) {
+        state.postsList.data[postIndex] = post;
+        return;
       }
-      let { reactions, id } = action.payload.post;
-      const postId = state.postsList.data.findIndex((post) => post.id === id);
-      switch (action.payload.reaction) {
+      const updatedPost = { ...state.postsList.data[postIndex] };
+      switch (reaction) {
         case "like":
-          reactions = {
+          updatedPost.reactions = {
             ...reactions,
             likes: reactions.likes + 1,
           };
-          state.postsList.data[postId].reactions = reactions;
-          state.postsList.data[postId].rate = 'liked';
-          state.postsList.data[postId].rated =
-            !state.postsList.data[postId].rated;
+          updatedPost.rate = "liked";
           break;
         case "dislike":
-          reactions = {
+          updatedPost.reactions = {
             ...reactions,
             dislikes: reactions.dislikes + 1,
           };
-          state.postsList.data[postId].reactions = reactions;
-          state.postsList.data[postId].rate = 'disliked';
-          state.postsList.data[postId].rated =
-            !state.postsList.data[postId].rated;
+          updatedPost.rate = "disliked";
           break;
         default:
-          return state;
+          return;
       }
+      updatedPost.rated = !updatedPost.rated;
+      state.postsList.data[postIndex] = updatedPost;
     },
     rateComment(state, action) {
       console.log(action);
