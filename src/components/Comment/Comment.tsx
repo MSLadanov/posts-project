@@ -1,30 +1,44 @@
 import { TComment } from "@/types/types";
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@ui/Button";
 import { Container } from "@ui/Container";
+import useFetch from "@hooks/useFetch";
 import "./style.scss";
 
 export const Comment: React.FC<{ comment: TComment }> = ({
   comment,
 }): ReactElement => {
-  const rateComment = async (arg: string | object) => {
-    console.log(arg)
-  }
+  const [commentState, setCommentState] = useState(comment);
+  const { patch } = useFetch(`https://dummyjson.com`);
+  const rateComment = async (rate: string | object) => {
+    let { likes } = commentState;
+    const ratedComment = await patch(`comments/${comment.id}`, {
+      likes: ++likes,
+    });
+    const updatedComment = { ...ratedComment, likes: ++ratedComment.likes };
+    setCommentState(updatedComment)
+  };
+
   return (
     <div className="comment-card">
       <div className="comment-card__header">
         <Container>
-          <img src={`https://dummyjson.com/icon/${comment.user.username}/128`} alt={comment.user.fullName + " avatar"} />
-          <h5>{comment.user.fullName}</h5>
+          <img
+            src={`https://dummyjson.com/icon/${commentState.user.username}/128`}
+            alt={commentState.user.fullName + " avatar"}
+          />
+          <h5>{commentState.user.fullName}</h5>
         </Container>
       </div>
       <div className="comment-card__body">
-        <p>{comment.body}</p>
+        <p>{commentState.body}</p>
       </div>
       <div className="comment-card__footer">
         <Container>
-          <Button icon={faThumbsUp} action={rateComment} payload={''}>{comment.likes}</Button>
+          <Button icon={faThumbsUp} action={rateComment} payload={""}>
+            {commentState.likes}
+          </Button>
         </Container>
       </div>
     </div>

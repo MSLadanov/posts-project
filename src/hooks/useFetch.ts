@@ -1,4 +1,4 @@
-import { TPost, TUser } from "@/types/types";
+import { TComment, TPost, TUser } from "@/types/types";
 import { useState } from "react";
 import { useErrorBoundary } from "react-error-boundary";
 
@@ -41,7 +41,7 @@ const useFetch = <T>(baseUrl: string) => {
   };
   const patch = async (
     endpoint: string,
-    body: Partial<TUser> | Partial<TPost>
+    body: Partial<TUser> | Partial<TPost> | Partial<TComment>
   ) => {
     try {
       const response = await fetch(`${baseUrl}/${endpoint}`, {
