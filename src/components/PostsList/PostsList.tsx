@@ -5,6 +5,7 @@ import { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Post } from "@components/Post";
 import { PostInput } from "@components/PostInput";
+import { ProtectedComponent } from "@components/ProtectedComponent";
 
 const PostsList = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
@@ -16,7 +17,9 @@ const PostsList = (): ReactElement => {
   }, [dispatch]);
   return (
     <>
-      <PostInput />
+      <ProtectedComponent>
+        <PostInput/>
+      </ProtectedComponent>
       {data.map((item: TPost) => (
         <Post key={item.id} post={item} />
       ))}

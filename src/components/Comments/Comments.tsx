@@ -4,6 +4,7 @@ import useFetch from "@hooks/useFetch";
 import { TComment } from "@/types/types";
 import { CommentCard } from "@/components/CommentCard";
 import { CommentInput } from "@components/CommentInput";
+import { ProtectedComponent } from "@components/ProtectedComponent";
 
 export const Comments: React.FC<{ postId: number }> = ({
   postId,
@@ -19,7 +20,9 @@ export const Comments: React.FC<{ postId: number }> = ({
   }, [postId]);
   return (
     <div>
-      <CommentInput />
+      <ProtectedComponent>
+        <CommentInput />
+      </ProtectedComponent>
       {data?.comments.map((comment) => (
         <CommentCard key={comment.id} comment={comment} />
       ))}

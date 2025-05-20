@@ -3,9 +3,11 @@ import { useCookies } from "react-cookie";
 
 export const ProtectedComponent = ({
   children,
-}: PropsWithChildren): ReactElement | void => {
+}: PropsWithChildren): ReactElement => {
   const [cookies] = useCookies(["accessToken"]);
   if (cookies.accessToken) {
     return <>{children}</>;
+  } else {
+    return <div></div>;
   }
 };
