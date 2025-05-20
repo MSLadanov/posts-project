@@ -109,6 +109,23 @@ const postsReducer = createSlice({
   reducers: {
     ratePost(state, action) {
       console.log(action);
+      let { reactions } = action.payload.post;
+      switch (action.payload.reaction) {
+        case "like":
+          reactions = {
+            ...reactions,
+            likes: reactions.likes + 1,
+          };
+          return state;
+        case "dislike":
+          reactions = {
+            ...reactions,
+            dislikes: reactions.dislikes + 1,
+          };
+          return state;
+        default:
+          return state;
+      }
     },
     rateComment(state, action) {
       console.log(action);
@@ -192,7 +209,6 @@ const postsReducer = createSlice({
   },
 });
 
-export const { sort, ratePost, rateComment } =
-  postsReducer.actions;
+export const { sort, ratePost, rateComment } = postsReducer.actions;
 
 export default postsReducer.reducer;

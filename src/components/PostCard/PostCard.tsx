@@ -24,23 +24,23 @@ export const PostCard: React.FC<TPostCardProps> = ({
 }): ReactElement => {
   const { patch } = useFetch(`https://dummyjson.com`);
   const dispatch = useDispatch<AppDispatch>();
-  const ratePost = async (rate: string | object) => {
-    let { reactions } = post;
-    if (typeof rate === "string") {
-      if (rate === "like") {
-        reactions = {
-          ...reactions,
-          likes: reactions.likes + 1,
-        };
-      } else if (rate === "dislike") {
-        reactions = {
-          ...reactions,
-          dislikes: reactions.dislikes + 1,
-        };
-      }
-    }
-    const ratedPost = await patch(`posts/${post.id}`, { reactions });
-    dispatch((ratedPost));
+  const rate = async (rate: string | object) => {
+    // let { reactions } = post;
+    // if (typeof rate === "string") {
+    //   if (rate === "like") {
+    //     reactions = {
+    //       ...reactions,
+    //       likes: reactions.likes + 1,
+    //     };
+    //   } else if (rate === "dislike") {
+    //     reactions = {
+    //       ...reactions,
+    //       dislikes: reactions.dislikes + 1,
+    //     };
+    //   }
+    // }
+    // const ratedPost = await patch(`posts/${post.id}`, { reactions });
+    dispatch(ratePost({post, reaction: rate}));
   };
   return (
     <article className="post-card">
@@ -63,10 +63,10 @@ export const PostCard: React.FC<TPostCardProps> = ({
       <div className="post-card__footer">
         <ViewsContainer views={post.views} />
         <Container>
-          <Button icon={faThumbsUp} action={ratePost} payload={"like"}>
+          <Button icon={faThumbsUp} action={rate} payload={"like"}>
             {post.reactions.likes}
           </Button>
-          <Button icon={faThumbsDown} action={ratePost} payload={"dislike"}>
+          <Button icon={faThumbsDown} action={rate} payload={"dislike"}>
             {post.reactions.dislikes}
           </Button>
         </Container>
