@@ -14,6 +14,7 @@ const fetchPostsWithUsersData = async (posts: TPost[]) => {
   const postsWithUsersData = await Promise.all(
     posts.map(async (post: TPost) => ({
       ...post,
+      rated: false,
       user: await fetchUser(post.userId),
     }))
   );
@@ -106,6 +107,18 @@ const postsReducer = createSlice({
   name: "posts",
   initialState,
   reducers: {
+    likePost(state, action) {
+      console.log(action);
+    },
+    dislikePost(state, action) {
+      console.log(action);
+    },
+    likeComment(state, action) {
+      console.log(action);
+    },
+    dislikeComment(state, action) {
+      console.log(action);
+    },
     sort(state, action) {
       const posts = state.postsList.data || [];
       switch (action.payload) {
@@ -185,6 +198,7 @@ const postsReducer = createSlice({
   },
 });
 
-export const { sort } = postsReducer.actions;
+export const { sort, likePost, dislikePost, likeComment, dislikeComment } =
+  postsReducer.actions;
 
 export default postsReducer.reducer;
