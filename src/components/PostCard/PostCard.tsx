@@ -1,4 +1,4 @@
-import { TPost, TPostsListStore } from "@/types/types";
+import { TPost } from "@/types/types";
 import { ReactElement } from "react";
 import { BadgeContainer } from "@/components/BadgeContainer";
 import { NavLink } from "react-router";
@@ -8,9 +8,9 @@ import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@ui/Button";
 import { ViewsContainer } from "../ViewsContainer";
 import useFetch from "@/hooks/useFetch";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
-import { fetchPostById, ratePost } from "@/store/slices/PostsSlice";
+import { ratePost } from "@/store/slices/PostsSlice";
 import "./style.scss";
 
 type TPostCardProps = {
@@ -26,11 +26,13 @@ export const PostCard: React.FC<TPostCardProps> = ({
   const dispatch = useDispatch<AppDispatch>();
   const rate = async (rate: string | object) => {
     if (post.rated) {
-      let updatingPost = await get(`posts/${post.id}`);
-      dispatch(ratePost({ post: updatingPost }));
+      let updatingPost = await get<TPost>(`posts/${post.id}`);
+      dispatch(ratePost({ post: { ...updatingPost, user: post.user } }));
     } else {
-      const ratedPost = await patch(`posts/${post.id}`, post);
-      dispatch(ratePost({ post: ratedPost, reaction: rate }));
+      const ratedPost = await patch<TPost>(`posts/${post.id}`, post);
+      dispatch(
+        ratePost({ post: { ...ratedPost, user: post.user }, reaction: rate })
+      );
     }
   };
   return (
