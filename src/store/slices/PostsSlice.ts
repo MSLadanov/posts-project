@@ -108,9 +108,12 @@ const postsReducer = createSlice({
   initialState,
   reducers: {
     ratePost(state, action) {
-      if(!action.payload.post){
+      console.log(action)
+      if(!action.payload.reaction){
+        console.log(1)
         return 
       }
+      console.log(2)
       let { reactions, id } = action.payload.post;
       const postId = state.postsList.data.findIndex((post) => post.id === id)
       switch (action.payload.reaction) {
