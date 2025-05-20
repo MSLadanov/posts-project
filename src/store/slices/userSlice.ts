@@ -1,6 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+const API_BASE_URL = "https://dummyjson.com";
+const API_ENDPOINTS = {
+  CURRENT_USER: `${API_BASE_URL}/user/me`,
+};
+
+interface UserState {
+  data: Record<string, unknown>;
+  loading: "idle" | "pending" | "succeeded" | "failed";
+}
+
+const initialState: UserState = {
   data: {},
   loading: "idle",
 };
@@ -8,19 +18,22 @@ const initialState = {
 export const getCurrentUser = createAsyncThunk(
   "user/getCurrentUser",
   async (token: string) => {
-    const response = await fetch("https://dummyjson.com/user/me", {
+    const response = await fetch(API_ENDPOINTS.CURRENT_USER, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+
     if (!response.ok) {
       throw new Error("Ошибка запроса!");
     }
-    const user = response.json();
+
+    const user = await response.json(); 
     return user;
   }
 );
+
 const userReducer = createSlice({
   name: "user",
   initialState,
