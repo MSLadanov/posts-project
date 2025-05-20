@@ -6,7 +6,7 @@ import { Container } from "@ui/Container";
 import useFetch from "@hooks/useFetch";
 import "./style.scss";
 
-export const Comment: React.FC<{ comment: TComment }> = ({
+export const CommentCard: React.FC<{ comment: TComment }> = ({
   comment,
 }): ReactElement => {
   const [commentState, setCommentState] = useState({
