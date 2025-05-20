@@ -120,6 +120,7 @@ const postsReducer = createSlice({
             likes: reactions.likes + 1,
           };
           state.postsList.data[postId].reactions = reactions;
+          state.postsList.data[postId].rated = !state.postsList.data[postId].rated;
           break;
         case "dislike":
           reactions = {
@@ -127,6 +128,7 @@ const postsReducer = createSlice({
             dislikes: reactions.dislikes + 1,
           };
           state.postsList.data[postId].reactions = reactions;
+          state.postsList.data[postId].rated = !state.postsList.data[postId].rated;
           break;
         default:
           return state;
