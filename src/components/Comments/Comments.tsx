@@ -13,7 +13,9 @@ export const Comments: React.FC<{ postId: number }> = ({
   const { get } = useFetch<{ comments: TComment[] }>(`https://dummyjson.com`);
   useEffect(() => {
     const getComments = async () => {
-      const comments = await get(`comments/post/${postId}`);
+      const comments = await get<{ comments: TComment[] }>(
+        `comments/post/${postId}`
+      );
       setData(comments);
     };
     getComments();

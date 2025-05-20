@@ -6,7 +6,7 @@ const useFetch = <T>(baseUrl: string) => {
   const { showBoundary } = useErrorBoundary();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-  const get = async (endpoint: string) => {
+  const get = async <T> (endpoint: string) => {
     setIsLoading(true);
     try {
       const response = await fetch(`${baseUrl}/${endpoint}`);
@@ -18,7 +18,7 @@ const useFetch = <T>(baseUrl: string) => {
       setIsError(true);
     }
   };
-  const post = async (
+  const post = async <T> (
     endpoint: string,
     body: Partial<TUser> | Partial<TPost>
   ) => {
@@ -39,7 +39,7 @@ const useFetch = <T>(baseUrl: string) => {
       setIsError(true);
     }
   };
-  const patch = async (
+  const patch = async <T> (
     endpoint: string,
     body: Partial<TUser> | Partial<TPost> | Partial<TComment>
   ) => {
@@ -49,7 +49,7 @@ const useFetch = <T>(baseUrl: string) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      const data = response.json();
+      const data : T = await response.json();
       return data;
     } catch (error) {
       showBoundary(error);

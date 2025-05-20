@@ -10,7 +10,7 @@ const TagsBox = (): ReactElement => {
   const { get } = useFetch<TTag[]>("https://dummyjson.com");
   useEffect(() => {
     const getAllTags = async () => {
-      const tags = await get("posts/tags");
+      const tags = await get<TTag[]>("posts/tags");
       setData(tags);
     };
     getAllTags();
@@ -31,4 +31,4 @@ const TagsBox = (): ReactElement => {
   );
 };
 
-export default TagsBox
+export default TagsBox;

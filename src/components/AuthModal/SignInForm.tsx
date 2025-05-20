@@ -11,7 +11,7 @@ const SignInForm = (): ReactElement => {
   const [, setCookies] = useCookies(["accessToken"]);
   const handleSignInForm = async (e: FormEvent) => {
     e.preventDefault();
-    const user = await post("auth/login", { username: username, password });
+    const user = await post<Partial<TLoggedUserCredentials>>("auth/login", { username: username, password });
     console.log(user);
     setCookies("accessToken", user?.accessToken);
   };

@@ -11,7 +11,9 @@ const UserPosts = (): ReactElement => {
   const { get } = useFetch<{ posts: TPost[] }>(`https://dummyjson.com`);
   useEffect(() => {
     const getUserPosts = async () => {
-      const fetchedUserPosts = await get(`posts/user/${data.id}`);
+      const fetchedUserPosts = await get<{ posts: TPost[] }>(
+        `posts/user/${data.id}`
+      );
       setUserPosts(fetchedUserPosts);
     };
     if (data.id) {

@@ -25,12 +25,12 @@ export const PostCard: React.FC<TPostCardProps> = ({
   const { get, patch } = useFetch(`https://dummyjson.com`);
   const dispatch = useDispatch<AppDispatch>();
   const rate = async (rate: string | object) => {
-    if (!post.rated) {
-      const ratedPost = await patch(`posts/${post.id}`, post);
-      dispatch(ratePost({ post:ratedPost, reaction: rate }));
+    if (post.rated) {
+      let updatingPost = await get(`posts/${post.id}`);
+      dispatch(ratePost({ post: updatingPost }));
     } else {
-      const updatingPost = await get(`posts/${post.id}`);
-      dispatch(ratePost({ updatingPost }));
+      const ratedPost = await patch(`posts/${post.id}`, post);
+      dispatch(ratePost({ post: ratedPost, reaction: rate }));
     }
   };
   return (
