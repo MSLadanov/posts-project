@@ -58,7 +58,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
       </div>
       <div className="post-card__body">
         <h2>{post.title}</h2>
-        <NavLink to={link}>{post.body}</NavLink>
+        {postId ? <p>{post.body}</p> : <NavLink to={link}>{post.body}</NavLink>}
       </div>
       <div className="post-card__footer">
         <ViewsContainer views={post.views} />
