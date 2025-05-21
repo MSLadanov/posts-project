@@ -8,9 +8,7 @@ import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@ui/Button";
 import { ViewsContainer } from "../ViewsContainer";
 import useFetch from "@/hooks/useFetch";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/store";
-import { ratePost, getUpdatedPost } from "@/store/slices/PostsSlice";
+import { useRatePost } from "@/hooks/useRatePost";
 import "./style.scss";
 
 type TPostCardProps = {
@@ -23,39 +21,16 @@ export const PostCard: React.FC<TPostCardProps> = ({
   post,
 }): ReactElement => {
   const { get, patch } = useFetch(`https://dummyjson.com`);
-  const dispatch = useDispatch<AppDispatch>();
-  const rateFn = async (newRate: string | object) => {
-    const { rated, rate } = post;
-    let updatingPost = await get<TPost>(`posts/${post.id}`);
-    dispatch(ratePost({ post: { ...updatingPost, user: post.user } }));
-    if (rated === true && rate === newRate) {
-      dispatch(ratePost({ post: { ...updatingPost, user: post.user } }));
-      const updatedPost = getUpdatedPost(post.id);
-      await patch<TPost>(`posts/${post.id}`, {
-        reactions: { ...updatedPost!.reactions },
-      });
-    } else if (post.rated && post.rate !== newRate) {
-      dispatch(
-        ratePost({
-          post: { ...updatingPost, user: post.user },
-          reaction: newRate,
-        })
-      );
-      const updatedPost = getUpdatedPost(post.id);
-      await patch<TPost>(`posts/${post.id}`, {
-        reactions: updatedPost?.reactions,
-      });
+  const { ratePost } = useRatePost({
+    post,
+    getPost: get,
+    patchPost: patch,
+  });
+  const ratePostAsync = async (newRate: string | object) => {
+    if (newRate === "liked") {
+      await ratePost("liked");
     } else {
-      dispatch(
-        ratePost({
-          post: { ...updatingPost, user: post.user },
-          reaction: newRate,
-        })
-      );
-      const updatedPost = getUpdatedPost(post.id);
-      await patch<TPost>(`posts/${post.id}`, {
-        reactions: { ...updatedPost!.reactions },
-      });
+      await ratePost("disliked");
     }
   };
   return (
@@ -79,10 +54,14 @@ export const PostCard: React.FC<TPostCardProps> = ({
       <div className="post-card__footer">
         <ViewsContainer views={post.views} />
         <Container>
-          <Button icon={faThumbsUp} action={rateFn} payload={"liked"}>
+          <Button icon={faThumbsUp} action={ratePostAsync} payload={"liked"}>
             {post.reactions.likes}
           </Button>
-          <Button icon={faThumbsDown} action={rateFn} payload={"disliked"}>
+          <Button
+            icon={faThumbsDown}
+            action={ratePostAsync}
+            payload={"disliked"}
+          >
             {post.reactions.dislikes}
           </Button>
         </Container>
