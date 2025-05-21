@@ -1,4 +1,4 @@
-import { TPost } from "@/types/types";
+import { TPost, TPostsListStore } from "@/types/types";
 import { ReactElement } from "react";
 import { BadgeContainer } from "@/components/BadgeContainer";
 import { NavLink } from "react-router";
@@ -24,15 +24,23 @@ export const PostCard: React.FC<TPostCardProps> = ({
 }): ReactElement => {
   const { get, patch } = useFetch(`https://dummyjson.com`);
   const dispatch = useDispatch<AppDispatch>();
-  const rate = async (rate: string | object) => {
-    if (post.rated) {
-      let updatingPost = await get<TPost>(`posts/${post.id}`);
-      dispatch(ratePost({ post: { ...updatingPost, user: post.user } }));
+  const rateFn = async (newRate: string | object) => {
+    const { rated, rate } = post
+    let updatingPost = await get<TPost>(`posts/${post.id}`);
+    dispatch(ratePost({ post: { ...updatingPost, user: post.user }}));
+    if (rated === true && rate === newRate) {
+      console.log("equal rate", rate, newRate);
+      dispatch(ratePost({post: {...updatingPost, user: post.user}}))
+    } else if (post.rated && post.rate !== newRate) {
+      console.log("diff rate", rate, newRate);
+      dispatch(ratePost({post: {...updatingPost, user: post.user}, reaction: newRate}))
+      // const ratedPost = await patch<TPost>(`posts/${post.id}`, {});
     } else {
-      const ratedPost = await patch<TPost>(`posts/${post.id}`, post);
-      dispatch(
-        ratePost({ post: { ...ratedPost, user: post.user }, reaction: rate })
-      );
+      console.log("no rate", rate, newRate);
+      dispatch(ratePost({post: {...updatingPost, user: post.user}, reaction: newRate}))
+      // const ratedPost = await patch<TPost>(`posts/${post.id}`, {
+      //   reactions: { ...post.reactions },
+      // });
     }
   };
   return (
@@ -56,10 +64,10 @@ export const PostCard: React.FC<TPostCardProps> = ({
       <div className="post-card__footer">
         <ViewsContainer views={post.views} />
         <Container>
-          <Button icon={faThumbsUp} action={rate} payload={"like"}>
+          <Button icon={faThumbsUp} action={rateFn} payload={"liked"}>
             {post.reactions.likes}
           </Button>
-          <Button icon={faThumbsDown} action={rate} payload={"dislike"}>
+          <Button icon={faThumbsDown} action={rateFn} payload={"disliked"}>
             {post.reactions.dislikes}
           </Button>
         </Container>

@@ -122,19 +122,19 @@ const postsReducer = createSlice({
       const postIndex = state.postsList.data.findIndex((p) => p.id === id);
       if (postIndex === -1) return;
       if (!reaction) {
-        state.postsList.data[postIndex] = post;
+        state.postsList.data[postIndex] = { ...post, rated: false, rate: null };
         return;
       }
       const updatedPost = { ...state.postsList.data[postIndex] };
       switch (reaction) {
-        case "like":
+        case "liked":
           updatedPost.reactions = {
             ...reactions,
             likes: reactions.likes + 1,
           };
           updatedPost.rate = "liked";
           break;
-        case "dislike":
+        case "disliked":
           updatedPost.reactions = {
             ...reactions,
             dislikes: reactions.dislikes + 1,
