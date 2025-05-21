@@ -1,7 +1,7 @@
 import { TPost } from "@/types/types";
 import { ReactElement } from "react";
 import { BadgeContainer } from "@/components/BadgeContainer";
-import { NavLink } from "react-router";
+import { NavLink, useLocation } from "react-router";
 import { Container } from "@ui/Container";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
@@ -20,8 +20,10 @@ export const PostCard: React.FC<TPostCardProps> = ({
   link,
   post,
 }): ReactElement => {
+  const { pathname } = useLocation();
+  const postId = Number(pathname.split("/").at(-1));
   const { get, patch } = useFetch(`https://dummyjson.com`);
-  const { ratePost } = useRatePost({
+  const { ratePost, ratePagedPost } = useRatePost({
     post,
     getPost: get,
     patchPost: patch,
@@ -31,6 +33,13 @@ export const PostCard: React.FC<TPostCardProps> = ({
       await ratePost("liked");
     } else {
       await ratePost("disliked");
+    }
+  };
+  const ratePagedPostAsync = async (newRate: string | object) => {
+    if (newRate === "liked") {
+      await ratePagedPost("liked");
+    } else {
+      await ratePagedPost("disliked");
     }
   };
   return (
@@ -54,12 +63,16 @@ export const PostCard: React.FC<TPostCardProps> = ({
       <div className="post-card__footer">
         <ViewsContainer views={post.views} />
         <Container>
-          <Button icon={faThumbsUp} action={ratePostAsync} payload={"liked"}>
+          <Button
+            icon={faThumbsUp}
+            action={!postId ? ratePostAsync : ratePagedPostAsync}
+            payload={"liked"}
+          >
             {post.reactions.likes}
           </Button>
           <Button
             icon={faThumbsDown}
-            action={ratePostAsync}
+            action={!postId ? ratePostAsync : ratePagedPostAsync}
             payload={"disliked"}
           >
             {post.reactions.dislikes}

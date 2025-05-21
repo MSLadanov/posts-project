@@ -1,4 +1,8 @@
-import { getUpdatedPost, ratePost } from "@/store/slices/PostsSlice";
+import {
+  getUpdatedPost,
+  ratePagedPost,
+  ratePost,
+} from "@/store/slices/PostsSlice";
 import { TPost } from "@/types/types";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
@@ -49,5 +53,42 @@ export const useRatePost = ({ post, getPost, patchPost }: UseRatePostProps) => {
     [post, dispatch, getPost, patchPost]
   );
 
-  return { ratePost: ratePostAsync };
+  const ratePagedPostAsync = useCallback(
+    async (newRate: string | object) => {
+      const { rated, rate } = post;
+      const updatingPost = await getPost<TPost>(`posts/${post.id}`);
+      const basePostData = {
+        ...updatingPost,
+        user: post.user,
+      };
+      const updatePostReactions = async () => {
+        const updatedPost = getUpdatedPost(post.id);
+        await patchPost<TPost>(`posts/${post.id}`, {
+          reactions: updatedPost?.reactions,
+        });
+      };
+      if (rated && rate === newRate) {
+        dispatch(ratePagedPost({ post: basePostData }));
+        await updatePostReactions();
+      } else if (rated && rate !== newRate) {
+        dispatch(
+          ratePagedPost({
+            post: basePostData,
+            reaction: newRate,
+          })
+        );
+        await updatePostReactions();
+      } else {
+        dispatch(
+          ratePagedPost({
+            post: basePostData,
+            reaction: newRate,
+          })
+        );
+        await updatePostReactions();
+      }
+    },
+    [post, dispatch, getPost, patchPost]
+  );
+  return { ratePost: ratePostAsync, ratePagedPost: ratePagedPostAsync };
 };

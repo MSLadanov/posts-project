@@ -151,6 +151,35 @@ const postsReducer = createSlice({
       updatedPost.rated = !updatedPost.rated;
       state.postsList.data[postIndex] = updatedPost;
     },
+    ratePagedPost(state, action) {
+      const { post, reaction } = action.payload;
+      const { reactions } = post;
+      if (!reaction) {
+        state.post.data = { ...post, rated: false, rate: null };
+        return;
+      }
+      const updatedPost = { ...state.post.data };
+      switch (reaction) {
+        case "liked":
+          updatedPost.reactions = {
+            ...reactions,
+            likes: reactions.likes + 1,
+          };
+          updatedPost.rate = "liked";
+          break;
+        case "disliked":
+          updatedPost.reactions = {
+            ...reactions,
+            dislikes: reactions.dislikes + 1,
+          };
+          updatedPost.rate = "disliked";
+          break;
+        default:
+          return;
+      }
+      updatedPost.rated = !updatedPost.rated;
+      state.post.data = updatedPost as TPost;
+    },
     rateComment(state, action) {
       console.log(action);
     },
@@ -233,6 +262,6 @@ const postsReducer = createSlice({
   },
 });
 
-export const { sort, ratePost, rateComment } = postsReducer.actions;
+export const { sort, ratePost, ratePagedPost, rateComment } = postsReducer.actions;
 
 export default postsReducer.reducer;
