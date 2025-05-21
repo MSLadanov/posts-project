@@ -10,7 +10,7 @@ import { ViewsContainer } from "../ViewsContainer";
 import useFetch from "@/hooks/useFetch";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
-import { ratePost } from "@/store/slices/PostsSlice";
+import { ratePost, getUpdatedPost } from "@/store/slices/PostsSlice";
 import "./style.scss";
 
 type TPostCardProps = {
@@ -30,8 +30,9 @@ export const PostCard: React.FC<TPostCardProps> = ({
     dispatch(ratePost({ post: { ...updatingPost, user: post.user } }));
     if (rated === true && rate === newRate) {
       dispatch(ratePost({ post: { ...updatingPost, user: post.user } }));
+      const updatedPost = getUpdatedPost(post.id);
       await patch<TPost>(`posts/${post.id}`, {
-        reactions: { ...post.reactions },
+        reactions: { ...updatedPost!.reactions },
       });
     } else if (post.rated && post.rate !== newRate) {
       dispatch(
@@ -40,7 +41,10 @@ export const PostCard: React.FC<TPostCardProps> = ({
           reaction: newRate,
         })
       );
-      await patch<TPost>(`posts/${post.id}`, {});
+      const updatedPost = getUpdatedPost(post.id);
+      await patch<TPost>(`posts/${post.id}`, {
+        reactions: updatedPost?.reactions,
+      });
     } else {
       dispatch(
         ratePost({
@@ -48,8 +52,9 @@ export const PostCard: React.FC<TPostCardProps> = ({
           reaction: newRate,
         })
       );
+      const updatedPost = getUpdatedPost(post.id);
       await patch<TPost>(`posts/${post.id}`, {
-        reactions: { ...post.reactions },
+        reactions: { ...updatedPost!.reactions },
       });
     }
   };

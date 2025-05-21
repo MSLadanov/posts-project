@@ -1,5 +1,6 @@
 import { TPost, TPostsListState } from "@/types/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { store } from "../store";
 
 const API_BASE_URL = "https://dummyjson.com";
 const API_ENDPOINTS = {
@@ -97,6 +98,9 @@ export const fetchPostComments = createAsyncThunk(
   }
 );
 
+export const getUpdatedPost = (id: number) =>
+  store.getState().posts.postsList.data.find((post) => post.id === id);
+
 const initialState: TPostsListState = {
   postsList: {
     data: [],
@@ -111,9 +115,6 @@ const initialState: TPostsListState = {
     loading: "idle",
   },
 };
-
-export const selectPostById = (state: TPostsListState, postId: number) => 
-  state.postsList.data.find(post => post.id === postId);
 
 const postsReducer = createSlice({
   name: "posts",
