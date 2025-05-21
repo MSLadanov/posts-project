@@ -1,4 +1,4 @@
-import { TPost, TPostsListStore } from "@/types/types";
+import { TPost } from "@/types/types";
 import { ReactElement } from "react";
 import { BadgeContainer } from "@/components/BadgeContainer";
 import { NavLink } from "react-router";
@@ -25,22 +25,32 @@ export const PostCard: React.FC<TPostCardProps> = ({
   const { get, patch } = useFetch(`https://dummyjson.com`);
   const dispatch = useDispatch<AppDispatch>();
   const rateFn = async (newRate: string | object) => {
-    const { rated, rate } = post
+    const { rated, rate } = post;
     let updatingPost = await get<TPost>(`posts/${post.id}`);
-    dispatch(ratePost({ post: { ...updatingPost, user: post.user }}));
+    dispatch(ratePost({ post: { ...updatingPost, user: post.user } }));
     if (rated === true && rate === newRate) {
-      console.log("equal rate", rate, newRate);
-      dispatch(ratePost({post: {...updatingPost, user: post.user}}))
+      dispatch(ratePost({ post: { ...updatingPost, user: post.user } }));
+      await patch<TPost>(`posts/${post.id}`, {
+        reactions: { ...post.reactions },
+      });
     } else if (post.rated && post.rate !== newRate) {
-      console.log("diff rate", rate, newRate);
-      dispatch(ratePost({post: {...updatingPost, user: post.user}, reaction: newRate}))
-      // const ratedPost = await patch<TPost>(`posts/${post.id}`, {});
+      dispatch(
+        ratePost({
+          post: { ...updatingPost, user: post.user },
+          reaction: newRate,
+        })
+      );
+      await patch<TPost>(`posts/${post.id}`, {});
     } else {
-      console.log("no rate", rate, newRate);
-      dispatch(ratePost({post: {...updatingPost, user: post.user}, reaction: newRate}))
-      // const ratedPost = await patch<TPost>(`posts/${post.id}`, {
-      //   reactions: { ...post.reactions },
-      // });
+      dispatch(
+        ratePost({
+          post: { ...updatingPost, user: post.user },
+          reaction: newRate,
+        })
+      );
+      await patch<TPost>(`posts/${post.id}`, {
+        reactions: { ...post.reactions },
+      });
     }
   };
   return (

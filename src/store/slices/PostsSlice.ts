@@ -112,6 +112,9 @@ const initialState: TPostsListState = {
   },
 };
 
+export const selectPostById = (state: TPostsListState, postId: number) => 
+  state.postsList.data.find(post => post.id === postId);
+
 const postsReducer = createSlice({
   name: "posts",
   initialState,
