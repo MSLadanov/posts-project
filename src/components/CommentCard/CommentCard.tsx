@@ -14,9 +14,10 @@ export const CommentCard: React.FC<{ comment: TComment }> = ({
 }): ReactElement => {
   const { patch } = useFetch(`https://dummyjson.com`);
   const dispatch = useDispatch<AppDispatch>()
-  const rateComment = async (rate: string | object) => {
+  const rateCommentAsync = async (rate: string | object) => {
     // const ratedComment = await patch(`comments/${comment.id}`, {});
     // dispatch()
+    dispatch(rateComment({id: comment.id}))
   };
   return (
     <div className="comment-card">
@@ -34,7 +35,7 @@ export const CommentCard: React.FC<{ comment: TComment }> = ({
       </div>
       <div className="comment-card__footer">
         <Container>
-          <Button icon={faThumbsUp} action={rateComment} payload={""}>
+          <Button icon={faThumbsUp} action={rateCommentAsync} payload={""}>
             {comment.likes}
           </Button>
         </Container>

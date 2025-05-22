@@ -181,7 +181,7 @@ const postsReducer = createSlice({
       state.post.data = updatedPost as TPost;
     },
     rateComment(state, action) {
-      console.log(action);
+      console.log(action.payload.id);
     },
     sort(state, action) {
       const posts = state.postsList.data || [];
