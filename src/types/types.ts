@@ -106,7 +106,7 @@ export type TComment = {
   body: string;
   postId: number;
   likes: number;
-  rated?: boolean;
+  liked?: boolean;
   user: {
     id: number;
     username: string;

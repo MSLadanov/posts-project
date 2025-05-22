@@ -16,6 +16,7 @@ export const Comments: React.FC<{ postId: number }> = ({
       const comments = await get<{ comments: TComment[] }>(
         `comments/post/${postId}`
       );
+      comments?.comments.map((comment) => ({...comment, liked: false}))
       setData(comments);
     };
     getComments();
