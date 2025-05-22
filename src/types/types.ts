@@ -129,10 +129,6 @@ export interface TPostsListState {
     data: TPost | null;
     loading: "idle" | "pending" | "succeeded" | "failed";
   };
-  comments: {
-    data: TCommentsList | [];
-    loading: "idle" | "pending" | "succeeded" | "failed";
-  };
 }
 
 export interface TPostsListStore {

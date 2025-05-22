@@ -4,39 +4,32 @@ import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@ui/Button";
 import { Container } from "@ui/Container";
 import useFetch from "@hooks/useFetch";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/store";
-import { rateComment } from "@/store/slices/PostsSlice";
+import { useRateComment } from "@/hooks/useRateComment";
 import "./style.scss";
 
 export const CommentCard: React.FC<{ comment: TComment }> = ({
   comment,
 }): ReactElement => {
   const { patch } = useFetch(`https://dummyjson.com`);
-  const dispatch = useDispatch<AppDispatch>()
-  const rateCommentAsync = async (rate: string | object) => {
-    // const ratedComment = await patch(`comments/${comment.id}`, {});
-    // dispatch()
-    dispatch(rateComment({id: comment.id}))
-  };
+  const { commentState, rateComment } = useRateComment({ comment, patch });
   return (
     <div className="comment-card">
       <div className="comment-card__header">
         <Container>
           <img
-            src={`https://dummyjson.com/icon/${comment.user.username}/128`}
-            alt={comment.user.fullName + " avatar"}
+            src={`https://dummyjson.com/icon/${commentState.user.username}/128`}
+            alt={commentState.user.fullName + " avatar"}
           />
-          <h5>{comment.user.fullName}</h5>
+          <h5>{commentState.user.fullName}</h5>
         </Container>
       </div>
       <div className="comment-card__body">
-        <p>{comment.body}</p>
+        <p>{commentState.body}</p>
       </div>
       <div className="comment-card__footer">
         <Container>
-          <Button icon={faThumbsUp} action={rateCommentAsync} payload={""}>
-            {comment.likes}
+          <Button icon={faThumbsUp} action={rateComment} payload={""}>
+            {commentState.likes}
           </Button>
         </Container>
       </div>

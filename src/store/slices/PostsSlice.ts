@@ -110,10 +110,6 @@ const initialState: TPostsListState = {
     data: null,
     loading: "idle",
   },
-  comments: {
-    data: [],
-    loading: "idle",
-  },
 };
 
 const postsReducer = createSlice({
@@ -180,9 +176,6 @@ const postsReducer = createSlice({
       updatedPost.rated = !updatedPost.rated;
       state.post.data = updatedPost as TPost;
     },
-    rateComment(state, action) {
-      console.log(action.payload.id);
-    },
     sort(state, action) {
       const posts = state.postsList.data || [];
       switch (action.payload) {
@@ -239,16 +232,6 @@ const postsReducer = createSlice({
       .addCase(fetchSearchedPosts.rejected, (state) => {
         state.postsList.loading = "failed";
       })
-      .addCase(fetchPostComments.pending, (state) => {
-        state.comments.loading = "pending";
-      })
-      .addCase(fetchPostComments.fulfilled, (state, action) => {
-        state.comments.loading = "succeeded";
-        state.comments.data = action.payload;
-      })
-      .addCase(fetchPostComments.rejected, (state) => {
-        state.comments.loading = "failed";
-      })
       .addCase(fetchPostsByTag.pending, (state) => {
         state.postsList.loading = "pending";
       })
@@ -262,6 +245,6 @@ const postsReducer = createSlice({
   },
 });
 
-export const { sort, ratePost, ratePagedPost, rateComment } = postsReducer.actions;
+export const { sort, ratePost, ratePagedPost } = postsReducer.actions;
 
 export default postsReducer.reducer;
