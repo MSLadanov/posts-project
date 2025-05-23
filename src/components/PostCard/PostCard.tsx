@@ -58,7 +58,14 @@ export const PostCard: React.FC<TPostCardProps> = ({
       </div>
       <div className="post-card__body">
         <h2>{post.title}</h2>
-        <img src={post.postImage} alt={post.title}/>
+
+        {postId ? (
+          <img src={post.postImage} alt={post.title} />
+        ) : (
+          <NavLink to={link}>
+            <img src={post.postImage} alt={post.title} />
+          </NavLink>
+        )}
         {postId ? <p>{post.body}</p> : <NavLink to={link}>{post.body}</NavLink>}
       </div>
       <div className="post-card__footer">

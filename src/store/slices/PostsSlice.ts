@@ -3,13 +3,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { store } from "../store";
 
 const API_BASE_URL = "https://dummyjson.com";
+const POST_LIMITS = 5
 const API_ENDPOINTS = {
   USERS: `${API_BASE_URL}/users`,
-  POSTS: `${API_BASE_URL}/posts`,
+  POSTS: `${API_BASE_URL}/posts?limit=${POST_LIMITS}`,
   IMAGE: `${API_BASE_URL}/image`,
-  POSTS_BY_TAG: (tag: string) => `${API_BASE_URL}/posts/tag/${tag}`,
+  POSTS_BY_TAG: (tag: string) => `${API_BASE_URL}/posts/tag/${tag}?limit=${POST_LIMITS}`,
   POST_BY_ID: (id: number) => `${API_BASE_URL}/posts/${id}`,
-  SEARCH_POSTS: (query: string) => `${API_BASE_URL}/posts/search?q=${query}`,
+  SEARCH_POSTS: (query: string) => `${API_BASE_URL}/posts/search?q=${query}?limit=${POST_LIMITS}`,
   POST_COMMENTS: (id: number) => `${API_BASE_URL}/comments/post/${id}`,
 };
 
@@ -90,6 +91,7 @@ export const fetchPostById = createAsyncThunk(
     const postsWithUserData = {
       ...post,
       user,
+      postImage: await fetchImage(post.title)
     };
     return postsWithUserData;
   }
