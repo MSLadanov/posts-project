@@ -57,8 +57,8 @@ export const PostCard: React.FC<TPostCardProps> = ({
         <BadgeContainer tags={post.tags} />
       </div>
       <div className="post-card__body">
-        <img src={post.postImage} alt={post.title}/>
         <h2>{post.title}</h2>
+        <img src={post.postImage} alt={post.title}/>
         {postId ? <p>{post.body}</p> : <NavLink to={link}>{post.body}</NavLink>}
       </div>
       <div className="post-card__footer">
