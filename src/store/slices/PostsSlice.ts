@@ -6,10 +6,22 @@ const API_BASE_URL = "https://dummyjson.com";
 const API_ENDPOINTS = {
   USERS: `${API_BASE_URL}/users`,
   POSTS: `${API_BASE_URL}/posts`,
+  IMAGE: `${API_BASE_URL}/image/800x800/008080/ffffff?text=`,
   POSTS_BY_TAG: (tag: string) => `${API_BASE_URL}/posts/tag/${tag}`,
   POST_BY_ID: (id: number) => `${API_BASE_URL}/posts/${id}`,
   SEARCH_POSTS: (query: string) => `${API_BASE_URL}/posts/search?q=${query}`,
   POST_COMMENTS: (id: number) => `${API_BASE_URL}/comments/post/${id}`,
+};
+
+const fetchImage = async (text: string) => {
+  const response = await fetch(
+    `${API_ENDPOINTS.IMAGE}${text.split(" ").join("+")}`
+  );
+  if (!response.ok) {
+    throw new Error("Ошибка запроса");
+  }
+  const image = URL.createObjectURL(await  response.blob())
+  return image
 };
 
 const fetchUser = async (id: number) => {
@@ -28,6 +40,7 @@ const fetchPostsWithUsersData = async (posts: TPost[]) => {
       rated: false,
       rate: null,
       user: await fetchUser(post.userId),
+      postImage: await fetchImage(post.title)
     }))
   );
   return postsWithUsersData;

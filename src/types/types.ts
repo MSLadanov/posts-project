@@ -5,7 +5,8 @@ export type TPost = {
   tags: string[];
   image?: string;
   rated?: boolean;
-  rate?: null | string
+  rate?: null | string;
+  postImage?: string;
   reactions: {
     likes: number;
     dislikes: number;
