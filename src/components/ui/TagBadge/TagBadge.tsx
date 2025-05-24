@@ -1,8 +1,8 @@
 import { ReactElement } from "react";
-import "./style.scss";
 import { fetchPostsByTag } from "@/store/slices/PostsSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
+import "./style.scss";
 
 type TTagBadgeProps = {
   children: string;

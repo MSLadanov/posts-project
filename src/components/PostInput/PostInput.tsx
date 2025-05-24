@@ -1,9 +1,10 @@
 import { ReactElement, useState } from "react";
 import { TextArea } from "../ui/TextArea";
 import { Button } from "@ui/Button";
-import "./style.scss";
 import { Input } from "../ui/Input";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import TagsBox from "../TagsBox/TagsBox";
+import "./style.scss";
 
 export const PostInput = (): ReactElement => {
   const [postBody, setPostBody] = useState("");
@@ -11,7 +12,8 @@ export const PostInput = (): ReactElement => {
   const [postTags, setPostTags] = useState([])
   const addNewPost = async () => {};
   return (
-    <div>
+    <div className="post-input">
+      <TagsBox />
       <Input
         value={postTitle}
         setValue={setPostTitle}
