@@ -8,6 +8,7 @@ const API_ENDPOINTS = {
   USERS: `${API_BASE_URL}/users`,
   POSTS: `${API_BASE_URL}/posts?limit=${POST_LIMITS}`,
   IMAGE: `${API_BASE_URL}/image`,
+  IMAGE_SIZE: '800x800',
   POSTS_BY_TAG: (tag: string) => `${API_BASE_URL}/posts/tag/${tag}?limit=${POST_LIMITS}`,
   POST_BY_ID: (id: number) => `${API_BASE_URL}/posts/${id}`,
   SEARCH_POSTS: (query: string) => `${API_BASE_URL}/posts/search?q=${query}?limit=${POST_LIMITS}`,
@@ -21,7 +22,7 @@ const fetchImage = async (text: string): Promise<string> => {
       .padStart(6, '0');
     const textColor = 'ffffff'; 
     const encodedText = encodeURIComponent(text); 
-    const url = `${API_ENDPOINTS.IMAGE}/800x800/${backgroundColor}/${textColor}?text=${encodedText}`;
+    const url = `${API_ENDPOINTS.IMAGE}/${API_ENDPOINTS.IMAGE_SIZE}/${backgroundColor}/${textColor}?text=${encodedText}`;
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

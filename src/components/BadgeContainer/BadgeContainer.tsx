@@ -9,10 +9,13 @@ type TBadgeContainerProps = {
 export const BadgeContainer: React.FC<TBadgeContainerProps> = ({
   tags,
 }): ReactElement => {
+  const sortByTag = () => {
+    return ''
+  }
   return (
     <div className="badge-container">
       {tags.map((tag, index) => (
-        <TagBadge key={index} slug={tag}>{tag}</TagBadge>
+        <TagBadge key={index} slug={tag} getSlug={sortByTag}>{tag}</TagBadge>
       ))}
     </div>
   );

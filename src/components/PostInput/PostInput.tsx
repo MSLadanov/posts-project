@@ -13,7 +13,7 @@ export const PostInput = (): ReactElement => {
   const addNewPost = async () => {};
   return (
     <div className="post-input">
-      <TagsBox />
+      <TagsBox getSlug={() => {}} />
       <Input
         value={postTitle}
         setValue={setPostTitle}

@@ -7,14 +7,13 @@ import "./style.scss";
 type TTagBadgeProps = {
   children: string;
   slug: string;
-  action: (payload? : string | object) => void;
-  payload?: string | object
+  getSlug: (slug: string) => string;
 };
 
-export const TagBadge = ({ children, slug, action, payload }: TTagBadgeProps): ReactElement => {
+export const TagBadge = ({ children, slug, getSlug }: TTagBadgeProps): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
   return (
-    <div className="tag-badge" onClick={() => payload ? action(payload) : action()}>
+    <div className="tag-badge" onClick={() => getSlug(slug)}>
       <p>{children}</p>
     </div>
   );
