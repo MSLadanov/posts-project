@@ -6,6 +6,14 @@ type TTextAreaProps = {
   setValue: (value: string) => void;
 };
 
-export const TextArea : React.FC<TTextAreaProps> = (): ReactElement => {
-  return <textarea></textarea>;
+export const TextArea: React.FC<TTextAreaProps> = ({
+  value,
+  setValue,
+}: TTextAreaProps): ReactElement => {
+  return (
+    <textarea
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+    ></textarea>
+  );
 };

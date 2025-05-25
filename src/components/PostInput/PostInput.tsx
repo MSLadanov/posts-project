@@ -7,26 +7,32 @@ import TagsBox from "../TagsBox/TagsBox";
 import "./style.scss";
 
 export const PostInput = (): ReactElement => {
-  const [postBody, setPostBody] = useState("");
-  const [postTitle, setPostTitle] = useState("");
-  const [postTags, setPostTags] = useState([])
+  const [body, setBody] = useState("");
+  const [title, setTitle] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
   const handleSlug = (slug: string) => {
-    console.log(slug)
-  }
-  const addNewPost = async () => {};
+    setTags([...tags, slug]);
+  };
+  const addNewPost = async () => {
+    console.log({
+        title,
+        body,
+        tags
+    })
+  };
   return (
     <div className="post-input">
       <TagsBox getSlug={handleSlug} />
       <Input
-        value={postTitle}
-        setValue={setPostTitle}
+        value={title}
+        setValue={setTitle}
         type="text"
         label="Post title:"
       />
-      <TextArea value={postBody} setValue={setPostBody} />
+      <TextArea value={body} setValue={setBody} />
       <Button
         action={addNewPost}
-        payload={{ postBody, postTitle }}
+        payload={{ body, title, tags }}
         icon={faPaperPlane}
       />
     </div>
