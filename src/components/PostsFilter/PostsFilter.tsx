@@ -6,15 +6,15 @@ import { Loader } from "../Loader";
 
 export const PostsFilter = (): ReactElement => {
   const TagsBox = React.lazy(() => import("@components/TagsBox/TagsBox"));
-  const getSlug = () => {
-    console.log('ccc')
+  const handleSlug = (slug: string) => {
+    console.log(slug)
   }
   return (
     <div className="posts-filter">
       <SearchBox />
       <SortBox />
       <Suspense fallback={<Loader/>}>
-        <TagsBox getSlug={getSlug} />
+        <TagsBox getSlug={handleSlug} />
       </Suspense>
     </div>
   );

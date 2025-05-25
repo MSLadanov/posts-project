@@ -10,10 +10,13 @@ export const PostInput = (): ReactElement => {
   const [postBody, setPostBody] = useState("");
   const [postTitle, setPostTitle] = useState("");
   const [postTags, setPostTags] = useState([])
+  const handleSlug = (slug: string) => {
+    console.log(slug)
+  }
   const addNewPost = async () => {};
   return (
     <div className="post-input">
-      <TagsBox getSlug={() => {}} />
+      <TagsBox getSlug={handleSlug} />
       <Input
         value={postTitle}
         setValue={setPostTitle}
