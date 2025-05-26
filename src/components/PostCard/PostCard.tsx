@@ -1,4 +1,4 @@
-import { TPost } from "@/types/types";
+import { TPost, TPostsListStore } from "@/types/types";
 import { ReactElement } from "react";
 import { BadgeContainer } from "@/components/BadgeContainer";
 import { NavLink, useLocation } from "react-router";
@@ -10,6 +10,7 @@ import { ViewsContainer } from "../ViewsContainer";
 import useFetch from "@/hooks/useFetch";
 import { useRatePost } from "@/hooks/useRatePost";
 import "./style.scss";
+import { useSelector } from "react-redux";
 
 type TPostCardProps = {
   link: string;
@@ -23,6 +24,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
   const { pathname } = useLocation();
   const postId = Number(pathname.split("/").at(-1));
   const { get, patch } = useFetch(`https://dummyjson.com`);
+  const { tag } = useSelector((state: TPostsListStore) => state.posts);
   const { ratePost, ratePagedPost } = useRatePost({
     post,
     getPost: get,
@@ -54,7 +56,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
             <h5>{post.user.firstName + " " + post.user.lastName}</h5>
           </Container>
         )}
-        <BadgeContainer tags={post.tags} />
+        <BadgeContainer tags={post.tags} tagsStore={tag} />
       </div>
       <div className="post-card__body">
         <h2>{post.title}</h2>
