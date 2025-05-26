@@ -130,6 +130,7 @@ export interface TPostsListState {
     data: TPost | null;
     loading: "idle" | "pending" | "succeeded" | "failed";
   };
+  tag: string[] | []
 }
 
 export interface TPostsListStore {

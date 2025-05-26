@@ -22,7 +22,7 @@ export const PostInput = (): ReactElement => {
   };
   return (
     <div className="post-input">
-      <TagsBox getSlug={handleSlug} />
+      <TagsBox getSlug={handleSlug} tagStore={tags} />
       <Input
         value={title}
         setValue={setTitle}

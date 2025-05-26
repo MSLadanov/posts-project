@@ -3,15 +3,17 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { store } from "../store";
 
 const API_BASE_URL = "https://dummyjson.com";
-const POST_LIMITS = 5
+const POST_LIMITS = 5;
 const API_ENDPOINTS = {
   USERS: `${API_BASE_URL}/users`,
   POSTS: `${API_BASE_URL}/posts?limit=${POST_LIMITS}`,
   IMAGE: `${API_BASE_URL}/image`,
-  IMAGE_SIZE: '800x800',
-  POSTS_BY_TAG: (tag: string) => `${API_BASE_URL}/posts/tag/${tag}?limit=${POST_LIMITS}`,
+  IMAGE_SIZE: "800x800",
+  POSTS_BY_TAG: (tag: string) =>
+    `${API_BASE_URL}/posts/tag/${tag}?limit=${POST_LIMITS}`,
   POST_BY_ID: (id: number) => `${API_BASE_URL}/posts/${id}`,
-  SEARCH_POSTS: (query: string) => `${API_BASE_URL}/posts/search?q=${query}?limit=${POST_LIMITS}`,
+  SEARCH_POSTS: (query: string) =>
+    `${API_BASE_URL}/posts/search?q=${query}?limit=${POST_LIMITS}`,
   POST_COMMENTS: (id: number) => `${API_BASE_URL}/comments/post/${id}`,
 };
 
@@ -19,9 +21,9 @@ const fetchImage = async (text: string): Promise<string> => {
   try {
     const backgroundColor = Math.floor(Math.random() * 0x1000000)
       .toString(16)
-      .padStart(6, '0');
-    const textColor = 'ffffff'; 
-    const encodedText = encodeURIComponent(text); 
+      .padStart(6, "0");
+    const textColor = "ffffff";
+    const encodedText = encodeURIComponent(text);
     const url = `${API_ENDPOINTS.IMAGE}/${API_ENDPOINTS.IMAGE_SIZE}/${backgroundColor}/${textColor}?text=${encodedText}`;
     const response = await fetch(url);
     if (!response.ok) {
@@ -30,8 +32,8 @@ const fetchImage = async (text: string): Promise<string> => {
     const blob = await response.blob();
     return URL.createObjectURL(blob);
   } catch (error) {
-    console.error('Failed to fetch image:', error);
-    throw new Error('Не удалось загрузить изображение');
+    console.error("Failed to fetch image:", error);
+    throw new Error("Не удалось загрузить изображение");
   }
 };
 
@@ -76,7 +78,7 @@ export const fetchPostsByTag = createAsyncThunk(
     }
     const { posts } = await response.json();
     const postsWithUsersData = await fetchPostsWithUsersData(posts);
-    return postsWithUsersData;
+    return {postsWithUsersData, tag};
   }
 );
 
@@ -92,7 +94,7 @@ export const fetchPostById = createAsyncThunk(
     const postsWithUserData = {
       ...post,
       user,
-      postImage: await fetchImage(post.title)
+      postImage: await fetchImage(post.title),
     };
     return postsWithUserData;
   }
@@ -135,6 +137,7 @@ const initialState: TPostsListState = {
     data: null,
     loading: "idle",
   },
+  tag: [],
 };
 
 const postsReducer = createSlice({
@@ -262,7 +265,8 @@ const postsReducer = createSlice({
       })
       .addCase(fetchPostsByTag.fulfilled, (state, action) => {
         state.postsList.loading = "succeeded";
-        state.postsList.data = action.payload;
+        state.postsList.data = action.payload.postsWithUsersData;
+        state.tag = [action.payload.tag]
       })
       .addCase(fetchPostsByTag.rejected, (state) => {
         state.postsList.loading = "failed";
@@ -270,6 +274,7 @@ const postsReducer = createSlice({
   },
 });
 
-export const { sort, ratePost, ratePagedPost } = postsReducer.actions;
+export const { sort, ratePost, ratePagedPost } =
+  postsReducer.actions;
 
 export default postsReducer.reducer;

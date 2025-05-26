@@ -1,15 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ReactElement, useEffect, useState } from "react";
 import useFetch from "@hooks/useFetch";
-import { TTag } from "@/types/types";
+import {  TTag } from "@/types/types";
 import { TagBadge } from "@ui/TagBadge";
 import "./style.scss";
 
 interface TagsBoxProps {
   getSlug: (slug: string) => void;
+  tagStore: string[]
 }
 
-const TagsBox = ({ getSlug }: TagsBoxProps): ReactElement => {
+const TagsBox = ({ getSlug, tagStore }: TagsBoxProps): ReactElement => {
   const [data, setData] = useState<TTag[]>();
   const { get } = useFetch<TTag[]>("https://dummyjson.com");
   useEffect(() => {
@@ -25,7 +26,7 @@ const TagsBox = ({ getSlug }: TagsBoxProps): ReactElement => {
         <div className="tag-box">
           {" "}
           {data.map((tag) => (
-            <TagBadge key={tag.slug} slug={tag.slug} action={getSlug}>
+            <TagBadge key={tag.slug} slug={tag.slug} action={getSlug} tagStore={tagStore}>
               {tag.name}
             </TagBadge>
           ))}

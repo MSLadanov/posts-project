@@ -4,12 +4,23 @@ import "./style.scss";
 type TTagBadgeProps = {
   children: string;
   slug: string;
-  action: (slug: string) => void
+  action: (slug: string) => void;
+  tagStore: string[]
 };
 
-export const TagBadge = ({ children, slug, action }: TTagBadgeProps): ReactElement => {
+export const TagBadge = ({
+  children,
+  slug,
+  action,
+  tagStore
+}: TTagBadgeProps): ReactElement => {
   return (
-    <div className="tag-badge" onClick={() => action(slug)}>
+    <div
+      className={tagStore.includes(slug) ? "tag-badge__active" : "tag-badge"}
+      onClick={() => {
+        action(slug);
+      }}
+    >
       <p>{children}</p>
     </div>
   );
