@@ -4,12 +4,18 @@ import { Button } from "@ui/Button";
 import { Input } from "../ui/Input";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { TagsBox } from "@components/TagsBox";
-import { useSelector } from "react-redux";
-import { TPostAppStore} from "@/types/types";
+import { useDispatch, useSelector } from "react-redux";
+import { TPost, TPostAppStore } from "@/types/types";
+import { fetchImage } from "@/store/slices/PostsSlice";
+import { AppDispatch } from "@/store";
+import { addPost } from "@/store/slices/PostsSlice";
 import "./style.scss";
 
 export const PostInput = (): ReactElement => {
-  const { id,firstName,lastName, image } = useSelector((state: TPostAppStore) => state.user.data);
+  const { id, firstName, lastName, image } = useSelector(
+    (state: TPostAppStore) => state.user.data
+  );
+  const dispatch = useDispatch<AppDispatch>();
   const [body, setBody] = useState("");
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState<string[]>([]);
@@ -17,11 +23,17 @@ export const PostInput = (): ReactElement => {
     setTags([...tags, slug]);
   };
   const addNewPost = async () => {
-    console.log({
-      id,
-      firstName,
-      lastName,
-      image,
+    const newPost: TPost = {
+      id: Math.floor(Math.random() * 20001) + 10000,
+      userId: id,
+      user: {
+        firstName,
+        lastName,
+        image,
+      },
+      rate: "",
+      postImage: await fetchImage(title),
+      rated: false,
       title,
       body,
       tags,
@@ -30,7 +42,8 @@ export const PostInput = (): ReactElement => {
         likes: 0,
         dislikes: 0,
       },
-    });
+    };
+    dispatch(addPost(newPost));
   };
   return (
     <div className="post-input">

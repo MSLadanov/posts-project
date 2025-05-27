@@ -18,7 +18,7 @@ const API_ENDPOINTS = {
   POST_COMMENTS: (id: number) => `${API_BASE_URL}/comments/post/${id}`,
 };
 
-const fetchImage = async (text: string): Promise<string> => {
+export const fetchImage = async (text: string): Promise<string> => {
   try {
     const backgroundColor = Math.floor(Math.random() * 0x1000000)
       .toString(16)
@@ -242,7 +242,8 @@ const postsReducer = createSlice({
       }
     },
     addPost(state, action) {
-      console.log(action.type)
+      const prevState = state.postsList.data
+      state.postsList.data = [action.payload, ...prevState]
     },
   },
   extraReducers: (builder) => {
