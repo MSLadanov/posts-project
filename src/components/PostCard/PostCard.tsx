@@ -25,6 +25,9 @@ export const PostCard: React.FC<TPostCardProps> = ({
   const postId = Number(pathname.split("/").at(-1));
   const { get, patch } = useFetch(`https://dummyjson.com`);
   const { tag } = useSelector((state: TPostAppStore) => state.posts);
+  const { id : userId } = useSelector(
+    (state: TPostAppStore) => state.user.data
+  );
   const { ratePost, ratePagedPost } = useRatePost({
     post,
     getPost: get,
@@ -77,6 +80,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
             icon={faThumbsUp}
             action={!postId ? ratePostAsync : ratePagedPostAsync}
             payload={"liked"}
+            disabled={post.userId === userId}
           >
             {post.reactions.likes}
           </Button>
@@ -84,6 +88,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
             icon={faThumbsDown}
             action={!postId ? ratePostAsync : ratePagedPostAsync}
             payload={"disliked"}
+            disabled={post.userId === userId}
           >
             {post.reactions.dislikes}
           </Button>
