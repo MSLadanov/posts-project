@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import { PostsFilter } from "@/components/PostsFilter";
 import { PostsList } from "@/components/PostsList";
 
-export const PostsListRoute = (): ReactElement => {
+const PostsListRoute = (): ReactElement => {
   return (
     <main>
       <PostsFilter />
@@ -10,3 +10,5 @@ export const PostsListRoute = (): ReactElement => {
     </main>
   );
 };
+
+export default PostsListRoute

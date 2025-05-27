@@ -5,7 +5,7 @@ import { ReactElement, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router";
 
-export const PostRoute = (): ReactElement => {
+const PostRoute = (): ReactElement => {
   const { pathname } = useLocation();
   const id = Number(pathname.split("/").at(-1));
   const dispatch = useDispatch<AppDispatch>();
@@ -20,3 +20,5 @@ export const PostRoute = (): ReactElement => {
     </main>
   );
 };
+
+export default PostRoute

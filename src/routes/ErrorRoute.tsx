@@ -1,5 +1,7 @@
 import { ReactElement } from "react";
 
-export const ErrorRoute = (): ReactElement => {
+const ErrorRoute = (): ReactElement => {
   return <div>Error Route!</div>;
 };
+
+export default ErrorRoute
