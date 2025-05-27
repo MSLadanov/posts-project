@@ -88,7 +88,7 @@ export const fetchPostsByTag = createAsyncThunk(
     }
     const { posts } = await response.json();
     const postsWithUsersData = await fetchPostsWithUsersData(posts);
-    return {postsWithUsersData, tag};
+    return { postsWithUsersData, tag };
   }
 );
 
@@ -241,6 +241,9 @@ const postsReducer = createSlice({
           return state;
       }
     },
+    addPost(state, action) {
+      console.log(action.type)
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -286,21 +289,20 @@ const postsReducer = createSlice({
       })
       .addCase(fetchPostsByTag.pending, (state) => {
         state.postsList.loading = "pending";
-        state.tag = []
+        state.tag = [];
       })
       .addCase(fetchPostsByTag.fulfilled, (state, action) => {
         state.postsList.loading = "succeeded";
         state.postsList.data = action.payload.postsWithUsersData;
-        state.tag = [action.payload.tag]
+        state.tag = [action.payload.tag];
       })
       .addCase(fetchPostsByTag.rejected, (state) => {
         state.postsList.loading = "failed";
-        state.tag = []
+        state.tag = [];
       });
   },
 });
 
-export const { sort, ratePost, ratePagedPost } =
-  postsReducer.actions;
+export const { sort, ratePost, addPost, ratePagedPost } = postsReducer.actions;
 
 export default postsReducer.reducer;

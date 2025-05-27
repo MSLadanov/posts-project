@@ -1,4 +1,4 @@
-import { TPost, TPostsListStore } from "@/types/types";
+import { TPost, TPostAppStore} from "@/types/types";
 import { ReactElement } from "react";
 import { BadgeContainer } from "@/components/BadgeContainer";
 import { NavLink, useLocation } from "react-router";
@@ -24,7 +24,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
   const { pathname } = useLocation();
   const postId = Number(pathname.split("/").at(-1));
   const { get, patch } = useFetch(`https://dummyjson.com`);
-  const { tag } = useSelector((state: TPostsListStore) => state.posts);
+  const { tag } = useSelector((state: TPostAppStore) => state.posts);
   const { ratePost, ratePagedPost } = useRatePost({
     post,
     getPost: get,

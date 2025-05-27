@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { TPostsListStore } from "@/types/types";
+import { TPostAppStore } from "@/types/types";
 import { TagBadge } from "@ui/TagBadge";
 import { useSelector } from "react-redux";
 import "./style.scss";
@@ -11,7 +11,7 @@ interface TagsBoxProps {
 
 export const TagsBox = ({ getSlug, tagStore }: TagsBoxProps): ReactElement => {
   const { data } = useSelector(
-    (state: TPostsListStore) => state.posts.postsTags
+    (state: TPostAppStore) => state.posts.postsTags
   );
   return (
     <>

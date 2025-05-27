@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { PostCard } from "../PostCard";
 
 const UserPosts = (): ReactElement => {
-  const { data } = useSelector((state: TUserStore) => state.user);
+  const { data } = useSelector((state: TUserStore) => state);
   const [userPosts, setUserPosts] = useState<{ posts: TPost[] }>();
   const { get } = useFetch<{ posts: TPost[] }>(`https://dummyjson.com`);
   useEffect(() => {

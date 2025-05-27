@@ -1,6 +1,6 @@
 import { AppDispatch } from "@/store";
 import { fetchPosts, fetchTags } from "@/store/slices/PostsSlice";
-import { TPostsListStore, TPost } from "@/types/types";
+import { TPostAppStore, TPost } from "@/types/types";
 import { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Post } from "@components/Post";
@@ -10,7 +10,7 @@ import { ProtectedComponent } from "@components/ProtectedComponent";
 export const PostsList = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
   const { data } = useSelector(
-    (store: TPostsListStore) => store.posts.postsList
+    (store: TPostAppStore) => store.posts.postsList
   );
   useEffect(() => {
     dispatch(fetchPosts());

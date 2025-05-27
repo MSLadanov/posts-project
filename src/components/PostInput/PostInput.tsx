@@ -4,9 +4,12 @@ import { Button } from "@ui/Button";
 import { Input } from "../ui/Input";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { TagsBox } from "@components/TagsBox";
+import { useSelector } from "react-redux";
+import { TPostAppStore} from "@/types/types";
 import "./style.scss";
 
 export const PostInput = (): ReactElement => {
+  const { id,firstName,lastName, image } = useSelector((state: TPostAppStore) => state.user.data);
   const [body, setBody] = useState("");
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState<string[]>([]);
@@ -15,10 +18,19 @@ export const PostInput = (): ReactElement => {
   };
   const addNewPost = async () => {
     console.log({
-        title,
-        body,
-        tags
-    })
+      id,
+      firstName,
+      lastName,
+      image,
+      title,
+      body,
+      tags,
+      views: 0,
+      reactions: {
+        likes: 0,
+        dislikes: 0,
+      },
+    });
   };
   return (
     <div className="post-input">

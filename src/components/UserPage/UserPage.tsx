@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 import { useSelector } from "react-redux";
 
 const UserPage = (): ReactElement => {
-  const { data } = useSelector((state: TUserStore) => state.user);
+  const { data } = useSelector((state: TUserStore) => state);
   return (
     <div>
       <img src={data.image} alt={data.firstName + " avatar"} />

@@ -134,17 +134,17 @@ export interface TPostsListState {
     data: TTag[] | null;
     loading: "idle" | "pending" | "succeeded" | "failed";
   };
-  tag: string[] | []
+  tag: string[] | [];
 }
 
-export interface TPostsListStore {
+export interface TPostAppStore {
   posts: TPostsListState;
+  user: TUserStore;
 }
 
 export interface TUserStore {
-  user: {
-    data: TUser;
-  };
+  data: TUser;
+  loading: "idle" | "pending" | "succeeded" | "failed";
 }
 
 export interface TFallbackRenderProps {

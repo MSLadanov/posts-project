@@ -1,12 +1,12 @@
 import { ReactElement } from "react";
-import { TUserStore } from "@/types/types";
+import { TPostAppStore } from "@/types/types";
 import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { signOut } from "@/store/slices/UserSlice";
 import { AppDispatch } from "@/store";
 
 const SignedHeader = (): ReactElement => {
-  const data = useSelector((store: TUserStore) => store.user.data);
+  const data = useSelector((store: TPostAppStore) => store.user.data);
   const dispatch = useDispatch<AppDispatch>();
   const [, , removeCookie] = useCookies(["accessToken"]);
   const SignOut = () => {
