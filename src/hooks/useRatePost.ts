@@ -22,6 +22,7 @@ export const useRatePost = ({ post, getPost, patchPost }: UseRatePostProps) => {
       const basePostData = {
         ...updatingPost,
         user: post.user,
+        postImage: post.postImage
       };
       const updatePostReactions = async () => {
         const updatedPost = getUpdatedPost(post.id);
@@ -60,6 +61,7 @@ export const useRatePost = ({ post, getPost, patchPost }: UseRatePostProps) => {
       const basePostData = {
         ...updatingPost,
         user: post.user,
+        postImage: post.postImage
       };
       const updatePostReactions = async () => {
         const updatedPost = getUpdatedPost(post.id);

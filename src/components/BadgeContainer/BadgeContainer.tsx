@@ -20,9 +20,9 @@ export const BadgeContainer: React.FC<TBadgeContainerProps> = ({
   };
   return (
     <div className="badge-container">
-      {tags.map((t, index) => (
-        <TagBadge key={index} slug={t} action={sortByTag} tagStore={tagsStore}>
-          {t}
+      {tags.map((tag, index) => (
+        <TagBadge key={index} slug={tag} action={sortByTag} tagStore={tagsStore}>
+          {tag}
         </TagBadge>
       ))}
     </div>

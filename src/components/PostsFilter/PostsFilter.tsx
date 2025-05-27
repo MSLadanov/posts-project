@@ -16,9 +16,9 @@ export const PostsFilter = (): ReactElement => {
   };
   return (
     <div className="posts-filter">
+      <Suspense fallback={<Loader />}>
       <SearchBox />
       <SortBox />
-      <Suspense fallback={<Loader />}>
         <TagsBox getSlug={handleSlug} tagStore={tag} />
       </Suspense>
     </div>

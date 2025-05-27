@@ -8,6 +8,7 @@ const API_ENDPOINTS = {
   USERS: `${API_BASE_URL}/users`,
   POSTS: `${API_BASE_URL}/posts?limit=${POST_LIMITS}`,
   IMAGE: `${API_BASE_URL}/image`,
+  TAGS: `${API_BASE_URL}/posts/tags`,
   IMAGE_SIZE: "800x800",
   POSTS_BY_TAG: (tag: string) =>
     `${API_BASE_URL}/posts/tag/${tag}?limit=${POST_LIMITS}`,
@@ -67,6 +68,15 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   const { posts } = await response.json();
   const postsWithUsersData = await fetchPostsWithUsersData(posts);
   return postsWithUsersData;
+});
+
+export const fetchTags = createAsyncThunk("posts/fetchTags", async () => {
+  const response = await fetch(API_ENDPOINTS.TAGS);
+  if (!response.ok) {
+    throw new Error("Ошибка запроса");
+  }
+  const tags = await response.json();
+  return tags;
 });
 
 export const fetchPostsByTag = createAsyncThunk(
@@ -138,6 +148,10 @@ const initialState: TPostsListState = {
     loading: "idle",
   },
   tag: [],
+  postsTags: {
+    data: null,
+    loading: "idle",
+  },
 };
 
 const postsReducer = createSlice({
@@ -240,6 +254,16 @@ const postsReducer = createSlice({
       .addCase(fetchPosts.rejected, (state) => {
         state.postsList.loading = "failed";
       })
+      .addCase(fetchTags.pending, (state) => {
+        state.postsTags.loading = "pending";
+      })
+      .addCase(fetchTags.fulfilled, (state, action) => {
+        state.postsTags.loading = "succeeded";
+        state.postsTags.data = action.payload;
+      })
+      .addCase(fetchTags.rejected, (state) => {
+        state.postsTags.loading = "failed";
+      })
       .addCase(fetchPostById.pending, (state) => {
         state.post.loading = "pending";
       })
@@ -262,6 +286,7 @@ const postsReducer = createSlice({
       })
       .addCase(fetchPostsByTag.pending, (state) => {
         state.postsList.loading = "pending";
+        state.tag = []
       })
       .addCase(fetchPostsByTag.fulfilled, (state, action) => {
         state.postsList.loading = "succeeded";
@@ -270,6 +295,7 @@ const postsReducer = createSlice({
       })
       .addCase(fetchPostsByTag.rejected, (state) => {
         state.postsList.loading = "failed";
+        state.tag = []
       });
   },
 });

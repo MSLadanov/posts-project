@@ -1,5 +1,5 @@
 import { AppDispatch } from "@/store";
-import { fetchPosts } from "@/store/slices/PostsSlice";
+import { fetchPosts, fetchTags } from "@/store/slices/PostsSlice";
 import { TPostsListStore, TPost } from "@/types/types";
 import { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +14,7 @@ const PostsList = (): ReactElement => {
   );
   useEffect(() => {
     dispatch(fetchPosts());
+    dispatch(fetchTags())
   }, [dispatch]);
   return (
     <>

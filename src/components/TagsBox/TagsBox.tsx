@@ -1,32 +1,30 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { ReactElement, useEffect, useState } from "react";
-import useFetch from "@hooks/useFetch";
-import {  TTag } from "@/types/types";
+import { ReactElement } from "react";
+import { TPostsListStore } from "@/types/types";
 import { TagBadge } from "@ui/TagBadge";
+import { useSelector } from "react-redux";
 import "./style.scss";
 
 interface TagsBoxProps {
   getSlug: (slug: string) => void;
-  tagStore: string[]
+  tagStore: string[];
 }
 
 const TagsBox = ({ getSlug, tagStore }: TagsBoxProps): ReactElement => {
-  const [data, setData] = useState<TTag[]>();
-  const { get } = useFetch<TTag[]>("https://dummyjson.com");
-  useEffect(() => {
-    const getAllTags = async () => {
-      const tags = await get<TTag[]>("posts/tags");
-      setData(tags);
-    };
-    getAllTags();
-  }, []);
+  const { data } = useSelector(
+    (state: TPostsListStore) => state.posts.postsTags
+  );
   return (
     <>
       {data && (
         <div className="tag-box">
           {" "}
           {data.map((tag) => (
-            <TagBadge key={tag.slug} slug={tag.slug} action={getSlug} tagStore={tagStore}>
+            <TagBadge
+              key={tag.slug}
+              slug={tag.slug}
+              action={getSlug}
+              tagStore={tagStore}
+            >
               {tag.name}
             </TagBadge>
           ))}
