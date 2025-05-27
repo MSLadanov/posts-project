@@ -7,7 +7,7 @@ import { Post } from "@components/Post";
 import { PostInput } from "@components/PostInput";
 import { ProtectedComponent } from "@components/ProtectedComponent";
 
-const PostsList = (): ReactElement => {
+export const PostsList = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
   const { data } = useSelector(
     (store: TPostsListStore) => store.posts.postsList
@@ -28,4 +28,3 @@ const PostsList = (): ReactElement => {
   );
 };
 
-export default PostsList;

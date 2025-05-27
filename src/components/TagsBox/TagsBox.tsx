@@ -9,7 +9,7 @@ interface TagsBoxProps {
   tagStore: string[];
 }
 
-const TagsBox = ({ getSlug, tagStore }: TagsBoxProps): ReactElement => {
+export const TagsBox = ({ getSlug, tagStore }: TagsBoxProps): ReactElement => {
   const { data } = useSelector(
     (state: TPostsListStore) => state.posts.postsTags
   );
@@ -34,4 +34,3 @@ const TagsBox = ({ getSlug, tagStore }: TagsBoxProps): ReactElement => {
   );
 };
 
-export default TagsBox;

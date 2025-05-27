@@ -3,7 +3,7 @@ import { TextArea } from "../ui/TextArea";
 import { Button } from "@ui/Button";
 import { Input } from "../ui/Input";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import TagsBox from "../TagsBox/TagsBox";
+import { TagsBox } from "@components/TagsBox";
 import "./style.scss";
 
 export const PostInput = (): ReactElement => {

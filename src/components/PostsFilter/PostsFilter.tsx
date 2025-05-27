@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store";
 import { fetchPostsByTag } from "@/store/slices/PostsSlice";
 import { TPostsListStore } from "@/types/types";
-import TagsBox from "../TagsBox/TagsBox";
+import { TagsBox } from "@components/TagsBox";
 
 export const PostsFilter = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
