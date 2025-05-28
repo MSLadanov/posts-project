@@ -13,6 +13,7 @@ export type TPost = {
   };
   views: number;
   userId: number;
+  comments: TComment[];
   user: {
     firstName: string;
     lastName: string;
@@ -135,6 +136,10 @@ export interface TPostsListState {
     loading: "idle" | "pending" | "succeeded" | "failed";
   };
   tag: string[] | [];
+  comments: {
+    data: TComment[] | [];
+    loading: "idle" | "pending" | "succeeded" | "failed";
+  };
 }
 
 export interface TPostAppStore {

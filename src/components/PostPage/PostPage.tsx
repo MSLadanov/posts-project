@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from "react";
+import { ReactElement, useEffect, useRef } from "react";
 import { useLocation } from "react-router";
 import { fetchPostById } from "@/store/slices/PostsSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,14 +15,19 @@ export const PostPage = (): ReactElement | null => {
   const { data, loading } = useSelector(
     (store: TPostAppStore) => store.posts.post
   );
+  const ref = useRef(false);
   useEffect(() => {
-    dispatch(fetchPostById(postId));
+    if (ref.current) {
+      dispatch(fetchPostById(postId));
+    } else {
+      ref.current = true;
+    }
   }, [dispatch, postId]);
   if (loading === "succeeded") {
     return (
       <div className="post-page">
         <Post post={data!} />
-        <Comments postId={postId}/>
+        <Comments postId={postId} />
       </div>
     );
   } else {

@@ -124,7 +124,7 @@ export const fetchSearchedPosts = createAsyncThunk(
 );
 
 export const fetchPostComments = createAsyncThunk(
-  "posts/fetchComments",
+  "posts/fetchPostComments",
   async (id: number) => {
     const response = await fetch(API_ENDPOINTS.POST_COMMENTS(id));
     if (!response.ok) {
@@ -145,6 +145,10 @@ const initialState: TPostsListState = {
   },
   post: {
     data: null,
+    loading: "idle",
+  },
+  comments: {
+    data: [],
     loading: "idle",
   },
   tag: [],
@@ -242,8 +246,8 @@ const postsReducer = createSlice({
       }
     },
     addPost(state, action) {
-      const prevState = state.postsList.data
-      state.postsList.data = [action.payload, ...prevState]
+      const prevState = state.postsList.data;
+      state.postsList.data = [action.payload, ...prevState];
     },
   },
   extraReducers: (builder) => {
@@ -267,6 +271,16 @@ const postsReducer = createSlice({
       })
       .addCase(fetchTags.rejected, (state) => {
         state.postsTags.loading = "failed";
+      })
+      .addCase(fetchPostComments.pending, (state) => {
+        state.comments.loading = "pending";
+      })
+      .addCase(fetchPostComments.fulfilled, (state, action) => {
+        state.post.loading = "succeeded";
+        state.comments.data = action.payload;
+      })
+      .addCase(fetchPostComments.rejected, (state) => {
+        state.comments.loading = "failed";
       })
       .addCase(fetchPostById.pending, (state) => {
         state.post.loading = "pending";

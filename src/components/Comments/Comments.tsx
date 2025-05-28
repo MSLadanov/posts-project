@@ -1,32 +1,27 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ReactElement, useEffect, useState } from "react";
-import useFetch from "@hooks/useFetch";
-import { TComment } from "@/types/types";
+import { ReactElement, useEffect } from "react";
+import { TComment, TPostAppStore } from "@/types/types";
 import { CommentCard } from "@/components/CommentCard";
 import { CommentInput } from "@components/CommentInput";
 import { ProtectedComponent } from "@components/ProtectedComponent";
+import { fetchPostComments } from "@/store/slices/PostsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "@/store";
 
 export const Comments: React.FC<{ postId: number }> = ({
   postId,
 }): ReactElement => {
-  const [data, setData] = useState<{ comments: TComment[] }>();
-  const { get } = useFetch<{ comments: TComment[] }>(`https://dummyjson.com`);
+  const { data } = useSelector((state : TPostAppStore) => state.posts.comments)
+  const dispatch = useDispatch<AppDispatch>()
   useEffect(() => {
-    const getComments = async () => {
-      const comments = await get<{ comments: TComment[] }>(
-        `comments/post/${postId}`
-      );
-      comments?.comments.map((comment) => ({...comment, liked: false}))
-      setData(comments);
-    };
-    getComments();
+    dispatch(fetchPostComments(postId))
   }, [postId]);
   return (
     <div>
       <ProtectedComponent>
         <CommentInput />
       </ProtectedComponent>
-      {data?.comments.map((comment) => (
+      {data.map((comment : TComment) => (
         <CommentCard key={comment.id} comment={comment} />
       ))}
     </div>

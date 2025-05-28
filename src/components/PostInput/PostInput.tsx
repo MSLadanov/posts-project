@@ -31,6 +31,7 @@ export const PostInput = (): ReactElement => {
         lastName,
         image,
       },
+      comments: [],
       rate: "",
       postImage: await fetchImage(title),
       rated: false,
