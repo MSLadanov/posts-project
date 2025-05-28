@@ -4,7 +4,8 @@
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: repeat(10, 1fr);
-
+  height: 100px;
+  overflow-x: scroll;
   @include laptop {
     grid-template-columns: repeat(6, 1fr);
   }
@@ -13,8 +14,5 @@
   }
   @include mobile {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .tag-badge {
-
   }
 }

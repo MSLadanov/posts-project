@@ -178,3 +178,5 @@ export type TLoggedUserCredentials = {
 };
 
 export type TRegisteredUserCredentials = Partial<TUser>;
+
+export type TNotifyType = 'warning' | 'error' | 'success'

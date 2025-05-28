@@ -45,11 +45,53 @@ $breakpoint-desktop: 1200px;
   }
 }
 
+#notify-box {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  .warning {
+    background-color: yellow;
+  }
+  .success {
+    background-color: green;
+  }
+  .error {
+    background-color: red;
+  }
+  .notify {
+    &__visible {
+      position: absolute;
+      right: 30px;
+      bottom: 30px;
+      animation: toggle-notify 6s ease-in forwards;
+    }
+  }
+}
+
 @keyframes drop-shadow {
   from {
     background-color: transparent;
   }
   to {
     background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes toggle-notify {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.98);
   }
 }

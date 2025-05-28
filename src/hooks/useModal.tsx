@@ -8,7 +8,7 @@ export const useModal = (ModalContent: ElementType) => {
       <div className="modal-layout">
         <div className="modal">
           <button onClick={() => setIsOpened(false)}>(X)</button>
-          <ModalContent></ModalContent>
+          <ModalContent />
         </div>
       </div>
     );
