@@ -3,7 +3,7 @@ import { SearchBox } from "@components/SearchBox";
 import { SortBox } from "@components/SortBox";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store";
-import { fetchPostsByTag } from "@/store/slices/PostsSlice";
+import { fetchPostsByTag } from "@/store/posts.api";
 import { TPostAppStore } from "@/types/types";
 import { TagsBox } from "@components/TagsBox";
 

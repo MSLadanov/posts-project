@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import useDebounce from "@hooks/useDebounce";
 import { ReactElement, useEffect, useState } from "react";
-import { fetchSearchedPosts } from "@store/slices/PostsSlice";
+import { fetchSearchedPosts } from "@/store/posts.api";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
 import { Input } from "@ui/Input";

@@ -1,5 +1,5 @@
 import { AppDispatch } from "@/store";
-import { fetchPosts, fetchTags } from "@/store/slices/PostsSlice";
+import { fetchPosts, fetchTags } from "@/store/posts.api"
 import { TPostAppStore, TPost } from "@/types/types";
 import { ReactElement, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";

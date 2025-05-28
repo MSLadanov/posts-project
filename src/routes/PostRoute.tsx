@@ -1,6 +1,6 @@
 import { PostPage } from "@/components/PostPage";
 import { AppDispatch } from "@/store";
-import { fetchPostById } from "@/store/slices/PostsSlice";
+import { fetchPostById } from "@/store/posts.api";
 import { ReactElement, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router";

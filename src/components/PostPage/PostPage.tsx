@@ -1,6 +1,6 @@
 import { ReactElement, useEffect, useRef } from "react";
 import { useLocation } from "react-router";
-import { fetchPostById } from "@/store/slices/PostsSlice";
+import { fetchPostById } from "@/store/posts.api";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store";
 import { TPostAppStore } from "@/types/types";

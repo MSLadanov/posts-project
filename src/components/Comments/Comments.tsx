@@ -4,7 +4,7 @@ import { TComment, TPostAppStore } from "@/types/types";
 import { CommentCard } from "@/components/CommentCard";
 import { CommentInput } from "@components/CommentInput";
 import { ProtectedComponent } from "@components/ProtectedComponent";
-import { fetchPostComments } from "@/store/slices/PostsSlice";
+import { fetchPostComments } from "@/store/posts.api";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store";
 

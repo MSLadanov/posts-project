@@ -6,7 +6,7 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { TagsBox } from "@components/TagsBox";
 import { useDispatch, useSelector } from "react-redux";
 import { TPost, TPostAppStore } from "@/types/types";
-import { fetchImage } from "@/store/slices/PostsSlice";
+import { fetchImage } from "@/store/slices/utils";
 import { AppDispatch } from "@/store";
 import { addPost } from "@/store/slices/PostsSlice";
 import useFetch from "@/hooks/useFetch";
