@@ -16,11 +16,10 @@ export const CommentInput = (): ReactElement => {
     (state: TPostAppStore) => state.user.data
   );
   const postId = Number(pathname.split("/").at(-1));
-  const sendComment = async (text: string | object) => {
-    console.log(text)
+  const sendComment = async () => {
     const newComment: TComment = {
       id: Math.floor(Math.random() * 20001) + 10000,
-      body: JSON.stringify(text),
+      body: commentText,
       postId,
       likes: 0,
       user: {
@@ -33,8 +32,12 @@ export const CommentInput = (): ReactElement => {
   };
   return (
     <div>
-      <TextArea value={commentText} setValue={setCommentText} />
-      <Button action={sendComment} payload={""} icon={faCommentDots} />
+      <img
+        src={`https://dummyjson.com/icon/${username}/50`}
+        alt={firstName + " " + lastName + " avatar"}
+      />
+      <TextArea label="Comment text:" value={commentText} setValue={setCommentText} />
+      <Button action={sendComment} payload={commentText} icon={faCommentDots} />
     </div>
   );
 };

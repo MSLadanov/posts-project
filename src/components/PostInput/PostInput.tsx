@@ -55,7 +55,7 @@ export const PostInput = (): ReactElement => {
         type="text"
         label="Post title:"
       />
-      <TextArea value={body} setValue={setBody} />
+      <TextArea value={body} setValue={setBody} label="Post text:" />
       <Button
         action={addNewPost}
         payload={{ body, title, tags }}
