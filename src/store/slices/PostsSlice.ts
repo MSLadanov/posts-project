@@ -249,6 +249,10 @@ const postsReducer = createSlice({
       const prevState = state.postsList.data;
       state.postsList.data = [action.payload, ...prevState];
     },
+    addComment(state, action) {
+      const prevState = state.comments.data;
+      state.comments.data = [action.payload, ...prevState];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -318,6 +322,6 @@ const postsReducer = createSlice({
   },
 });
 
-export const { sort, ratePost, addPost, ratePagedPost } = postsReducer.actions;
+export const { sort, ratePost, addPost, addComment, ratePagedPost } = postsReducer.actions;
 
 export default postsReducer.reducer;
