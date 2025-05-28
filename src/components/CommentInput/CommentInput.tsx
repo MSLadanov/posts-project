@@ -7,11 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { TComment, TPostAppStore } from "@/types/types";
 import { AppDispatch } from "@/store";
 import { addComment } from "@/store/slices/PostsSlice";
+import useFetch from "@/hooks/useFetch";
 
 export const CommentInput = (): ReactElement => {
   const [commentText, setCommentText] = useState("");
   const { pathname } = useLocation();
   const dispatch = useDispatch<AppDispatch>();
+  const { post } = useFetch(`https://dummyjson.com`);
   const { id, username, firstName, lastName } = useSelector(
     (state: TPostAppStore) => state.user.data
   );
@@ -29,6 +31,7 @@ export const CommentInput = (): ReactElement => {
       },
     };
     dispatch(addComment(newComment));
+    await post('comments/add', newComment)
   };
   return (
     <div>

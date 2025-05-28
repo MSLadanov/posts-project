@@ -9,6 +9,7 @@ import { TPost, TPostAppStore } from "@/types/types";
 import { fetchImage } from "@/store/slices/PostsSlice";
 import { AppDispatch } from "@/store";
 import { addPost } from "@/store/slices/PostsSlice";
+import useFetch from "@/hooks/useFetch";
 import "./style.scss";
 
 export const PostInput = (): ReactElement => {
@@ -22,6 +23,7 @@ export const PostInput = (): ReactElement => {
   const handleSlug = (slug: string) => {
     setTags([...tags, slug]);
   };
+  const { post } = useFetch(`https://dummyjson.com`);
   const addNewPost = async () => {
     const newPost: TPost = {
       id: Math.floor(Math.random() * 20001) + 10000,
@@ -45,6 +47,7 @@ export const PostInput = (): ReactElement => {
       },
     };
     dispatch(addPost(newPost));
+    await post('posts/add', newPost)
   };
   return (
     <div className="post-input">
