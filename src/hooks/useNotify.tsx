@@ -54,6 +54,8 @@ export const useNotify = () => {
   };
   const notifyContainer = document.querySelector("#notify-box");
   const notifyPortal =
-    notifyContainer && createPortal(<Notify />, notifyContainer);
+    notifyState.isOpened &&
+    notifyContainer &&
+    createPortal(<Notify />, notifyContainer);
   return { notify, notifyPortal };
 };

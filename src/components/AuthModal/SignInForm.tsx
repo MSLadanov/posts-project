@@ -12,7 +12,6 @@ const SignInForm = (): ReactElement => {
   const handleSignInForm = async (e: FormEvent) => {
     e.preventDefault();
     const user = await post<Partial<TLoggedUserCredentials>>("auth/login", { username: username, password });
-    console.log(user);
     setCookies("accessToken", user?.accessToken);
   };
   return (
@@ -23,12 +22,14 @@ const SignInForm = (): ReactElement => {
         required={true}
         label="Username:"
         setValue={setUserName}
+        name="username"
       />
       <Input
         type="password"
         value={password}
         required={true}
         label="Password:"
+        name="password"
         setValue={setPassword}
       />
       <button type="submit">Sign In</button>

@@ -57,6 +57,7 @@ export const PostInput = (): ReactElement => {
         setValue={setTitle}
         type="text"
         label="Post title:"
+        name="post-title"
       />
       <TextArea value={body} setValue={setBody} label="Post text:" />
       <Button

@@ -3,7 +3,7 @@ import "./style.scss";
 
 type TInputProps = {
   type: string;
-  name?: string;
+  name: string;
   label?: string;
   value: string | number;
   required?: boolean;
@@ -12,7 +12,7 @@ type TInputProps = {
 
 export const Input: React.FC<TInputProps> = ({
   type,
-  name = '',
+  name,
   label,
   value,
   required = false,
