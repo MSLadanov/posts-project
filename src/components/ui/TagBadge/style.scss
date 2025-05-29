@@ -1,7 +1,8 @@
 .tag-badge {
   display: flex;
   height: fit-content;
-  background-color: red;
+  background-color: #f3d050;
+  color: black;
   border-radius: 6px;
   justify-content: center;
   align-items: center;
@@ -10,7 +11,8 @@
   &__active {
     display: flex;
     height: fit-content;
-    background-color: greenyellow;
+    background-color: black;
+    color:#f3d050;
     border-radius: 6px;
     justify-content: center;
     align-items: center;
@@ -18,7 +20,4 @@
     margin: 0.1em;
   }
   cursor: pointer;
-  p {
-    color: white;
-  }
 }

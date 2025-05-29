@@ -11,6 +11,10 @@ body {
   background-color: #f5d04e;
 }
 
+main{
+  padding: 0px 15px;
+}
+
 * {
   margin: 0;
 }
