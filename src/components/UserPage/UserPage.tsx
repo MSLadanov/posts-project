@@ -1,9 +1,9 @@
-import { TUserStore } from "@/types/types";
+import { TPostAppStore } from "@/types/types";
 import { ReactElement } from "react";
 import { useSelector } from "react-redux";
 
 const UserPage = (): ReactElement => {
-  const { data } = useSelector((state: TUserStore) => state);
+  const { data } = useSelector((state: TPostAppStore) => state.user);
   return (
     <div>
       <img src={data.image} alt={data.firstName + " avatar"} />
