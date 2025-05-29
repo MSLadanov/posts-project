@@ -46,7 +46,7 @@ $breakpoint-desktop: 1200px;
 }
 
 #notify-box {
-  position: absolute;
+  position: fixed;
   right: 30px;
   bottom: 30px;
   .warning {

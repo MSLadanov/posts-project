@@ -7,7 +7,7 @@ import { TLoggedUserCredentials } from "@/types/types";
 const SignInForm = (): ReactElement => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const { post } = useFetch<TLoggedUserCredentials>("https://dummyjson.com");
+  const { post } = useFetch("https://dummyjson.com");
   const [, setCookies] = useCookies(["accessToken"]);
   const handleSignInForm = async (e: FormEvent) => {
     e.preventDefault();

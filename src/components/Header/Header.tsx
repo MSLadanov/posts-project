@@ -6,6 +6,7 @@ import { AppDispatch } from "@/store";
 import SignedHeader from "./SignedHeader";
 import { useCheckToken } from "@/hooks/useCheckToken";
 import BaseHeader from "./BaseHeader";
+import { Breadcrumbs } from "../ui/Breadcrumbs";
 
 export const Header = (): ReactElement => {
   const [cookies] = useCookies(["accessToken"]);
@@ -16,5 +17,8 @@ export const Header = (): ReactElement => {
       dispatch(getCurrentUser(cookies.accessToken));
     }
   }, [cookies, dispatch]);
-  return <header>{isLogged ? <SignedHeader /> : <BaseHeader />}</header>;
+  return <header>
+    <Breadcrumbs/>
+    {isLogged ? <SignedHeader /> : <BaseHeader />}
+    </header>;
 };

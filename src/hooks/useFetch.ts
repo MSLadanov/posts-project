@@ -2,7 +2,7 @@ import { TComment, TPost, TUser } from "@/types/types";
 import { useState } from "react";
 import { useErrorBoundary } from "react-error-boundary";
 
-const useFetch = <T>(baseUrl: string) => {
+const useFetch = (baseUrl: string) => {
   const { showBoundary } = useErrorBoundary();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
