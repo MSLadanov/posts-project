@@ -4,21 +4,32 @@ main {
     border-radius: 6px;
     margin: 10px;
     border: none;
+    transition: all linear 0.1s;
+    -webkit-box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+    &:disabled{
+      opacity: 0.5;
+      box-shadow: none;
+    }
+    &:hover {
+      box-shadow: none;
+    }
     &.transparent {
       background-color: transparent;
       border: 1px solid black;
     }
     &.blue {
-        color:white;
-        background-color: #42a5f5;
+      color: white;
+      background-color: #42a5f5;
     }
     &.red {
-        background-color: #ef5350;
-        color: white;
+      background-color: #ef5350;
+      color: white;
     }
     &.black {
-        background-color: black;
-        color: #f3d050;
+      background-color: black;
+      color: #f3d050;
     }
   }
 }

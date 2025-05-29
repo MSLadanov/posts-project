@@ -17,7 +17,7 @@ export const SearchBox = (): ReactElement => {
   }, [debouncedString]);
   return (
     <div>
-      <Input type="text" value={searchQuery} setValue={setSearchQuery} name="search-query" />
+      <Input type="text" value={searchQuery} setValue={setSearchQuery} label="Search post..." name="search-query" />
     </div>
   );
 };

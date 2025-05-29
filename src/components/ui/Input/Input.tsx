@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useState, useEffect } from "react";
 import "./style.scss";
 
 type TInputProps = {
@@ -18,16 +18,38 @@ export const Input: React.FC<TInputProps> = ({
   required = false,
   setValue,
 }): ReactElement => {
+  const [isFocused, setIsFocused] = useState(false);
+  const [hasValue, setHasValue] = useState(!!value);
+
+  useEffect(() => {
+    setHasValue(!!value);
+  }, [value]);
+
   return (
-    <>
-      {label && <label>{label}</label>}
+    <div className={`input-container ${isFocused ? "focused" : ""} ${hasValue ? "has-value" : ""}`}>
+      {label && (
+        <label 
+          htmlFor={name}
+          className={`input-label ${isFocused || hasValue ? "label-up" : ""}`}
+        >
+          {label}
+          {required && <span className="required-star">*</span>}
+        </label>
+      )}
       <input
+        id={name}
         type={type}
         name={name}
         value={value}
         required={required}
         onChange={(e) => setValue(e.target.value)}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        className="styled-input"
       />
-    </>
+      <div className="input-underline">
+        <div className={`underline-animation ${isFocused ? "active" : ""}`}></div>
+      </div>
+    </div>
   );
 };

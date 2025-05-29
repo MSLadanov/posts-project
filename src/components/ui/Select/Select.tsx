@@ -13,10 +13,14 @@ export const Select: React.FC<TSelectProps> = ({
   setValue,
 }): ReactElement => {
   return (
-    <select defaultValue={defaultValue} onChange={(e) => setValue(e.target.value)}>
-      <option disabled>{defaultValue}</option>
+    <select 
+      className="custom-select"
+      defaultValue={defaultValue} 
+      onChange={(e) => setValue(e.target.value)}
+    >
+      <option disabled className="custom-select-default-option">{defaultValue}</option>
       {options.map((option, index) => (
-        <option key={index}>{option}</option>
+        <option key={index} className="custom-select-option">{option}</option>
       ))}
     </select>
   );

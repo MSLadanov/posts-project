@@ -44,11 +44,16 @@ export const useNotify = () => {
     return (
       <div
         className={`notify${
-          notifyState.isOpened ? `__visible ${notifyState.type}` : ""
+          notifyState.isOpened
+            ? ` notify__visible notify__${notifyState.type}`
+            : ""
         }`}
       >
-        <FontAwesomeIcon icon={icon[notifyState.type]} />
-        <p>{notifyState.text}</p>
+        <FontAwesomeIcon
+          icon={icon[notifyState.type]}
+          className="notify__icon"
+        />
+        <p className="notify__text">{notifyState.text}</p>
       </div>
     );
   };

@@ -9,6 +9,13 @@
   margin: 0.1em;
   padding: 10px;
   font-family: "Montserrat Bold", sans-serif;
+  transition: all linear 0.1s;
+  -webkit-box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  &:hover {
+    box-shadow: none;
+  }
   &__active {
     display: flex;
     height: fit-content;
@@ -19,6 +26,8 @@
     align-items: center;
     padding: 10px;
     font-family: "Montserrat Bold", sans-serif;
+    margin: 0px;
+    box-shadow: none;
   }
   cursor: pointer;
 }
