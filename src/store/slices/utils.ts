@@ -1,7 +1,6 @@
 import { TPost } from "@/types/types";
 import { API_ENDPOINTS } from "../endponts";
 
-
 export const fetchImage = async (text: string): Promise<string> => {
   try {
     const backgroundColor = Math.floor(Math.random() * 0x1000000)
@@ -37,4 +36,30 @@ export const fetchPostsWithUsersData = async (posts: TPost[]) => {
       postImage: await fetchImage(post.title),
     }))
   );
+};
+
+export const fetchUserPosts = async (
+  id: number,
+  setState: (posts: TPost[] | []) => void
+) => {
+  try {
+    const response = await fetch(`${API_ENDPOINTS.USER_POSTS(id)}`);
+    const { posts }: { posts: TPost[] } = await response.json();
+    if (!posts) {
+      setState([]);
+      return;
+    }
+    const postsWithImages = await Promise.all(
+      posts.map(async (post: TPost) => ({
+        ...post,
+        rated: false,
+        rate: null,
+        postImage: await fetchImage(post.title),
+      }))
+    );
+    setState([...postsWithImages]);
+  } catch (error) {
+    console.error("Error fetching user posts:", error);
+    setState([]);
+  }
 };
