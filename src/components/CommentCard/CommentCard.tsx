@@ -36,6 +36,7 @@ export const CommentCard: React.FC<{ comment: TComment }> = ({
             disabled={comment.user.id === id}
             isAuthOnly={true}
             payload={""}
+            style="blue"
           >
             {commentState.likes}
           </Button>

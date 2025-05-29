@@ -82,6 +82,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
             payload={"liked"}
             isAuthOnly={true}
             disabled={post.userId === userId}
+            style="blue"
           >
             {post.reactions.likes}
           </Button>
@@ -91,6 +92,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
             payload={"disliked"}
             isAuthOnly={true}
             disabled={post.userId === userId}
+            style="red"
           >
             {post.reactions.dislikes}
           </Button>

@@ -11,6 +11,7 @@ type TButtonProps<T> = {
   icon: IconDefinition;
   disabled?: boolean;
   isAuthOnly?: boolean;
+  style?: 'transparent' | 'blue' | 'red' | 'black';
   action: (arg: T) => T;
   payload: T;
 };
@@ -18,6 +19,7 @@ export const Button: React.FC<TButtonProps<object | string>> = ({
   children,
   icon,
   action,
+  style = 'transparent',
   disabled = false,
   isAuthOnly = false,
   payload,
@@ -28,7 +30,7 @@ export const Button: React.FC<TButtonProps<object | string>> = ({
     <>
       <button
         className={
-          children === undefined ? "button_without-text" : "button_with-text"
+          children === undefined ? `button_without-text ${style}` : `button_with-text ${style}`
         }
         onClick={() =>
           isAuthOnly
