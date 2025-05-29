@@ -6,11 +6,13 @@ const UserPageRoute = (): ReactElement => {
   const UserPage = React.lazy(() => import("@components/UserPage/UserPage"));
   const UserPosts = React.lazy(() => import("@components/UserPosts/UserPosts"));
   return (
-    <Suspense fallback={<Loader />}>
-      <UserPage />
-      <UserPosts />
-    </Suspense>
+    <main>
+      <Suspense fallback={<Loader />}>
+        <UserPage />
+        <UserPosts />
+      </Suspense>
+    </main>
   );
 };
 
-export default UserPageRoute
+export default UserPageRoute;

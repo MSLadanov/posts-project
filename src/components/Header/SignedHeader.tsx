@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { signOut } from "@/store/slices/UserSlice";
 import { AppDispatch } from "@/store";
+import { NavLink } from "react-router";
 
 const SignedHeader = (): ReactElement => {
-  const data = useSelector((store: TPostAppStore) => store.user.data);
+  const {data : user} = useSelector((store: TPostAppStore) => store.user);
   const dispatch = useDispatch<AppDispatch>();
   const [, , removeCookie] = useCookies(["accessToken"]);
   const SignOut = () => {
@@ -14,10 +15,12 @@ const SignedHeader = (): ReactElement => {
     dispatch(signOut());
   };
   return (
-    <div>
-      <h1>Hello, {data.firstName}</h1>
+    <nav>
+      <img src={user.image} alt={user.firstName + ' photo'} />
+      <p>{`${user.firstName + ' ' + user.lastName}`}</p>
       <button onClick={() => SignOut()}>Sign Out</button>
-    </div>
+      <NavLink to={'/me'}>My Profile</NavLink>
+    </nav>
   );
 };
 

@@ -6,7 +6,7 @@ const ProtectedRoute = ({
   children,
 }: PropsWithChildren): ReactElement => {
   const [cookies] = useCookies(["accessToken"]);
-  return cookies.accessToken ? <>{children}</> : <Navigate to={"/"} />;
+  return cookies.accessToken ? <main>{children}</main> : <Navigate to={"/"} />;
 };
 
 export default ProtectedRoute
