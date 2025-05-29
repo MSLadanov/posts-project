@@ -6,6 +6,7 @@ import { AppDispatch } from "@/store";
 import { fetchPostsByTag } from "@/store/posts.api";
 import { TPostAppStore } from "@/types/types";
 import { TagsBox } from "@components/TagsBox";
+import './style.scss'
 
 export const PostsFilter = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();

@@ -41,6 +41,8 @@ $breakpoint-desktop: 1200px;
     .modal {
       background-color: white;
       position: sticky;
+      padding: 20px;
+      border-radius: 16px;
     }
   }
 }
