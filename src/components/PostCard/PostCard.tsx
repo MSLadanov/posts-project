@@ -80,6 +80,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
             icon={faThumbsUp}
             action={!postId ? ratePostAsync : ratePagedPostAsync}
             payload={"liked"}
+            isAuthOnly={true}
             disabled={post.userId === userId}
           >
             {post.reactions.likes}
@@ -88,6 +89,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
             icon={faThumbsDown}
             action={!postId ? ratePostAsync : ratePagedPostAsync}
             payload={"disliked"}
+            isAuthOnly={true}
             disabled={post.userId === userId}
           >
             {post.reactions.dislikes}

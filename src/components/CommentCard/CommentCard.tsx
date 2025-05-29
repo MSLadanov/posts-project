@@ -34,6 +34,7 @@ export const CommentCard: React.FC<{ comment: TComment }> = ({
             icon={faThumbsUp}
             action={rateComment}
             disabled={comment.user.id === id}
+            isAuthOnly={true}
             payload={""}
           >
             {commentState.likes}
