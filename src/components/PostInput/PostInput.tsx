@@ -2,7 +2,7 @@ import { ReactElement, useState } from "react";
 import { TextArea } from "../ui/TextArea";
 import { Button } from "@ui/Button";
 import { Input } from "../ui/Input";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faDownLong, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { TagsBox } from "@components/TagsBox";
 import { useDispatch, useSelector } from "react-redux";
 import { TPost, TPostAppStore } from "@/types/types";
@@ -11,11 +11,13 @@ import { AppDispatch } from "@/store";
 import { addPost } from "@/store/slices/PostsSlice";
 import useFetch from "@/hooks/useFetch";
 import "./style.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const PostInput = (): ReactElement => {
   const { id, firstName, lastName, image } = useSelector(
     (state: TPostAppStore) => state.user.data
   );
+  const [isOpened, setIsOpened] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const [body, setBody] = useState("");
   const [title, setTitle] = useState("");
@@ -47,24 +49,33 @@ export const PostInput = (): ReactElement => {
       },
     };
     dispatch(addPost(newPost));
-    await post('posts/add', newPost)
+    await post("posts/add", newPost);
   };
   return (
-    <div className="post-input">
-      <TagsBox getSlug={handleSlug} tagStore={tags} />
-      <Input
-        value={title}
-        setValue={setTitle}
-        type="text"
-        label="Post title:"
-        name="post-title"
-      />
-      <TextArea value={body} setValue={setBody} label="Post text:" />
-      <Button
-        action={addNewPost}
-        payload={{ body, title, tags }}
-        icon={faPaperPlane}
-      />
+    <div>
+      <div
+        className="post-input-toggler"
+        onClick={() => setIsOpened((isOpened) => !isOpened)}
+      >
+        <FontAwesomeIcon icon={faDownLong} />
+        <p>Write post</p>
+      </div>
+      <div className={isOpened ? "post-input__visible" : "post-input"}>
+        <TagsBox getSlug={handleSlug} tagStore={tags} />
+        <Input
+          value={title}
+          setValue={setTitle}
+          type="text"
+          label="Post title:"
+          name="post-title"
+        />
+        <TextArea value={body} setValue={setBody} label="Post text:" />
+        <Button
+          action={addNewPost}
+          payload={{ body, title, tags }}
+          icon={faPaperPlane}
+        />
+      </div>
     </div>
   );
 };
