@@ -1,7 +1,7 @@
 import { ReactElement, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
-import { getCurrentUser } from "@/store/slices/UserSlice";
+import { getCurrentUser } from "@/store/slices/UserSlices";
 import { AppDispatch } from "@/store";
 import SignedHeader from "./SignedHeader";
 import { useCheckToken } from "@/hooks/useCheckToken";

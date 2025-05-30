@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { TPost, TPostAppStore } from "@/types/types";
 import { fetchImage } from "@/store/slices/utils";
 import { AppDispatch } from "@/store";
-import { addPost } from "@/store/slices/PostsSlice";
+import { addPost } from "@/store/slices/PostsSlices";
 import useFetch from "@/hooks/useFetch";
 import "./style.scss";
 import { useNotify } from "@/hooks/useNotify";

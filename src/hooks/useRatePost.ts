@@ -1,5 +1,5 @@
 import { getUpdatedPost } from "@/store/posts.api";
-import { ratePost, ratePagedPost } from "@/store/slices/PostsSlice";
+import { ratePost, ratePagedPost } from "@/store/slices/PostsSlices";
 import { TPost } from "@/types/types";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";

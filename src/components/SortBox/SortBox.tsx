@@ -2,7 +2,7 @@ import { ReactElement, useEffect, useState } from "react";
 import { Select } from "@ui/Select";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
-import { sort } from "@/store/slices/PostsSlice";
+import { sort } from "@/store/slices/PostsSlices";
 import "./style.scss";
 
 export const SortBox = (): ReactElement => {

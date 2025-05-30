@@ -6,7 +6,7 @@ import { useLocation } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { TComment, TPostAppStore } from "@/types/types";
 import { AppDispatch } from "@/store";
-import { addComment } from "@/store/slices/PostsSlice";
+import { addComment } from "@/store/slices/PostsSlices";
 import useFetch from "@/hooks/useFetch";
 
 export const CommentInput = (): ReactElement => {

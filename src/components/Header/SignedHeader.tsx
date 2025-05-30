@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import { TPostAppStore } from "@/types/types";
 import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
-import { signOut } from "@/store/slices/UserSlice";
+import { signOut } from "@/store/slices/UserSlices";
 import { AppDispatch } from "@/store";
 import { NavLink, useNavigate } from "react-router";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
