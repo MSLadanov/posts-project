@@ -5,21 +5,28 @@ import { useCookies } from "react-cookie";
 import { signOut } from "@/store/slices/UserSlice";
 import { AppDispatch } from "@/store";
 import { NavLink } from "react-router";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "../ui/Button";
 
 const SignedHeader = (): ReactElement => {
-  const {data : user} = useSelector((store: TPostAppStore) => store.user);
+  const { data: user } = useSelector((store: TPostAppStore) => store.user);
   const dispatch = useDispatch<AppDispatch>();
   const [, , removeCookie] = useCookies(["accessToken"]);
-  const SignOut = () => {
-    removeCookie("accessToken");
-    dispatch(signOut());
-  };
   return (
     <nav>
-      <img src={user.image} alt={user.firstName + ' photo'} />
-      <p>{`${user.firstName + ' ' + user.lastName}`}</p>
-      <button onClick={() => SignOut()}>Sign Out</button>
-      <NavLink to={'/me'}>My Profile</NavLink>
+      <img src={user.image} alt={user.firstName + " photo"} />
+      <p>{`${user.firstName + " " + user.lastName}`}</p>
+      <Button
+        icon={faRightFromBracket}
+        action={() => {
+          removeCookie("accessToken");
+          dispatch(signOut());
+        }}
+        payload={"signin"}
+      >
+        Sign Out
+      </Button>
+      <NavLink to={"/me"}>My Profile</NavLink>
     </nav>
   );
 };

@@ -3,6 +3,8 @@ import { ReactElement, useState, FormEvent } from "react";
 import { Input } from "@ui/Input";
 import { useCookies } from "react-cookie";
 import { TLoggedUserCredentials } from "@/types/types";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "../ui/Button";
 
 const SignInForm = (): ReactElement => {
   const [username, setUserName] = useState("");
@@ -11,7 +13,10 @@ const SignInForm = (): ReactElement => {
   const [, setCookies] = useCookies(["accessToken"]);
   const handleSignInForm = async (e: FormEvent) => {
     e.preventDefault();
-    const user = await post<Partial<TLoggedUserCredentials>>("auth/login", { username: username, password });
+    const user = await post<Partial<TLoggedUserCredentials>>("auth/login", {
+      username: username,
+      password,
+    });
     setCookies("accessToken", user?.accessToken);
   };
   return (
@@ -32,7 +37,9 @@ const SignInForm = (): ReactElement => {
         name="password"
         setValue={setPassword}
       />
-      <button type="submit">Sign In</button>
+      <Button icon={faRightFromBracket} attributes={{ type: "submit" }}>
+        Sign In
+      </Button>
     </form>
   );
 };

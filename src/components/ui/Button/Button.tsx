@@ -11,17 +11,23 @@ type TButtonProps<T> = {
   icon: IconDefinition;
   disabled?: boolean;
   isAuthOnly?: boolean;
+  attributes?: {
+    type: "submit" | "reset" | "button";
+  };
   style?: { color: "transparent" | "blue" | "red" | "black" };
-  action: (arg: T) => T;
-  payload: T;
+  action?: (arg?: T) => T;
+  payload?: T;
 };
 export const Button: React.FC<
   TButtonProps<object | string | SetStateAction<any>>
 > = ({
   children,
   icon,
-  action,
-  style = {color: 'transparent'},
+  action = () => {},
+  style = { color: "transparent" },
+  attributes = {
+    type: "button",
+  },
   disabled = false,
   isAuthOnly = false,
   payload,
@@ -44,6 +50,7 @@ export const Button: React.FC<
             : action(payload)
         }
         disabled={disabled}
+        type={attributes.type}
       >
         <FontAwesomeIcon icon={icon} />
         {children}
