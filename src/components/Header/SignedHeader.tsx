@@ -7,12 +7,14 @@ import { AppDispatch } from "@/store";
 import { NavLink, useNavigate } from "react-router";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../ui/Button";
+import { useNotify } from "@/hooks/useNotify";
 
 const SignedHeader = (): ReactElement => {
   const { data: user } = useSelector((store: TPostAppStore) => store.user);
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const [, , removeCookie] = useCookies(["accessToken"]);
+  const { notify, notifyPortal } = useNotify();
   return (
     <nav>
       <img
@@ -26,12 +28,14 @@ const SignedHeader = (): ReactElement => {
         action={() => {
           removeCookie("accessToken");
           dispatch(signOut());
+          notify("You are successfully logged out", "success");
         }}
         payload={"signin"}
       >
         Sign Out
       </Button>
       <NavLink to={"/me"}>My Profile</NavLink>
+      {notifyPortal}
     </nav>
   );
 };

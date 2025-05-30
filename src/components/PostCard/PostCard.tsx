@@ -50,7 +50,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
   return (
     <article className="post-card">
       <div className="post-card__header">
-        {post.user && (
+        {post.user ? (
           <Container>
             <img
               src={post.user.image}
@@ -58,7 +58,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
             />
             <h5>{post.user.firstName + " " + post.user.lastName}</h5>
           </Container>
-        )}
+        ) : <div></div>}
         <BadgeContainer tags={post.tags} tagsStore={tag} />
       </div>
       <div className="post-card__body">

@@ -2,7 +2,11 @@ import { ReactElement, useState } from "react";
 import { TextArea } from "../ui/TextArea";
 import { Button } from "@ui/Button";
 import { Input } from "../ui/Input";
-import { faDownLong, faPaperPlane, faUpLong } from "@fortawesome/free-solid-svg-icons";
+import {
+  faDownLong,
+  faPaperPlane,
+  faUpLong,
+} from "@fortawesome/free-solid-svg-icons";
 import { TagsBox } from "@components/TagsBox";
 import { useDispatch, useSelector } from "react-redux";
 import { TPost, TPostAppStore } from "@/types/types";
@@ -11,6 +15,7 @@ import { AppDispatch } from "@/store";
 import { addPost } from "@/store/slices/PostsSlice";
 import useFetch from "@/hooks/useFetch";
 import "./style.scss";
+import { useNotify } from "@/hooks/useNotify";
 
 export const PostInput = (): ReactElement => {
   const { id, firstName, lastName, image } = useSelector(
@@ -21,6 +26,7 @@ export const PostInput = (): ReactElement => {
   const [body, setBody] = useState("");
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState<string[]>([]);
+  const { notify, notifyPortal } = useNotify();
   const handleSlug = (slug: string) => {
     setTags([...tags, slug]);
   };
@@ -48,12 +54,13 @@ export const PostInput = (): ReactElement => {
       },
     };
     dispatch(addPost(newPost));
+    notify('New post added!', 'success')
     await post("posts/add", newPost);
   };
   return (
     <div>
       <Button
-        icon={isOpened? faUpLong :faDownLong}
+        icon={isOpened ? faUpLong : faDownLong}
         style={{ color: "black" }}
         action={() => setIsOpened((isOpened) => !isOpened)}
       >
@@ -75,8 +82,11 @@ export const PostInput = (): ReactElement => {
           payload={{ body, title, tags }}
           icon={faPaperPlane}
           style={{ color: "black" }}
-        >Send post</Button>
+        >
+          Send post
+        </Button>
       </div>
+      {notifyPortal}
     </div>
   );
 };
