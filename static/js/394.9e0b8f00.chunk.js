@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkstydy_repo=self.webpackChunkstydy_repo||[]).push([[394],{394:(e,r,s)=>{s.r(r),s.d(r,{default:()=>u});var t=s(579);const u=()=>(0,t.jsx)("main",{children:"Error Route!"})}}]);
-//# sourceMappingURL=394.9e0b8f00.chunk.js.map

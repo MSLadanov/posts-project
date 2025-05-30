@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkposts_project=self.webpackChunkposts_project||[]).push([[394],{394:(s,e,r)=>{r.r(e),r.d(e,{default:()=>c});var t=r(579);const c=()=>(0,t.jsx)("main",{children:"Error Route!"})}}]);
+//# sourceMappingURL=394.f7506b28.chunk.js.map

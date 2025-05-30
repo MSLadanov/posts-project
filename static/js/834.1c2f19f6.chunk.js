@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkposts_project=self.webpackChunkposts_project||[]).push([[834],{834:(s,e,c)=>{c.r(e),c.d(e,{default:()=>r});var t=c(407),n=c(260),o=c(579);const r=s=>{let{children:e}=s;const[c]=(0,t.lT)(["accessToken"]);return c.accessToken?(0,o.jsx)("main",{children:e}):(0,o.jsx)(n.C5,{to:"/"})}}}]);
+//# sourceMappingURL=834.1c2f19f6.chunk.js.map
