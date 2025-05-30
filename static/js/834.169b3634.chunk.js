@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkstydy_repo=self.webpackChunkstydy_repo||[]).push([[834],{834:(e,s,c)=>{c.r(s),c.d(s,{default:()=>a});var n=c(407),t=c(260),r=c(579);const a=e=>{let{children:s}=e;const[c]=(0,n.lT)(["accessToken"]);return c.accessToken?(0,r.jsx)("main",{children:s}):(0,r.jsx)(t.C5,{to:"/"})}}}]);
+//# sourceMappingURL=834.169b3634.chunk.js.map
