@@ -60,6 +60,7 @@ export const PostInput = (): ReactElement => {
         Write post
       </Button>
       <div className={isOpened ? "post-input__visible" : "post-input"}>
+        <h4>Choose tags:</h4>
         <TagsBox getSlug={handleSlug} tagStore={tags} />
         <Input
           value={title}
@@ -73,8 +74,8 @@ export const PostInput = (): ReactElement => {
           action={addNewPost}
           payload={{ body, title, tags }}
           icon={faPaperPlane}
-          style={{ color: "transparent" }}
-        />
+          style={{ color: "black" }}
+        >Send post</Button>
       </div>
     </div>
   );

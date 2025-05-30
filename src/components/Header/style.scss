@@ -1,3 +1,5 @@
+@use "/src/global.scss" as *;
+
 header {
   display: flex;
   justify-content: space-between;
@@ -15,24 +17,26 @@ nav {
   img {
     width: 50px;
     height: 50px;
+    cursor: pointer;
   }
-  button {
-    padding: 10px;
-    background-color: transparent;
-    border: 1px solid black;
-    border-radius: 6px;
-    transition: all linear 0.1s;
-    -webkit-box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
-    -moz-box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
-    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
-    &:hover {
-      box-shadow: none;
+  p {
+    @include tablet {
+      display: none;
+    }
+    @include mobile {
+      display: none;
     }
   }
   a {
     color: black;
     text-decoration: none;
     margin-right: 10px;
+    @include tablet {
+      display: none;
+    }
+    @include mobile {
+      display: none;
+    }
     &.active {
       display: none;
     }

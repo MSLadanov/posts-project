@@ -14,6 +14,7 @@ const UserPosts = (): ReactElement => {
   }, [data.id]);
   return (
     <div>
+      <h3>My posts:</h3>
       {data &&
         userPosts &&
         userPosts?.map((post) => (

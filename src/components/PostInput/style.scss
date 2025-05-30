@@ -18,6 +18,9 @@
 }
 
 .post-input__visible {
+  h4{
+    margin: 10px 0px;
+  }
   overflow: hidden;
   max-height: 500px;
   transition: max-height 1s ease-in-out;
