@@ -16,11 +16,11 @@ const SignedHeader = (): ReactElement => {
   return (
     <nav>
       <img
-        src={user.image}
-        alt={user.firstName + " photo"}
+        src={user?.image}
+        alt={user?.firstName + " photo"}
         onClick={() => navigate("/me")}
       />
-      <p>{`${user.firstName + " " + user.lastName}`}</p>
+      <p>{`${user?.firstName + " " + user?.lastName}`}</p>
       <Button
         icon={faRightFromBracket}
         action={() => {
