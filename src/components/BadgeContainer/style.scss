@@ -1,4 +1,10 @@
-.badge-container{
-    display: flex;
-    align-content: center;
+@use "/src/global.scss" as *;
+
+.badge-container {
+  display: flex;
+  align-content: center;
+  @include mobile {
+    flex-direction: column;
+    align-items: end;
+  }
 }
