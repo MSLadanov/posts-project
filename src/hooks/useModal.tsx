@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/Button";
-import { faXmarkSquare } from "@fortawesome/free-solid-svg-icons";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 import { ElementType, ReactElement, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -9,7 +9,7 @@ export const useModal = (ModalContent: ElementType) => {
     return (
       <div className="modal-layout">
         <div className="modal">
-          <Button icon={faXmarkSquare} action={() => setIsOpened(false)}/>
+          <Button icon={faX} action={() => setIsOpened(false)}/>
           <ModalContent />
         </div>
       </div>

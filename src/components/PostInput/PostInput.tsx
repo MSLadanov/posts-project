@@ -2,7 +2,7 @@ import { ReactElement, useState } from "react";
 import { TextArea } from "../ui/TextArea";
 import { Button } from "@ui/Button";
 import { Input } from "../ui/Input";
-import { faDownLong, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faDownLong, faPaperPlane, faUpLong } from "@fortawesome/free-solid-svg-icons";
 import { TagsBox } from "@components/TagsBox";
 import { useDispatch, useSelector } from "react-redux";
 import { TPost, TPostAppStore } from "@/types/types";
@@ -11,7 +11,6 @@ import { AppDispatch } from "@/store";
 import { addPost } from "@/store/slices/PostsSlice";
 import useFetch from "@/hooks/useFetch";
 import "./style.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const PostInput = (): ReactElement => {
   const { id, firstName, lastName, image } = useSelector(
@@ -53,13 +52,13 @@ export const PostInput = (): ReactElement => {
   };
   return (
     <div>
-      <div
-        className="post-input-toggler"
-        onClick={() => setIsOpened((isOpened) => !isOpened)}
+      <Button
+        icon={isOpened? faUpLong :faDownLong}
+        style={{ color: "black" }}
+        action={() => setIsOpened((isOpened) => !isOpened)}
       >
-        <FontAwesomeIcon icon={faDownLong} />
-        <p>Write post</p>
-      </div>
+        Write post
+      </Button>
       <div className={isOpened ? "post-input__visible" : "post-input"}>
         <TagsBox getSlug={handleSlug} tagStore={tags} />
         <Input
@@ -74,7 +73,7 @@ export const PostInput = (): ReactElement => {
           action={addNewPost}
           payload={{ body, title, tags }}
           icon={faPaperPlane}
-          style={{color:'transparent'}}
+          style={{ color: "transparent" }}
         />
       </div>
     </div>
