@@ -66,16 +66,18 @@ const SignUpForm = (): ReactElement => {
       />
       <Input
         type="radio"
-        value={"male"}
-        label="male"
-        setValue={setGender}
+        value={gender}
+        label="Male"
+        isChecked={gender === 'male'}
+        setValue={() => setGender('male')}
         name="male"
       />
       <Input
         type="radio"
-        value={"female"}
-        label="female"
-        setValue={setGender}
+        value={gender}
+        label="Female"
+        isChecked={gender === 'female'}
+        setValue={() => setGender('female')}
         name="female"
       />
       <Button icon={faRightFromBracket} attributes={{ type: "submit" }}>

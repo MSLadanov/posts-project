@@ -7,6 +7,7 @@ type TInputProps = {
   label?: string;
   value: string | number;
   required?: boolean;
+  isChecked?: boolean;
   setValue: (value: string) => void;
 };
 
@@ -16,6 +17,7 @@ export const Input: React.FC<TInputProps> = ({
   label,
   value,
   required = false,
+  isChecked = false,
   setValue,
 }): ReactElement => {
   const [isFocused, setIsFocused] = useState(false);
@@ -45,6 +47,7 @@ export const Input: React.FC<TInputProps> = ({
         onChange={(e) => setValue(e.target.value)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+        checked={isChecked}
         className="styled-input"
       />
       <div className="input-underline">
