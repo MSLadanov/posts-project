@@ -38,6 +38,7 @@ $breakpoint-desktop: 1200px;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2;
     .modal {
       scale: 0.8;
       background-color: white;
