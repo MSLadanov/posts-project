@@ -74,7 +74,7 @@ export const PostInput = (): ReactElement => {
           action={addNewPost}
           payload={{ body, title, tags }}
           icon={faPaperPlane}
-          style='transparent'
+          style={{color:'transparent'}}
         />
       </div>
     </div>

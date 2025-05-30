@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode, SetStateAction } from "react";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useModal } from "@/hooks/useModal";
@@ -11,15 +11,17 @@ type TButtonProps<T> = {
   icon: IconDefinition;
   disabled?: boolean;
   isAuthOnly?: boolean;
-  style?: 'transparent' | 'blue' | 'red' | 'black';
+  style?: { color: "transparent" | "blue" | "red" | "black" };
   action: (arg: T) => T;
   payload: T;
 };
-export const Button: React.FC<TButtonProps<object | string>> = ({
+export const Button: React.FC<
+  TButtonProps<object | string | SetStateAction<any>>
+> = ({
   children,
   icon,
   action,
-  style = 'transparent',
+  style = {color: 'transparent'},
   disabled = false,
   isAuthOnly = false,
   payload,
@@ -30,7 +32,9 @@ export const Button: React.FC<TButtonProps<object | string>> = ({
     <>
       <button
         className={
-          children === undefined ? `button_without-text ${style}` : `button_with-text ${style}`
+          children === undefined
+            ? `button_without-text ${style.color}`
+            : `button_with-text ${style.color}`
         }
         onClick={() =>
           isAuthOnly

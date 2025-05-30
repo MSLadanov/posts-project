@@ -40,7 +40,7 @@ export const CommentInput = (): ReactElement => {
         alt={firstName + " " + lastName + " avatar"}
       />
       <TextArea label="Comment text:" value={commentText} setValue={setCommentText} />
-      <Button action={sendComment} payload={commentText} icon={faCommentDots} style="black" />
+      <Button action={sendComment} payload={commentText} icon={faCommentDots} style={{color:'black'}} />
     </div>
   );
 };
