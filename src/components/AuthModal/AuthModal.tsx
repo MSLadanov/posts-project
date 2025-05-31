@@ -1,12 +1,12 @@
 import { ReactElement, useState } from "react";
-import "./style.scss";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 import { Button } from "../ui/Button";
 import {
-  faRightFromBracket,
   faRightToBracket,
+  faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
+import "./style.scss";
 
 export const AuthModal = (): ReactElement => {
   const [modalType, setModalType] = useState<"signin" | "signup">("signin");
@@ -16,11 +16,7 @@ export const AuthModal = (): ReactElement => {
         <SignInForm />
         <p>
           Don't have an account yet?
-          <Button
-            icon={faRightToBracket}
-            action={setModalType}
-            payload={"signup"}
-          >
+          <Button icon={faUserPlus} action={setModalType} payload={"signup"}>
             Sign Up
           </Button>
         </p>
@@ -33,7 +29,7 @@ export const AuthModal = (): ReactElement => {
         <p>
           Already have an account?
           <Button
-            icon={faRightFromBracket}
+            icon={faRightToBracket}
             action={setModalType}
             payload={"signin"}
           >

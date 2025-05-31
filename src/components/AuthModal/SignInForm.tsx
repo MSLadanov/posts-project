@@ -3,7 +3,7 @@ import { ReactElement, useState, FormEvent } from "react";
 import { Input } from "@ui/Input";
 import { useCookies } from "react-cookie";
 import { TLoggedUserCredentials } from "@/types/types";
-import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../ui/Button";
 import { useNotify } from "@/hooks/useNotify";
 
@@ -44,7 +44,7 @@ const SignInForm = (): ReactElement => {
           name="password"
           setValue={setPassword}
         />
-        <Button icon={faRightFromBracket} attributes={{ type: "submit" }}>
+        <Button icon={faRightToBracket} attributes={{ type: "submit" }}>
           Sign In
         </Button>
       </form>

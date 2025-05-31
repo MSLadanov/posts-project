@@ -1,7 +1,7 @@
 import { ReactElement, useState, FormEvent } from "react";
 import { Input } from "@ui/Input";
 import useFetch from "@hooks/useFetch";
-import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../ui/Button";
 
 const SignUpForm = (): ReactElement => {
@@ -80,7 +80,7 @@ const SignUpForm = (): ReactElement => {
         setValue={() => setGender('female')}
         name="female"
       />
-      <Button icon={faRightFromBracket} attributes={{ type: "submit" }}>
+      <Button icon={faUserPlus} attributes={{ type: "submit" }}>
         Sign Up
       </Button>
     </form>
