@@ -14,8 +14,8 @@ import { fetchImage } from "@/store/slices/utils";
 import { AppDispatch } from "@/store";
 import { addPost } from "@/store/slices/PostsSlices";
 import useFetch from "@/hooks/useFetch";
-import "./style.scss";
 import { useNotify } from "@/hooks/useNotify";
+import "./style.scss";
 
 export const PostInput = (): ReactElement => {
   const { id, firstName, lastName, image } = useSelector(
@@ -26,6 +26,12 @@ export const PostInput = (): ReactElement => {
   const [body, setBody] = useState("");
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState<string[]>([]);
+  const clearPostInput = () => {
+    setBody("");
+    setTitle("");
+    setTags([]);
+    setIsOpened(false);
+  };
   const { notify, notifyPortal } = useNotify();
   const handleSlug = (slug: string) => {
     setTags([...tags, slug]);
@@ -54,8 +60,9 @@ export const PostInput = (): ReactElement => {
       },
     };
     dispatch(addPost(newPost));
-    notify('New post added!', 'success')
+    notify("New post added!", "success");
     await post("posts/add", newPost);
+    clearPostInput();
   };
   return (
     <div>

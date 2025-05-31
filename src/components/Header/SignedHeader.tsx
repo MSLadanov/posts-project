@@ -23,14 +23,16 @@ const SignedHeader = (): ReactElement => {
       {loading === "pending" ? (
         <Loader />
       ) : (
-        <>
-          <img
-            src={user?.image}
-            alt={user?.firstName + " photo"}
-            onClick={() => navigate("/me")}
-          />
-          <p>{`${user?.firstName + " " + user?.lastName}`}</p>
-        </>
+        loading === "succeeded" && (
+          <>
+            <img
+              src={user?.image}
+              alt={user?.firstName + " photo"}
+              onClick={() => navigate("/me")}
+            />
+            <p>{`${user?.firstName + " " + user?.lastName}`}</p>
+          </>
+        )
       )}
       <Button
         icon={faRightFromBracket}
