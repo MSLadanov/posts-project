@@ -8,21 +8,30 @@ import { NavLink, useNavigate } from "react-router";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../ui/Button";
 import { useNotify } from "@/hooks/useNotify";
+import { Loader } from "../Loader";
 
 const SignedHeader = (): ReactElement => {
-  const { data: user } = useSelector((store: TPostAppStore) => store.user);
+  const { data: user, loading } = useSelector(
+    (store: TPostAppStore) => store.user
+  );
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const [, , removeCookie] = useCookies(["accessToken"]);
   const { notify, notifyPortal } = useNotify();
   return (
     <nav>
-      <img
-        src={user?.image}
-        alt={user?.firstName + " photo"}
-        onClick={() => navigate("/me")}
-      />
-      <p>{`${user?.firstName + " " + user?.lastName}`}</p>
+      {loading === "pending" ? (
+        <Loader />
+      ) : (
+        <>
+          <img
+            src={user?.image}
+            alt={user?.firstName + " photo"}
+            onClick={() => navigate("/me")}
+          />
+          <p>{`${user?.firstName + " " + user?.lastName}`}</p>
+        </>
+      )}
       <Button
         icon={faRightFromBracket}
         action={() => {

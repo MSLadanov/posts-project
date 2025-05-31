@@ -6,15 +6,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { Post } from "@components/Post";
 import { PostInput } from "@components/PostInput";
 import { ProtectedComponent } from "@components/ProtectedComponent";
+import { Loader } from "../Loader";
 import "./style.scss";
 
 export const PostsList = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
-  const { data } = useSelector((store: TPostAppStore) => store.posts.postsList);
+  const { data, loading } = useSelector(
+    (store: TPostAppStore) => store.posts.postsList
+  );
   useEffect(() => {
     dispatch(fetchPosts());
     dispatch(fetchTags());
   }, [dispatch]);
+  if (loading === "pending") {
+    return <Loader />;
+  }
   return (
     <>
       <ProtectedComponent>

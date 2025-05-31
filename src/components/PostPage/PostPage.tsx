@@ -6,6 +6,7 @@ import { AppDispatch } from "@/store";
 import { TPostAppStore } from "@/types/types";
 import { Post } from "@components/Post";
 import { Comments } from "@components/Comments";
+import { Loader } from "../Loader";
 import "./style.scss";
 
 export const PostPage = (): ReactElement | null => {
@@ -18,6 +19,9 @@ export const PostPage = (): ReactElement | null => {
   useEffect(() => {
     dispatch(fetchPostById(postId));
   }, [dispatch, postId]);
+  if(loading === 'pending'){
+    return <Loader/>
+  }
   if (loading === "succeeded") {
     return (
       <div className="post-page">
