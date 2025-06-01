@@ -6,7 +6,7 @@ import { AppDispatch } from "@/store";
 import SignedHeader from "./SignedHeader";
 import { useCheckToken } from "@/hooks/useCheckToken";
 import BaseHeader from "./BaseHeader";
-import { Breadcrumbs } from "../ui/Breadcrumbs";
+import { Breadcrumbs } from "@ui/Breadcrumbs";
 import './style.scss'
 
 export const Header = (): ReactElement => {

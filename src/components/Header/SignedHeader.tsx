@@ -6,7 +6,7 @@ import { signOut } from "@/store/slices/UserSlices";
 import { AppDispatch } from "@/store";
 import { NavLink, useNavigate } from "react-router";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "../ui/Button";
+import { Button } from "@ui/Button";
 import { useNotify } from "@/hooks/useNotify";
 import { Loader } from "../Loader";
 
