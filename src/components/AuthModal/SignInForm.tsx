@@ -1,10 +1,10 @@
-import useFetch from "@/hooks/useFetch";
+import useFetch from "@hooks/useFetch";
 import { ReactElement, useState, FormEvent } from "react";
 import { Input } from "@ui/Input";
 import { useCookies } from "react-cookie";
 import { TLoggedUserCredentials } from "@/types/types";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "../ui/Button";
+import { Button } from "@ui/Button";
 import { useNotify } from "@/hooks/useNotify";
 
 const SignInForm = (): ReactElement => {

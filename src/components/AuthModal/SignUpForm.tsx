@@ -2,7 +2,7 @@ import { ReactElement, useState, FormEvent } from "react";
 import { Input } from "@ui/Input";
 import useFetch from "@hooks/useFetch";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "../ui/Button";
+import { Button } from "@ui/Button";
 
 const SignUpForm = (): ReactElement => {
   const [username, setUserName] = useState("");

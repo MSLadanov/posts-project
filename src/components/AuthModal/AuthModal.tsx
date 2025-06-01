@@ -1,7 +1,7 @@
 import { ReactElement, useState } from "react";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
-import { Button } from "../ui/Button";
+import { Button } from "@ui/Button";
 import {
   faRightToBracket,
   faUserPlus,

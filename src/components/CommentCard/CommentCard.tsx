@@ -5,8 +5,8 @@ import { Button } from "@ui/Button";
 import { Container } from "@ui/Container";
 import useFetch from "@hooks/useFetch";
 import { useRateComment } from "@/hooks/useRateComment";
-import "./style.scss";
 import { useSelector } from "react-redux";
+import "./style.scss";
 
 export const CommentCard: React.FC<{ comment: TComment }> = ({
   comment,
