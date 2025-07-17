@@ -8,7 +8,7 @@ export const fetchImage = async (text: string): Promise<string> => {
       .padStart(6, "0");
     const textColor = "ffffff";
     const encodedText = encodeURIComponent(text);
-    const url = `${API_ENDPOINTS.IMAGE}/${API_ENDPOINTS.IMAGE_SIZE}/${backgroundColor}/${textColor}?text=${encodedText}`;
+    const url = `${API_ENDPOINTS.IMAGE}/${API_ENDPOINTS.IMAGE_SIZE}/${`4988bf`}/${textColor}?text=${encodedText}`;
     const response = await fetch(url);
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     const blob = await response.blob();
