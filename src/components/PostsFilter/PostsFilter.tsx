@@ -17,7 +17,6 @@ export const PostsFilter = (): ReactElement => {
   return (
     <div className="posts-filter">
       <SearchBox />
-      <h4>Sort by:</h4>
       <SortBox />
       <TagsBox getSlug={handleSlug} tagStore={tag} />
     </div>
