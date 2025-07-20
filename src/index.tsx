@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
-import { HashRouter, Navigate, Route, Routes } from "react-router";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { Provider } from "react-redux";
 import { store } from "store";
 import { App } from "@/App";
@@ -24,7 +24,7 @@ root.render(
   <React.StrictMode>
     <ErrorBoundary fallbackRender={ErrorFallback}>
       <Provider store={store}>
-        <HashRouter>
+        <BrowserRouter>
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route path="*" element={<ErrorRoute />} />
@@ -43,7 +43,7 @@ root.render(
               </Route>
             </Routes>
           </Suspense>
-        </HashRouter>
+        </BrowserRouter>
       </Provider>
     </ErrorBoundary>
   </React.StrictMode>
