@@ -3,9 +3,9 @@ import { API_ENDPOINTS } from "../endponts";
 
 export const fetchImage = async (text: string): Promise<string> => {
   try {
-    const backgroundColor = Math.floor(Math.random() * 0x1000000)
-      .toString(16)
-      .padStart(6, "0");
+    // const backgroundColor = Math.floor(Math.random() * 0x1000000)
+    //   .toString(16)
+    //   .padStart(6, "0");
     const textColor = "ffffff";
     const encodedText = encodeURIComponent(text);
     const url = `${API_ENDPOINTS.IMAGE}/${API_ENDPOINTS.IMAGE_SIZE}/${`4988bf`}/${textColor}?text=${encodedText}`;
