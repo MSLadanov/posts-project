@@ -29,7 +29,6 @@ export const useRateComment = ({ comment, patch }: UseCommentPostProps) => {
       }
     } catch (error) {
       setCommentState(commentState);
-      console.log(error);
     }
   }, [comment.id, commentState, patch]);
 

@@ -22,7 +22,6 @@ const SignUpForm = (): ReactElement => {
       lastName,
       gender,
     });
-    console.log(user);
   };
   return (
     <form onSubmit={(e) => handleSignUpForm(e)}>
