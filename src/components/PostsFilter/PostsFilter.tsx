@@ -6,7 +6,8 @@ import { AppDispatch } from "@/store";
 import { fetchPostsByTag } from "@/store/posts.api";
 import { TPostAppStore } from "@/types/types";
 import { TagsBox } from "@components/TagsBox";
-import './style.scss'
+import { Grid } from "@components/ui/Grid";
+import "./style.scss";
 
 export const PostsFilter = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
@@ -16,8 +17,10 @@ export const PostsFilter = (): ReactElement => {
   };
   return (
     <div className="posts-filter">
-      <SearchBox />
-      <SortBox />
+      <Grid classname="post-filter-grid">
+        <SearchBox />
+        <SortBox />
+      </Grid>
       <TagsBox getSlug={handleSlug} tagStore={tag} />
     </div>
   );
