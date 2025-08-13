@@ -10,13 +10,13 @@ export const SearchBox = (): ReactElement => {
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedString = useDebounce(searchQuery, 500);
   const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    if (searchQuery) {
-      dispatch(fetchSearchedPosts(searchQuery));
-    } else {
-      dispatch(fetchPosts())
-    }
-  }, [debouncedString]);
+  // useEffect(() => {
+  //   if (searchQuery) {
+  //     dispatch(fetchSearchedPosts(searchQuery));
+  //   } else {
+  //     dispatch(fetchPosts())
+  //   }
+  // }, [debouncedString]);
   return (
     <div>
       <Input type="text" value={searchQuery} setValue={setSearchQuery} label="Search post..." name="search-query" />

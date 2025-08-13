@@ -14,17 +14,17 @@ export const BadgeContainer: React.FC<TBadgeContainerProps> = ({
   tags,
   tagsStore,
 }): ReactElement => {
-  const dispatch = useDispatch<AppDispatch>();
-  const sortByTag = (slug: string) => {
-    dispatch(fetchPostsByTag(slug));
-  };
+  // const dispatch = useDispatch<AppDispatch>();
+  // const sortByTag = (slug: string) => {
+  //   dispatch(fetchPostsByTag(slug));
+  // };
   return (
     <div className="badge-container">
-      {tags.map((tag, index) => (
+      {/* {tags.map((tag, index) => (
         <TagBadge key={index} slug={tag} action={sortByTag} tagStore={tagsStore}>
           {tag}
         </TagBadge>
-      ))}
+      ))} */}
     </div>
   );
 };

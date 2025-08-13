@@ -1,7 +1,6 @@
 import { ReactElement } from "react";
 import { TPostAppStore } from "@/types/types";
 import { TagBadge } from "@ui/TagBadge";
-import { useSelector } from "react-redux";
 import { Loader } from "../Loader";
 import "./style.scss";
 
@@ -11,15 +10,12 @@ interface TagsBoxProps {
 }
 
 export const TagsBox = ({ getSlug, tagStore }: TagsBoxProps): ReactElement => {
-  const { data, loading } = useSelector(
-    (state: TPostAppStore) => state.posts.postsTags
-  );
-  if (loading === 'pending') {
-    return <Loader />;
-  }
+  // if (loading === 'pending') {
+  //   return <Loader />;
+  // }
   return (
     <>
-      {data && (
+      {/* {data && (
         <div className="tag-box">
           {" "}
           {data.map((tag) => (
@@ -33,7 +29,7 @@ export const TagsBox = ({ getSlug, tagStore }: TagsBoxProps): ReactElement => {
             </TagBadge>
           ))}
         </div>
-      )}
+      )} */}
     </>
   );
 };

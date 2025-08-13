@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { TPost, TPostAppStore } from "@/types/types";
 import { fetchImage } from "@/store/slices/utils";
 import { AppDispatch } from "@/store";
-import { addPost } from "@/store/slices/PostsSlices";
 import useFetch from "@/hooks/useFetch";
 import { useNotify } from "@/hooks/useNotify";
 import "./style.scss";
@@ -59,7 +58,7 @@ export const PostInput = (): ReactElement => {
         dislikes: 0,
       },
     };
-    dispatch(addPost(newPost));
+    console.log(newPost)
     notify("New post added!", "success");
     await post("posts/add", newPost);
     clearPostInput();

@@ -1,27 +1,40 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ReactElement, useEffect } from "react";
-import { TComment, TPostAppStore } from "@/types/types";
+import { ReactElement } from "react";
+import { TComment } from "@/types/types";
 import { CommentCard } from "@/components/CommentCard";
 import { CommentInput } from "@components/CommentInput";
 import { ProtectedComponent } from "@components/ProtectedComponent";
 import { fetchPostComments } from "@/store/posts.api";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "@/store";
+import { useQuery } from "@tanstack/react-query";
+import { Loader } from "../Loader";
 
 export const Comments: React.FC<{ postId: number }> = ({
   postId,
 }): ReactElement => {
-  const { data } = useSelector((state : TPostAppStore) => state.posts.comments)
-  const dispatch = useDispatch<AppDispatch>()
-  useEffect(() => {
-    dispatch(fetchPostComments(postId))
-  }, [postId]);
+  // const dispatch = useDispatch<AppDispatch>()
+  // useEffect(() => {
+  //   dispatch(fetchPostComments(postId))
+  // }, [postId]);
+  const {
+    data: comments,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["comments"],
+    queryFn: () => fetchPostComments(postId),
+  });
+  if (isLoading) {
+    return <Loader />;
+  }
+  if (isError) {
+    return <div>Error</div>;
+  }
   return (
     <div>
       <ProtectedComponent>
         <CommentInput />
       </ProtectedComponent>
-      {data.map((comment : TComment) => (
+      {comments.map((comment: TComment) => (
         <CommentCard key={comment.id} comment={comment} />
       ))}
     </div>

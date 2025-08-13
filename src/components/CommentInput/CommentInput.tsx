@@ -3,16 +3,13 @@ import { Button } from "@ui/Button";
 import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import { TextArea } from "@ui/TextArea";
 import { useLocation } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { TComment, TPostAppStore } from "@/types/types";
-import { AppDispatch } from "@/store";
-import { addComment } from "@/store/slices/PostsSlices";
 import useFetch from "@/hooks/useFetch";
 
 export const CommentInput = (): ReactElement => {
   const [commentText, setCommentText] = useState("");
   const { pathname } = useLocation();
-  const dispatch = useDispatch<AppDispatch>();
   const { post } = useFetch(`https://dummyjson.com`);
   const { id, username, firstName, lastName } = useSelector(
     (state: TPostAppStore) => state.user.data
@@ -30,7 +27,7 @@ export const CommentInput = (): ReactElement => {
         username,
       },
     };
-    dispatch(addComment(newComment));
+    console.log(newComment)
     await post('comments/add', newComment)
   };
   return (

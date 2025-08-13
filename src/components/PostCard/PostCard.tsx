@@ -8,9 +8,8 @@ import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@ui/Button";
 import { ViewsContainer } from "../ViewsContainer";
 import useFetch from "@/hooks/useFetch";
-import { useRatePost } from "@/hooks/useRatePost";
-import "./style.scss";
 import { useSelector } from "react-redux";
+import "./style.scss";
 
 type TPostCardProps = {
   link: string;
@@ -24,27 +23,21 @@ export const PostCard: React.FC<TPostCardProps> = ({
   const { pathname } = useLocation();
   const postId = Number(pathname.split("/").at(-1));
   const { get, patch } = useFetch(`https://dummyjson.com`);
-  const { tag } = useSelector((state: TPostAppStore) => state.posts);
   const { id : userId } = useSelector(
     (state: TPostAppStore) => state.user.data
   );
-  const { ratePost, ratePagedPost } = useRatePost({
-    post,
-    getPost: get,
-    patchPost: patch,
-  });
   const ratePostAsync = async (newRate: string | object) => {
     if (newRate === "liked") {
-      await ratePost("liked");
+      console.log('Liked')
     } else {
-      await ratePost("disliked");
+      console.log('Disliked')
     }
   };
   const ratePagedPostAsync = async (newRate: string | object) => {
     if (newRate === "liked") {
-      await ratePagedPost("liked");
+      console.log('Liked')
     } else {
-      await ratePagedPost("disliked");
+      console.log('Disliked')
     }
   };
   return (
@@ -59,7 +52,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
             <h5>{post.user.firstName + " " + post.user.lastName}</h5>
           </Container>
         ) : <div></div>}
-        <BadgeContainer tags={post.tags} tagsStore={tag} />
+        <BadgeContainer tags={post.tags} tagsStore={[]} />
       </div>
       <div className="post-card__body">
         <h2>{post.title}</h2>

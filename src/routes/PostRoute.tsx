@@ -6,14 +6,14 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router";
 
 const PostRoute = (): ReactElement => {
-  const { pathname } = useLocation();
-  const id = Number(pathname.split("/").at(-1));
-  const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    if (typeof id !== "number") {
-      dispatch(fetchPostById(id));
-    }
-  }, [id, dispatch]);
+  // const { pathname } = useLocation();
+  // const id = Number(pathname.split("/").at(-1));
+  // const dispatch = useDispatch<AppDispatch>();
+  // useEffect(() => {
+  //   if (typeof id !== "number") {
+  //     dispatch(fetchPostById(id));
+  //   }
+  // }, [id, dispatch]);
   return (
     <main>
       <PostPage />

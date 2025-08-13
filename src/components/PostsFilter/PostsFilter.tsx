@@ -10,18 +10,17 @@ import { Grid } from "@components/ui/Grid";
 import "./style.scss";
 
 export const PostsFilter = (): ReactElement => {
-  const dispatch = useDispatch<AppDispatch>();
-  const { tag } = useSelector((state: TPostAppStore) => state.posts);
-  const handleSlug = (slug: string) => {
-    dispatch(fetchPostsByTag(slug));
-  };
+  // const dispatch = useDispatch<AppDispatch>();
+  // const handleSlug = (slug: string) => {
+  //   dispatch(fetchPostsByTag(slug));
+  // };
   return (
     <div className="posts-filter">
-      <Grid classname="post-filter-grid">
+      {/* <Grid classname="post-filter-grid">
         <SearchBox />
         <SortBox />
       </Grid>
-      <TagsBox getSlug={handleSlug} tagStore={tag} />
+      <TagsBox getSlug={handleSlug} tagStore={[]} /> */}
     </div>
   );
 };

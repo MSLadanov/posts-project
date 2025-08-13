@@ -143,7 +143,6 @@ export interface TPostsListState {
 }
 
 export interface TPostAppStore {
-  posts: TPostsListState;
   user: TUserStore;
 }
 
