@@ -4,7 +4,7 @@ import { TComment } from "@/types/types";
 import { CommentCard } from "@/components/CommentCard";
 import { CommentInput } from "@components/CommentInput";
 import { ProtectedComponent } from "@components/ProtectedComponent";
-import { fetchPostComments } from "@/store/posts.api";
+import { fetchPostComments } from "@/api/posts.api";
 import { useQuery } from "@tanstack/react-query";
 import { Loader } from "../Loader";
 

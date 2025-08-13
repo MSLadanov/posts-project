@@ -1,5 +1,5 @@
 import { TPost } from "@/types/types";
-import { API_ENDPOINTS } from "../endponts";
+import { API_ENDPOINTS } from './endpoints'
 
 export const fetchImage = async (text: string): Promise<string> => {
   try {

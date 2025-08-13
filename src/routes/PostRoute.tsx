@@ -1,9 +1,5 @@
 import { PostPage } from "@/components/PostPage";
-import { AppDispatch } from "@/store";
-import { fetchPostById } from "@/store/posts.api";
-import { ReactElement, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useLocation } from "react-router";
+import { ReactElement } from "react";
 
 const PostRoute = (): ReactElement => {
   // const { pathname } = useLocation();

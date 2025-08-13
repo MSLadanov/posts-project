@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { SearchBox } from "@components/SearchBox";
 import { SortBox } from "@components/SortBox";
-import { fetchTags } from "@/store/posts.api";
+import { fetchTags } from "@/api/posts.api";
 import { TagsBox } from "@components/TagsBox";
 import { Grid } from "@components/ui/Grid";
 import { useQuery } from "@tanstack/react-query";

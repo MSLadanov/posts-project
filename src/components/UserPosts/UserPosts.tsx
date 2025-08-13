@@ -2,7 +2,7 @@ import { TPost, TPostAppStore } from "@/types/types";
 import { ReactElement, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { PostCard } from "../PostCard";
-import { fetchUserPosts } from "@/store/slices/utils";
+import { fetchUserPosts } from "@/api/utils";
 
 const UserPosts = (): ReactElement => {
   const { data } = useSelector((state: TPostAppStore) => state.user);

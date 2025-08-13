@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { useLocation } from "react-router";
-import { fetchPostById } from "@/store/posts.api";
+import { fetchPostById } from "@/api/posts.api";
 import { Post } from "@components/Post";
 import { Comments } from "@components/Comments";
 import { Loader } from "../Loader";

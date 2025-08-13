@@ -1,4 +1,4 @@
-import { fetchPosts } from "@/store/posts.api";
+import { fetchPosts } from "@/api/posts.api";
 import { TPost } from "@/types/types";
 import { ReactElement } from "react";
 import { Post } from "@components/Post";
@@ -13,7 +13,7 @@ export const PostsList = (): ReactElement => {
   if (isLoading) {
     return <Loader />;
   }
-  if(isLoading){
+  if(isError){
     return <div>Error</div>
   }
   // if (loading === "succeeded" && data.length === 0) {

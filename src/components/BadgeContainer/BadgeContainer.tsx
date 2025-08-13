@@ -1,8 +1,4 @@
 import { ReactElement } from "react";
-import { TagBadge } from "@ui/TagBadge";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/store";
-import { fetchPostsByTag } from "@/store/posts.api";
 import "./style.scss";
 
 type TBadgeContainerProps = {

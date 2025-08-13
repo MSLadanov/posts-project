@@ -10,7 +10,7 @@ import {
 import { TagsBox } from "@components/TagsBox";
 import { useDispatch, useSelector } from "react-redux";
 import { TPost, TPostAppStore } from "@/types/types";
-import { fetchImage } from "@/store/slices/utils";
+import { fetchImage } from "@/api/utils";
 import { AppDispatch } from "@/store";
 import useFetch from "@/hooks/useFetch";
 import { useNotify } from "@/hooks/useNotify";

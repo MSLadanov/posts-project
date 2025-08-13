@@ -1,5 +1,5 @@
-import { API_ENDPOINTS } from "./endponts";
-import { fetchPostsWithUsersData, fetchUser, fetchImage } from "./slices/utils";
+import { API_ENDPOINTS } from "./endpoints";
+import { fetchPostsWithUsersData, fetchUser, fetchImage } from "./utils";
 
 export const fetchPosts = async () => {
   const response = await fetch(API_ENDPOINTS.POSTS);
