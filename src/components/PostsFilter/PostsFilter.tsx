@@ -1,26 +1,32 @@
 import { ReactElement } from "react";
 import { SearchBox } from "@components/SearchBox";
 import { SortBox } from "@components/SortBox";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "@/store";
-import { fetchPostsByTag } from "@/store/posts.api";
-import { TPostAppStore } from "@/types/types";
+import { fetchTags } from "@/store/posts.api";
 import { TagsBox } from "@components/TagsBox";
 import { Grid } from "@components/ui/Grid";
+import { useQuery } from "@tanstack/react-query";
+import { Loader } from "../Loader";
 import "./style.scss";
 
 export const PostsFilter = (): ReactElement => {
-  // const dispatch = useDispatch<AppDispatch>();
-  // const handleSlug = (slug: string) => {
-  //   dispatch(fetchPostsByTag(slug));
-  // };
+  const {
+    data: tags,
+    isLoading,
+    isError,
+  } = useQuery({ queryKey: ["tags"], queryFn: fetchTags });
+  if (isLoading) {
+    return <Loader />;
+  }
+  if (isError) {
+    return <div>Error</div>;
+  }
   return (
     <div className="posts-filter">
-      {/* <Grid classname="post-filter-grid">
+      <Grid classname="post-filter-grid">
         <SearchBox />
         <SortBox />
       </Grid>
-      <TagsBox getSlug={handleSlug} tagStore={[]} /> */}
+      <TagsBox getSlug={() => {}} tags={tags} />
     </div>
   );
 };

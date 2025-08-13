@@ -1,35 +1,31 @@
 import { ReactElement } from "react";
-import { TPostAppStore } from "@/types/types";
+import { TTag } from "@/types/types";
 import { TagBadge } from "@ui/TagBadge";
-import { Loader } from "../Loader";
 import "./style.scss";
 
 interface TagsBoxProps {
   getSlug: (slug: string) => void;
-  tagStore: string[];
+  tags: TTag[];
 }
 
-export const TagsBox = ({ getSlug, tagStore }: TagsBoxProps): ReactElement => {
-  // if (loading === 'pending') {
-  //   return <Loader />;
-  // }
+export const TagsBox = ({ getSlug, tags }: TagsBoxProps): ReactElement => {
   return (
     <>
-      {/* {data && (
+      {tags && (
         <div className="tag-box">
           {" "}
-          {data.map((tag) => (
+          {tags.map((tag) => (
             <TagBadge
               key={tag.slug}
               slug={tag.slug}
               action={getSlug}
-              tagStore={tagStore}
+              tagStore={[]}
             >
               {tag.name}
             </TagBadge>
           ))}
         </div>
-      )} */}
+      )}
     </>
   );
 };

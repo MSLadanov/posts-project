@@ -74,7 +74,7 @@ export const PostInput = (): ReactElement => {
       </Button>
       <div className={isOpened ? "post-input__visible" : "post-input"}>
         <h4>Choose tags:</h4>
-        <TagsBox getSlug={handleSlug} tagStore={tags} />
+        <TagsBox getSlug={handleSlug} tags={[]} />
         <Input
           value={title}
           setValue={setTitle}
