@@ -8,20 +8,21 @@ import {
   faUpLong,
 } from "@fortawesome/free-solid-svg-icons";
 import { TagsBox } from "@components/TagsBox";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { TPost, TPostAppStore } from "@/types/types";
 import { fetchImage } from "@/api/utils";
-import { AppDispatch } from "@/store";
 import useFetch from "@/hooks/useFetch";
 import { useNotify } from "@/hooks/useNotify";
+import { useQuery } from "@tanstack/react-query";
+import { fetchTags } from "@/api/posts.api";
 import "./style.scss";
 
 export const PostInput = (): ReactElement => {
   const { id, firstName, lastName, image } = useSelector(
     (state: TPostAppStore) => state.user.data
   );
+  const {data: newPostTags, isLoading, isError} = useQuery({queryKey:['new-post-tags'], queryFn: fetchTags})
   const [isOpened, setIsOpened] = useState(false);
-  const dispatch = useDispatch<AppDispatch>();
   const [body, setBody] = useState("");
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState<string[]>([]);
@@ -74,7 +75,7 @@ export const PostInput = (): ReactElement => {
       </Button>
       <div className={isOpened ? "post-input__visible" : "post-input"}>
         <h4>Choose tags:</h4>
-        <TagsBox getSlug={handleSlug} tags={[]} />
+        <TagsBox getSlug={handleSlug} tags={newPostTags} />
         <Input
           value={title}
           setValue={setTitle}
