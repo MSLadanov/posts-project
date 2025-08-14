@@ -26,7 +26,7 @@ interface IUseNewPostReturn {
 }
 
 export const useNewPost = (): IUseNewPostReturn => {
-  const {data: posts} = useQuery({queryKey:['posts'], queryFn: fetchPosts})
+  const {data: posts} = useQuery({queryKey:['posts'], queryFn: fetchPosts,initialData: []})
   const queryClient = useQueryClient();
   const { id, firstName, lastName, image } = useSelector(
     (state: TPostAppStore) => state.user.data
@@ -75,7 +75,7 @@ export const useNewPost = (): IUseNewPostReturn => {
     mutationKey: ["posts"],
     mutationFn: addNewPost,
     onSuccess:(newPost) => {
-      queryClient.setQueryData(['posts'], [newPost, posts])
+      queryClient.setQueryData(['posts'], [newPost, ...posts])
       notify("New post added!", "success");
     }
   });
