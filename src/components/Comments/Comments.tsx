@@ -11,10 +11,6 @@ import { Loader } from "../Loader";
 export const Comments: React.FC<{ postId: number }> = ({
   postId,
 }): ReactElement => {
-  // const dispatch = useDispatch<AppDispatch>()
-  // useEffect(() => {
-  //   dispatch(fetchPostComments(postId))
-  // }, [postId]);
   const {
     data: comments,
     isLoading,
