@@ -7,6 +7,7 @@ import { Grid } from "@components/ui/Grid";
 import { useQuery } from "@tanstack/react-query";
 import { Loader } from "../Loader";
 import "./style.scss";
+import { useNavigate } from "react-router";
 
 export const PostsFilter = (): ReactElement => {
   const {
@@ -14,6 +15,7 @@ export const PostsFilter = (): ReactElement => {
     isLoading,
     isError,
   } = useQuery({ queryKey: ["tags"], queryFn: fetchTags });
+  const navigate = useNavigate()
   if (isLoading) {
     return <Loader />;
   }
@@ -26,7 +28,7 @@ export const PostsFilter = (): ReactElement => {
         <SearchBox />
         <SortBox />
       </Grid>
-      <TagsBox getSlug={() => {}} tags={tags} />
+      <TagsBox getSlug={navigate} tags={tags} />
     </div>
   );
 };

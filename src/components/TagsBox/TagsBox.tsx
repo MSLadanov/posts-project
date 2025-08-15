@@ -8,7 +8,7 @@ interface TagsBoxProps {
   tags: TTag[];
 }
 
-export const TagsBox = ({ getSlug, tags }: TagsBoxProps): ReactElement => {
+export const TagsBox = ({ getSlug,tags }: TagsBoxProps): ReactElement => {
   return (
     <>
       {tags && (
@@ -18,7 +18,7 @@ export const TagsBox = ({ getSlug, tags }: TagsBoxProps): ReactElement => {
             <TagBadge
               key={tag.slug}
               slug={tag.slug}
-              action={getSlug}
+              action={() => getSlug(`?sortBy=${tag.slug}`)}
               tagStore={[]}
             >
               {tag.name}
