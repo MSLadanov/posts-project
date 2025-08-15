@@ -6,15 +6,22 @@ import { PostInput } from "@components/PostInput";
 import { ProtectedComponent } from "@components/ProtectedComponent";
 import { Loader } from "../Loader";
 import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "react-router";
 import "./style.scss";
 
 export const PostsList = (): ReactElement => {
-  const {data: posts, isLoading, isError } = useQuery({queryKey: ['posts'], queryFn: fetchPosts},)
+  const searchParams = useSearchParams()
+  const sortBy = searchParams[0].get('sortBy');
+  const {
+    data: posts,
+    isLoading,
+    isError,
+  } = useQuery({ queryKey: ["posts"], queryFn:  fetchPosts });
   if (isLoading) {
     return <Loader />;
   }
-  if(isError){
-    return <div>Error</div>
+  if (isError) {
+    return <div>Error</div>;
   }
   // if (loading === "succeeded" && data.length === 0) {
   //   return (
