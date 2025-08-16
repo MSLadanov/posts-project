@@ -23,14 +23,6 @@ export const PostsList = (): ReactElement => {
   if (isError) {
     return <div>Error</div>;
   }
-  // if (loading === "succeeded" && data.length === 0) {
-  //   return (
-  //     <div className="no-posts">
-  //       <FontAwesomeIcon icon={faFaceFrown} />
-  //       <h2>No posts!</h2>
-  //     </div>
-  //   );
-  // }
   return (
     <>
       <ProtectedComponent>
