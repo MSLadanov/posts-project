@@ -26,7 +26,11 @@ interface IUseNewPostReturn {
 }
 
 export const useNewPost = (): IUseNewPostReturn => {
-  const {data: posts} = useQuery({queryKey:['posts'], queryFn: fetchPosts,initialData: []})
+  const { data: posts } = useQuery({
+    queryKey: ["posts"],
+    queryFn: () => fetchPosts(null),
+    initialData: [],
+  });
   const queryClient = useQueryClient();
   const { id, firstName, lastName, image } = useSelector(
     (state: TPostAppStore) => state.user.data
@@ -67,17 +71,17 @@ export const useNewPost = (): IUseNewPostReturn => {
       },
     };
     const response = await post<TPost>("posts/add", newPostData);
-    const newPost = {...newPostData, id: response?.id}
+    const newPost = { ...newPostData, id: response?.id };
     clearPostInput();
-    return newPost
+    return newPost;
   };
   const { mutate: addPost } = useMutation({
     mutationKey: ["posts"],
     mutationFn: addNewPost,
-    onSuccess:(newPost) => {
-      queryClient.setQueryData(['posts'], [newPost, ...posts])
+    onSuccess: (newPost) => {
+      queryClient.setQueryData(["posts"], [newPost, ...posts]);
       notify("New post added!", "success");
-    }
+    },
   });
   return {
     body,

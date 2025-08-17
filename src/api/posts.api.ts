@@ -1,16 +1,6 @@
 import { API_ENDPOINTS } from "./endpoints";
 import { fetchPostsWithUsersData, fetchUser, fetchImage } from "./utils";
 
-export const fetchPosts = async () => {
-  const response = await fetch(API_ENDPOINTS.POSTS);
-  if (!response.ok) {
-    throw new Error("Ошибка запроса");
-  }
-  const { posts } = await response.json();
-  const postsWithUsersData = await fetchPostsWithUsersData(posts);
-  return postsWithUsersData;
-};
-
 export const fetchTags = async () => {
   const response = await fetch(API_ENDPOINTS.TAGS);
   if (!response.ok) {
@@ -20,14 +10,14 @@ export const fetchTags = async () => {
   return tags;
 };
 
-export const fetchPostsByTag = async (tag: string) => {
+export const fetchPosts = async (tag : string | null )  => {
   const response = await fetch(API_ENDPOINTS.POSTS_BY_TAG(tag));
   if (!response.ok) {
     throw new Error("Ошибка запроса");
   }
   const { posts } = await response.json();
   const postsWithUsersData = await fetchPostsWithUsersData(posts);
-  return { postsWithUsersData, tag };
+  return postsWithUsersData;
 };
 
 export const fetchPostById = async (id: number) => {

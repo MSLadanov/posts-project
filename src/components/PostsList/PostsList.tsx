@@ -1,6 +1,6 @@
 import { fetchPosts } from "@/api/posts.api";
 import { TPost } from "@/types/types";
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { Post } from "@components/Post";
 import { PostInput } from "@components/PostInput";
 import { ProtectedComponent } from "@components/ProtectedComponent";
@@ -10,13 +10,17 @@ import { useSearchParams } from "react-router";
 import "./style.scss";
 
 export const PostsList = (): ReactElement => {
-  const searchParams = useSearchParams()
-  const sortBy = searchParams[0].get('sortBy');
+  const searchParams = useSearchParams();
+  const sortBy = searchParams[0].get("sortBy");
   const {
     data: posts,
     isLoading,
     isError,
-  } = useQuery({ queryKey: ["posts"], queryFn:  fetchPosts });
+    refetch,
+  } = useQuery({ queryKey: ["posts"], queryFn: () => fetchPosts(sortBy) });
+  useEffect(() => {
+    refetch();
+  }, [sortBy]);
   if (isLoading) {
     return <Loader />;
   }

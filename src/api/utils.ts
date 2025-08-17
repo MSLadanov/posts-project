@@ -30,8 +30,6 @@ export const fetchPostsWithUsersData = async (posts: TPost[]) => {
   return await Promise.all(
     posts.map(async (post: TPost) => ({
       ...post,
-      rated: false,
-      rate: null,
       user: await fetchUser(post.userId),
       postImage: await fetchImage(post.title),
     }))

@@ -8,12 +8,14 @@ interface TagsBoxProps {
   tags: TTag[];
 }
 
-export const TagsBox = ({ getSlug,tags }: TagsBoxProps): ReactElement => {
+export const TagsBox = ({ getSlug, tags }: TagsBoxProps): ReactElement => {
   return (
     <>
       {tags && (
         <div className="tag-box">
-          {" "}
+          <TagBadge slug="" action={() => getSlug("")} tagStore={[]}>
+            All
+          </TagBadge>
           {tags.map((tag) => (
             <TagBadge
               key={tag.slug}

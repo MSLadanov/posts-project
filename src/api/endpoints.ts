@@ -7,8 +7,8 @@ export const API_ENDPOINTS = {
   IMAGE: `${API_BASE_URL}/image`,
   TAGS: `${API_BASE_URL}/posts/tags`,
   IMAGE_SIZE: "800x800",
-  POSTS_BY_TAG: (tag: string) => 
-    `${API_BASE_URL}/posts/tag/${tag}?limit=${POST_LIMITS}`,
+  POSTS_BY_TAG: (tag : string | null) => tag ?
+    `${API_BASE_URL}/posts/tag/${tag}?limit=${POST_LIMITS}` : `${API_BASE_URL}/posts?limit=${POST_LIMITS}`,
   POST_BY_ID: (id: number) => `${API_BASE_URL}/posts/${id}`,
   SEARCH_POSTS: (query: string) => 
     `${API_BASE_URL}/posts/search?q=${query}`,
