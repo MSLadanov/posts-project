@@ -14,17 +14,18 @@ export const Select: React.FC<TSelectProps> = ({
 }): ReactElement => {
   return (
     <div className="select">
-      <div
-        className="select__button"
-        defaultValue={defaultValue}
-      >
+      <div className="select__button" defaultValue={defaultValue}>
         {" "}
         {defaultValue}
       </div>
       <div className="select__options">
         {options.map((option, index) => (
-          <div key={index} className="select__option" onClick={() => onChange(option)}>
-            {option}
+          <div
+            key={index}
+            className="select__option"
+            onClick={() => onChange(option)}
+          >
+            {option[0].toUpperCase() + option.slice(1)}
           </div>
         ))}
       </div>

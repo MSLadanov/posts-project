@@ -13,7 +13,6 @@ export const PostsList = (): ReactElement => {
   const searchParams = useSearchParams();
   const sortBy = searchParams[0].get("sortBy");
   const orderBy = searchParams[0].get("orderBy");
-  console.log(orderBy)
   const {
     data: posts,
     isLoading,
