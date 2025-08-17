@@ -3,25 +3,31 @@ import "./style.scss";
 
 type TSelectProps = {
   options: string[];
-  defaultValue: string,
-  setValue: (value: string) => void;
+  defaultValue: string;
+  onChange: (option: string) => void;
 };
 
 export const Select: React.FC<TSelectProps> = ({
   defaultValue,
   options,
-  setValue,
+  onChange,
 }): ReactElement => {
   return (
-    <select 
-      className="custom-select"
-      defaultValue={defaultValue} 
-      onChange={(e) => setValue(e.target.value)}
-    >
-      <option disabled className="custom-select-default-option">{defaultValue}</option>
-      {options.map((option, index) => (
-        <option key={index} className="custom-select-option">{option}</option>
-      ))}
-    </select>
+    <div className="select">
+      <div
+        className="select__button"
+        defaultValue={defaultValue}
+      >
+        {" "}
+        {defaultValue}
+      </div>
+      <div className="select__options">
+        {options.map((option, index) => (
+          <div key={index} className="select__option" onClick={() => onChange(option)}>
+            {option}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
