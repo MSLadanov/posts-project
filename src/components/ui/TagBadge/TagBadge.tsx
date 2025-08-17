@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { useSearchParams } from "react-router";
 import "./style.scss";
 
 type TTagBadgeProps = {
@@ -6,7 +7,6 @@ type TTagBadgeProps = {
   slug: string;
   disabled?: boolean
   action: (slug: string) => void;
-  tagStore: string[]
 };
 
 export const TagBadge = ({
@@ -14,11 +14,12 @@ export const TagBadge = ({
   slug,
   action,
   disabled = false, 
-  tagStore
 }: TTagBadgeProps): ReactElement => {
+  const searchParams = useSearchParams()
+  const sortBy = searchParams[0].get('sortBy')
   return (
     <button
-      className={tagStore.includes(slug) ? "tag-badge__active" : "tag-badge"}
+      className={sortBy === slug? "tag-badge__active" : "tag-badge"}
       disabled={disabled}
       onClick={() => {
         action(slug);

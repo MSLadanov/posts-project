@@ -13,7 +13,7 @@ export const TagsBox = ({ getSlug, tags }: TagsBoxProps): ReactElement => {
     <>
       {tags && (
         <div className="tag-box">
-          <TagBadge slug="" action={() => getSlug("")} tagStore={[]}>
+          <TagBadge slug="" action={() => getSlug("")}>
             All
           </TagBadge>
           {tags.map((tag) => (
@@ -21,7 +21,6 @@ export const TagsBox = ({ getSlug, tags }: TagsBoxProps): ReactElement => {
               key={tag.slug}
               slug={tag.slug}
               action={() => getSlug(`?sortBy=${tag.slug}`)}
-              tagStore={[]}
             >
               {tag.name}
             </TagBadge>

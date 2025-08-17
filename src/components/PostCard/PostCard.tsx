@@ -52,7 +52,7 @@ export const PostCard: React.FC<TPostCardProps> = ({
             <h5>{post.user.firstName + " " + post.user.lastName}</h5>
           </Container>
         ) : <div></div>}
-        <BadgeContainer tags={post.tags} tagsStore={[]} />
+        <BadgeContainer tags={post.tags} />
       </div>
       <div className="post-card__body">
         <h2>{post.title}</h2>

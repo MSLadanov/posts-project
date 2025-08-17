@@ -1,26 +1,27 @@
 import { ReactElement } from "react";
+import { TagBadge } from "@components/ui/TagBadge";
+import { useNavigate } from "react-router";
 import "./style.scss";
 
 type TBadgeContainerProps = {
   tags: string[];
-  tagsStore: string[];
 };
 
 export const BadgeContainer: React.FC<TBadgeContainerProps> = ({
   tags,
-  tagsStore,
 }): ReactElement => {
-  // const dispatch = useDispatch<AppDispatch>();
-  // const sortByTag = (slug: string) => {
-  //   dispatch(fetchPostsByTag(slug));
-  // };
+  const navigate = useNavigate();
   return (
     <div className="badge-container">
-      {/* {tags.map((tag, index) => (
-        <TagBadge key={index} slug={tag} action={sortByTag} tagStore={tagsStore}>
+      {tags.map((tag, index) => (
+        <TagBadge
+          key={index}
+          slug={tag}
+          action={() => navigate(`?sortBy=${tag}`)}
+        >
           {tag}
         </TagBadge>
-      ))} */}
+      ))}
     </div>
   );
 };
