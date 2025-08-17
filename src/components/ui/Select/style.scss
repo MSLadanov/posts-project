@@ -1,0 +1,19 @@
+.select{
+    position: relative;
+    &__button{
+        background-color: white;
+    }
+    &__options{
+        position: absolute;
+        opacity: 0;
+        &.visible{
+            opacity: 1;
+            background-color: white;
+            width: 100%;
+            transform:translateY(30%);
+        }
+    }
+    &__option{
+
+    }
+}
