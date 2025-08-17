@@ -12,15 +12,17 @@ import "./style.scss";
 export const PostsList = (): ReactElement => {
   const searchParams = useSearchParams();
   const sortBy = searchParams[0].get("sortBy");
+  const orderBy = searchParams[0].get("orderBy");
+  console.log(orderBy)
   const {
     data: posts,
     isLoading,
     isError,
     refetch,
-  } = useQuery({ queryKey: ["posts"], queryFn: () => fetchPosts(sortBy) });
+  } = useQuery({ queryKey: ["posts"], queryFn: () => fetchPosts(sortBy, orderBy) });
   useEffect(() => {
     refetch();
-  }, [sortBy]);
+  }, [sortBy, orderBy]);
   if (isLoading) {
     return <Loader />;
   }

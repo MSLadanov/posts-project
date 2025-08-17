@@ -28,7 +28,7 @@ interface IUseNewPostReturn {
 export const useNewPost = (): IUseNewPostReturn => {
   const { data: posts } = useQuery({
     queryKey: ["posts"],
-    queryFn: () => fetchPosts(null),
+    queryFn: () => fetchPosts(null, null),
     initialData: [],
   });
   const queryClient = useQueryClient();

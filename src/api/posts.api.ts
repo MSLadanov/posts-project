@@ -10,8 +10,8 @@ export const fetchTags = async () => {
   return tags;
 };
 
-export const fetchPosts = async (tag : string | null )  => {
-  const response = await fetch(API_ENDPOINTS.POSTS_BY_TAG(tag));
+export const fetchPosts = async (tag : string | null , orderBy: string | null)  => {
+  const response = await fetch(API_ENDPOINTS.POSTS(tag, orderBy));
   if (!response.ok) {
     throw new Error("Ошибка запроса");
   }
