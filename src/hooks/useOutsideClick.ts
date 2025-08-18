@@ -6,5 +6,6 @@ export const useOutsideClick = (callback: () => void) => {
     console.log(e.target)
     console.log(refElement.current)
   });
+  document.removeEventListener('click', () => console.log(''))
   return { refElement };
 };
