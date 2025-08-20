@@ -1,27 +1,14 @@
 import { ReactElement } from "react";
 import { SearchBox } from "@components/SearchBox";
 import { SortBox } from "@components/SortBox";
-import { fetchTags } from "@/api/posts.api";
 import { TagsBox } from "@components/TagsBox";
 import { Grid } from "@components/ui/Grid";
-import { useQuery } from "@tanstack/react-query";
-import { Loader } from "../Loader";
-import "./style.scss";
 import { useNavigate } from "react-router";
+import { TTag } from "@/types/types";
+import "./style.scss";
 
-export const PostsFilter = (): ReactElement => {
-  const {
-    data: tags,
-    isLoading,
-    isError,
-  } = useQuery({ queryKey: ["tags"], queryFn: fetchTags });
-  const navigate = useNavigate()
-  if (isLoading) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <div>Error</div>;
-  }
+export const PostsFilter = ({ tags }: { tags: TTag[] }): ReactElement => {
+  const navigate = useNavigate();
   return (
     <div className="posts-filter">
       <Grid classname="post-filter-grid">

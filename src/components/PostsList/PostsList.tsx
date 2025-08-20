@@ -1,33 +1,11 @@
-import { fetchPosts } from "@/api/posts.api";
 import { TPost } from "@/types/types";
-import { ReactElement, useEffect } from "react";
+import { ReactElement } from "react";
 import { Post } from "@components/Post";
 import { PostInput } from "@components/PostInput";
 import { ProtectedComponent } from "@components/ProtectedComponent";
-import { Loader } from "../Loader";
-import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "react-router";
 import "./style.scss";
 
-export const PostsList = (): ReactElement => {
-  const searchParams = useSearchParams();
-  const sortBy = searchParams[0].get("sortBy");
-  const orderBy = searchParams[0].get("orderBy");
-  const {
-    data: posts,
-    isLoading,
-    isError,
-    refetch,
-  } = useQuery({ queryKey: ["posts"], queryFn: () => fetchPosts(sortBy, orderBy) });
-  useEffect(() => {
-    refetch();
-  }, [sortBy, orderBy]);
-  if (isLoading) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <div>Error</div>;
-  }
+export const PostsList = ({posts} : {posts: TPost[]}): ReactElement => {
   return (
     <>
       <ProtectedComponent>
