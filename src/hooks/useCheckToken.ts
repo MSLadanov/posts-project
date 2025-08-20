@@ -7,16 +7,19 @@ export const useCheckToken = (): { isLogged: boolean } => {
   const [isLogged, setIsLogged] = useState(false);
   useEffect(() => {
     const checkToken = async () => {
-      const response = await fetch("https://dummyjson.com/user/me", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${cookies.accessToken}`,
-        },
-      });
-      const user = await response.json();
-      if (Object.hasOwn(user, "id")) {
-        setIsLogged(true);
-      } else {
+      try {
+        const response = await fetch("https://dummyjson.com/user/me", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${cookies.accessToken}`,
+          },
+        });
+        const user = await response.json();
+        if (Object.hasOwn(user, "id")) {
+          setIsLogged(true);
+        }
+      } catch (error) {
+        console.log(error);
         setIsLogged(false);
         removeCookies("accessToken");
       }
