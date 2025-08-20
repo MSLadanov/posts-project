@@ -1,9 +1,10 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { PostsFilter } from "@/components/PostsFilter";
 import { PostsList } from "@/components/PostsList";
 import { fetchPosts, fetchTags } from "@/api/posts.api";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
+import { Loader } from "@/components/Loader";
 
 const PostsListRoute = (): ReactElement => {
   const searchParams = useSearchParams();
@@ -23,10 +24,16 @@ const PostsListRoute = (): ReactElement => {
     queryKey: ["posts"],
     queryFn: () => fetchPosts(sortBy, orderBy),
   });
+  useEffect(() => {
+    refetch();
+  }, [sortBy, orderBy]);
+  if (isTagsLoading || isPostsLoading) {
+    return <Loader />;
+  }
   return (
     <main>
       <PostsFilter tags={tags} />
-      <PostsList posts={posts} />
+      <PostsList posts={posts!} />
     </main>
   );
 };
